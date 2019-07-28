@@ -1,0 +1,15 @@
+---
+
+#############################################################
+#                                                           #
+# Custom Component Config for Grocy ERP beyond your fridge  #
+#                                                           #
+# https://github.com/custom-components/grocy                #
+#                                                           #
+#############################################################
+
+grocy:
+  url: "http://192.168.1.16:9283/api/"
+  api_key: !secret grocy_api
+  sensor:
+    - enabled: true

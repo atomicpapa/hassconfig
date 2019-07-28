@@ -1,0 +1,14 @@
+---
+
+######################################################
+#                                                    #
+# Custom Component Config for browser_mod            #
+#                                                    #
+# https://github.com/thomasloven/hass-browser_mod    #
+#                                                    #
+######################################################
+
+browser_mod:
+  devices:
+    8a45f742-bbf89c3d:
+      name: Poseidon

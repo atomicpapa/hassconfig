@@ -1,0 +1,32 @@
+---
+
+######################################################
+#                                                    #
+# Core Component Config for the Ring Doorbell        #
+#                                                    #
+# https://www.home-assistant.io/components/ring/     #
+#                                                    #
+######################################################
+
+ring:
+  username: !secret ring_user
+  password: !secret ring_pass
+
+binary_sensor:
+  - platform: ring
+
+camera:
+  - platform: ring
+
+sensor:
+  - platform: ring
+    monitored_conditions:
+      - battery
+      - last_activity
+      - last_ding
+      - last_motion
+      - volume
+      - wifi_signal_category
+      - wifi_signal_strength
+
+      

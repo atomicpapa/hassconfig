@@ -1,0 +1,81 @@
+summer_breeze:
+  lovelace-background: 'center / cover no-repeat url("/local/background-summer_breeze.jpg") fixed'         #Background-image
+  # Define basic colors
+  element-dark-color: "rgba(44,29,5,0.9)"                                                                   # nearly black
+  element-light-color: "rgb(47, 35, 23,0.6)"                                                                # Medium grey
+  element-medium-color: "rgba(44,29,5,0.7)"                                                                 # Light grey
+  accent-color: 'rgba(218,165,32,0.8)'                                                                      # dark-yellow
+  accent-color-darker: 'rgba(184,134,11,1)' 
+  background-color: '#F7F8F9'                                                                               # Light grey 
+  background-color-2: '#dedfe0'                                                                             # Light grey 
+  transparent-background-color: 'rgba(255,255,255,0.2)'                                                     # white transparent
+  #transparent-background-color-darker: 'rgba(89,87,86,0.15)'                                               # grey transparent
+  less-transparent-background-color: 'rgba(89,87,86,0.5)'                                                   # grey less transparent
+  non-transparent-background-color: '#A28E66'                                                               # non transparent yelowish grey
+  border-color: '#EAEAEA'                                                                                   # Light grey border
+
+  # Header
+  primary-color: 'var(--non-transparent-background-color)'                                                  # color of the headers background, the highlighted element in the Sidebar, buttons in lovelace
+  text-primary-color: 'var(--element-medium-color)'
+  # Compact Custom Header
+  cch-background: 'var(--less-transparent-background-color)'
+  cch-button-color-menu: 'var(--element-dark-color)'
+
+  # Left Menu
+  paper-listbox-background-color: transparent #'var(--non-transparent-background-color)'                    # Background of the Menu in sidebar (containing shortcuts)
+
+  # UI
+  #paper-card-header-color: #'var(--element-dark-color)'                                                    # Title in settings - doesnt seem to have any effect
+  primary-background: 'var(--background-color)'                                                             # background of dialogs, title background in left menu)
+  sidebar-background: 'var(--background-color-2)'
+  app-toolbar-background-color: transparent
+
+  # Card
+  paper-card-background-color: 'var(--transparent-background-color)'                                        # Background of cards -> mostly transparent
+  ha-card-border-radius: '10px'                                                                             # rounded corners
+  #dark-primary-color: red #'var(--element-dark-color)'                                                     # doesnt seem to have any effect
+  #primary-element-dark-color: red #'var(--element-dark-color)'                                             # doesnt seem to have any effect
+  paper-listbox-color: 'var(--element-dark-color)'
+  light-primary-color: 'var(--accent-color)'
+  secondary-element-dark-color: green #'var(--element-light-color)'
+  paper-dialog-button-color: red #'var(--element-dark-color)'
+  secondary-background-color: transparent #'var(--less-transparent-background-color)'                       # secondary color that can be used by cards, e.g. custom updater card uses it to color every second row, also header of popups
+
+  paper-dialog-background-color: 'var(--background-color)'                                                  # background color of dialogs that appear when clicking on a entity
+  paper-dialog-color: 'var(--element-light-color)'                                                          # text color of these dialogs
+  paper-dialog-header-background: 'var(--element-dark-color)'
+  more-info-header-color: 'var(--element-dark-color)'
+  more-info-header-background: white #'var(--less-transparent-background-color)'
+
+  
+  # Icons
+  paper-item-icon-color: 'var(--element-light-color)'                                                       # Off
+  paper-item-icon-active-color: 'var(--accent-color-darker)'                                                # On (gets overriden by light color if its sent)
+  
+  # Switches
+  paper-toggle-button-checked-button-color: '#FFF'                                                          # Knob On
+  paper-toggle-button-checked-bar-color:  'var(--accent-color-darker)'                                      # Background On
+  paper-toggle-button-unchecked-button-color: '#FFF'                                                        # Knob Off
+  paper-toggle-button-unchecked-bar-color: 'var(--element-light-color)'                                     # Background Off
+                                                                              
+  
+  #slider
+  paper-slider-knob-color: 'white'                                                                          # color of the handle
+  paper-slider-container-color: 'rgba(44,29,5,0.2)'                                                         # color of the sliders line
+  paper-slider-active-color: 'rgba(44,29,5,0.4)'                                                            # color of the active part of the slider (left of the knob)
+  paper-slider-knob-start-color: 'rgba(255,255,255,0.6)'                                                    # color of the knob when beeing at 0
+  paper-slider-height: '5px'                                                                                # thickness of the sliders' line
+
+  #Progress
+  paper-progress-height: 7px                                                                                # height of the progress bars
+
+  # Shadows
+  shadow-elevation-2dp_-_box-shadow: 'inset 0px 0px 0px 1px var(--border-color)'
+  shadow-elevation-4dp_-_box-shadow: 'var(--shadow-elevation-2dp_-_box-shadow)'
+  shadow-elevation-6dp_-_box-shadow: 'var(--shadow-elevation-2dp_-_box-shadow)'
+  shadow-elevation-8dp_-_box-shadow: 'var(--shadow-elevation-2dp_-_box-shadow)'
+  shadow-elevation-10dp_-_box-shadow: 'var(--shadow-elevation-2dp_-_box-shadow)'
+  shadow-elevation-12dp_-_box-shadow: 'var(--shadow-elevation-2dp_-_box-shadow)'
+  shadow-elevation-14dp_-_box-shadow: 'var(--shadow-elevation-2dp_-_box-shadow)'
+  shadow-elevation-16dp_-_box-shadow: '0px 0px 0px 3px var(--light-color)'
+  ha-card-box-shadow: "0px 5px 5px rgba(0,0,0,0.3)"

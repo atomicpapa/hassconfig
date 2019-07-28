@@ -1,0 +1,63 @@
+# Controlling automated on/off of porch light at sunset/sunrise
+
+- alias: Porch Light On at Sunset
+  initial_state: 'on'
+  trigger:
+    platform: sun
+    event: sunset
+    offset: "-00:05:00"
+  action:
+    - service: script.speech_engine
+      data:
+        call_dark_outside: 1
+    - service: light.turn_on
+      entity_id: light.color_porch
+      data:
+        transition: 60
+        brightness: 127
+    - service: script.tweet_engine
+      data_template:
+        tweet: >
+          "It's {{now().strftime("%-I")}}:{{now().strftime("%M")}} {{now().strftime("%p")}} and getting dark. I just turned on the lights for my family.  I'm cool like that."
+
+- alias: Front Porch Nighttime Motion
+  initial_state: 'on'
+  trigger:
+    platform: state
+    entity_id: binary_sensor.ring_front_door_motion
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: state
+    entity_id: sun.sun
+    state: 'below_horizon'
+  action:
+    - service: light.turn_on
+      entity_id: light.color_porch
+      data:
+        brightness: 254
+    - delay: '00:10:00'
+    - service: light.turn_on
+      entity_id: light.color_porch
+      data:
+        transition: 60
+        brightness: 127
+
+- alias: Porch Light Off at Sunrise
+  initial_state: 'on'
+  trigger:
+    platform: sun
+    event: sunrise
+    offset: "00:30:00"
+  action:
+    - service: script.speech_engine
+      data:
+        call_light_outside: 1
+    - service: light.turn_off
+      entity_id: light.color_porch
+      data:
+        transition: 60
+    - service: script.tweet_engine
+      data_template:
+        tweet: >
+          "The sun is up so it's time to turn the outside lights off.  Lucky for my family, I have them covered!"

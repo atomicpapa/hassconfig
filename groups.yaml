@@ -1,0 +1,9 @@
+---
+
+family:
+  name: Family
+  entities:
+    - person.glenn
+    - person.eryin
+    - person.emmy
+    - person.lola

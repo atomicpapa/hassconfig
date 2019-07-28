@@ -1,0 +1,13 @@
+---
+
+######################################################
+#                                                    #
+# Core Component for Honeywell Thermostats           #
+#                                                    #
+######################################################
+
+climate:
+  - platform: honeywell
+    username: !secret hw_user
+    password: !secret hw_pass
+    region: us

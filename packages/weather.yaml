@@ -1,0 +1,35 @@
+---
+
+############################################################
+#                                                          #
+# Core Component Config for Weather                        #
+# https://www.home-assistant.io/components/openweathermap/ #
+# https://www.home-assistant.io/components/darksky/        #
+#                                                          #
+############################################################
+
+weather:
+  - platform: openweathermap
+    api_key: !secret owm_key
+    
+sensor:
+  - platform: openweathermap
+    api_key: !secret owm_key
+    monitored_conditions:
+      - weather
+      - temperature
+      - humidity
+
+  - platform: darksky
+    api_key: !secret darksky_api
+    forecast:
+      - 0
+    hourly_forecast:
+      - 0
+      - 1
+    monitored_conditions:
+      - summary
+      - icon
+      - precip_probability
+      - uv_index
+      - minutely_summary

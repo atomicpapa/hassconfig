@@ -1,0 +1,87 @@
+
+homeassistant:
+  name: Home
+  latitude: !secret latitude
+  longitude: !secret longitude
+  elevation: !secret altitude
+  unit_system: imperial
+  time_zone: America/Chicago
+  customize: !include customize.yaml
+  packages: !include_dir_named packages
+
+group: !include groups.yaml
+automation: !include_dir_merge_list automations/
+script: !include_dir_merge_list scripts/
+input_boolean: !include_dir_merge_named input_booleans/
+
+logger:
+  default: warning
+
+system_health:
+
+frontend:
+  themes: !include_dir_merge_named themes/
+
+google:
+  client_id: !secret google_client
+  client_secret: !secret google_secret
+
+config:
+
+stream:
+
+person:
+
+http:
+
+updater:
+  include_used_components: true
+
+discovery:
+  ignore:
+    - philips_hue
+
+downloader:
+  download_dir: downloads
+
+conversation:
+
+history:
+
+logbook:
+
+recorder:
+  purge_keep_days: 5
+  purge_interval: 1
+
+map:
+
+sun:
+
+mobile_app:
+
+ios:
+
+cloud:
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+tuya:
+  username: !secret tuya_user
+  password: !secret tuya_pass
+  country_code: 1
+
+speedtestdotnet:
+  scan_interval:
+    minutes: 30
+  monitored_conditions:
+    - ping
+    - download
+    - upload
+
+breaking_changes:
+
+mqtt:
+  broker: 192.168.1.16

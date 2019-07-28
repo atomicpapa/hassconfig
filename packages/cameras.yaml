@@ -1,0 +1,9 @@
+---
+
+camera:
+  - platform: mjpeg
+    # still_image_url: http://192.168.1.16:8085
+    mjpeg_url: http://192.168.1.16:8085
+    # authentication: digest
+    # username: !secret cam_user
+    # password: !secret cam_pass
