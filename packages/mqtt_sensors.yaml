@@ -1,0 +1,126 @@
+---
+
+# Config for vaious sensors that communicate with Home Assistant
+# via the MQTT protocol.
+
+binary_sensor:
+
+#### Contact Sensors #####
+
+  - platform: mqtt
+    name: "Wyze"
+    state_topic: "gosense/7778F8F3"
+    payload_on: 1
+    payload_off: 0
+    device_class: opening
+    value_template: "{{ value_json.metadata.properties.state }}"
+    json_attributes_topic: "gosense/7778F8F3"
+    #json_attributes_template: ""
+
+  - platform: mqtt
+    name: "Test"
+    state_topic: "tele/rfbridge/RESULT"
+    payload_on: "0x317F0A"
+    payload_off: "0x317F0E"
+    device_class: opening
+    value_template: "{{ value_json.RfReceived.Data }}"
+    json_attributes_topic: "tele/rfbridge/STATE"
+
+  - platform: mqtt
+    name: "Front Door"
+    state_topic: "tele/rfbridge/RESULT"
+    payload_on: "0x301C0A"
+    payload_off: "0x301C0E"
+    device_class: door
+    value_template: "{{ value_json.RfReceived.Data }}"
+
+  - platform: mqtt
+    name: "Back Door"
+    state_topic: "tele/rfbridge/RESULT"
+    payload_on: "0x346E0"
+    payload_off: "0x346E0E"
+    device_class: door
+    value_template: "{{ value_json.RfReceived.Data }}"
+
+  - platform: mqtt
+    name: "Garage Door"
+    state_topic: "tele/rfbridge/RESULT"
+    payload_on: "0x319E0A"
+    payload_off: "0x319E0E"
+    device_class: door
+    value_template: "{{ value_json.RfReceived.Data }}"
+
+  - platform: mqtt
+    name: "Garage Back Door"
+    state_topic: "tele/rfbridge/RESULT"
+    payload_on: "0x346A0A"
+    payload_off: "0x346A0E"
+    device_class: door
+    value_template: "{{ value_json.RfReceived.Data }}"
+
+  - platform: mqtt
+    name: "Freezer"
+    state_topic: "tele/rfbridge/RESULT"
+    payload_on: "0xB8CC0A"
+    payload_off: "0xB8CC0E"
+    device_class: door
+    value_template: "{{ value_json.RfReceived.Data }}"
+
+  - platform: mqtt
+    name: "Fridge"
+    state_topic: "tele/rfbridge/RESULT"
+    payload_on: "0x7B080A"
+    payload_off: "0x7B080E"
+    device_class: door
+    value_template: "{{ value_json.RfReceived.Data }}"
+
+  - platform: mqtt
+    name: "Girls' Window 1"
+    state_topic: "tele/rfbridge/RESULT"
+    payload_on: "0x71520A"
+    payload_off: "0x71520E"
+    device_class: window
+    value_template: "{{ value_json.RfReceived.Data }}"
+
+  - platform: mqtt
+    name: "Girls' Window 2"
+    state_topic: "tele/rfbridge/RESULT"
+    payload_on: "0x31100A"
+    payload_off: "0x31100E"
+    device_class: window
+    value_template: "{{ value_json.RfReceived.Data }}"
+
+  - platform: mqtt
+    name: "Boy's Window 1"
+    state_topic: "tele/rfbridge/RESULT"
+    payload_on: "0xE1870A"
+    payload_off: "0xE1870E"
+    device_class: window
+    value_template: "{{ value_json.RfReceived.Data }}"
+
+  - platform: mqtt
+    name: "Boy's Window 2"
+    state_topic: "tele/rfbridge/RESULT"
+    payload_on: "0x31160A"
+    payload_off: "0x31160E"
+    device_class: window
+    value_template: "{{ value_json.RfReceived.Data }}"
+
+#### Motion Sensors ####
+
+  - platform: mqtt
+    name: "Living Room Motion"
+    state_topic: "tele/rfbridge/RESULT"
+    payload_on: "0x21EE9A"
+    off_delay: 5
+    device_class: motion
+    value_template: "{{ value_json.RfReceived.Data }}"
+
+  - platform: mqtt
+    name: "Wyze Motion"
+    state_topic: "gosense/777A5038"
+    payload_on: 1
+    payload_off: 0
+    device_class: motion
+    value_template: "{{ value_json.metadata.properties.state }}"
+    json_attributes_topic: "gosense/777A5038"

@@ -1,9 +1,18 @@
 ---
 
+# Camera config for cameras in MotionEye
+
+# MotionEye is running in a seperate Docker container (image: ccrisan/motioneye:master-amd64)
+
 camera:
   - platform: mjpeg
-    # still_image_url: http://192.168.1.16:8085
     mjpeg_url: http://192.168.1.16:8085
-    # authentication: digest
-    # username: !secret cam_user
-    # password: !secret cam_pass
+    name: "Front Door"
+
+  - platform: mjpeg
+    mjpeg_url: http://192.168.1.16:8084
+    name: "Driveway"
+
+  - platform: mjpeg
+    mjpeg_url: http://192.168.1.16:8082
+    name: "Front Yard"

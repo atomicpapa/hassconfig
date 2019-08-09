@@ -24,6 +24,7 @@ class BarCard extends HTMLElement {
     if (!config.color) config.color = 'var(--primary-color)'
     if (!config.tap_action) config.tap_action = 'info'
     if (!config.show_value) config.show_value = true
+    if (!config.limit_value) config.limit_value = false
     if (!config.show_minmax) config.show_minmax = false
     if (!config.title) config.title = false
     if (!config.severity) config.severity = false
@@ -966,11 +967,17 @@ class BarCard extends HTMLElement {
   _updateEntity (entity, id, index) {
     const hass = this._hass
     const entityObject = hass.states[entity]
+    const root = this.shadowRoot
 
-    if (entityObject == undefined) throw new Error(entity + " doesn't exist.")
+    if (entityObject == undefined) {
+      root.getElementById('value_'+id).textContent = `Entity doesn't exist.`
+      root.getElementById('value_'+id).style.setProperty('color', '#FF0000')
+      root.getElementById('icon_'+id).style.setProperty('--icon-display', 'none')
+      root.getElementById('titleBar_'+id).style.setProperty('display', 'none')
+      return
+    } 
 
     const config = this._configAttributeCheck(entity, index)
-    const root = this.shadowRoot
 
     if (config.title == false) config.title = entityObject.attributes.friendly_name
 
@@ -991,17 +998,17 @@ class BarCard extends HTMLElement {
 
     // Check for unknown state
     let entityState
-    if (entityObject == undefined || entityObject.state == 'unknown') {
+    if (entityObject == undefined || entityObject.state == 'unknown' || entityObject.state == 'unavailable') {
       entityState = 'N/A'
     } else {
-      if (config.attribute != false) {
+      if (config.attribute !== false) {
         entityState = entityObject.attributes[config.attribute]
       } else {
         entityState = entityObject.state
       }
-      if (!isNaN(entityState)) {
-      entityState = Math.min(entityState, configMax)
-      entityState = Math.max(entityState, configMin)
+      if (config.limit_value && !isNaN(entityState)) {
+        entityState = Math.min(entityState, configMax)
+        entityState = Math.max(entityState, configMin)
       }
     }
 

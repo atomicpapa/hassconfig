@@ -1,0 +1,8 @@
+---
+
+# Config for Pushbulet notify component
+
+notify:
+  - name: pushbullet
+    platform: pushbullet
+    api_key: !secret pushbullet_api

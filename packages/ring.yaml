@@ -1,12 +1,8 @@
 ---
 
-######################################################
-#                                                    #
-# Core Component Config for the Ring Doorbell        #
-#                                                    #
-# https://www.home-assistant.io/components/ring/     #
-#                                                    #
-######################################################
+# Core Component Config for the Ring Doorbell
+
+# https://www.home-assistant.io/components/ring/
 
 ring:
   username: !secret ring_user

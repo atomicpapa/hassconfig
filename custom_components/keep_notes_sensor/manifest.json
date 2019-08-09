@@ -1,0 +1,8 @@
+{
+  "domain": "keep_notes_sensor",
+  "name": "Google Keep Notes sensor",
+  "documentation": "https://www.example.com",
+  "dependencies": [],
+  "codeowners": ["@klejejs"],
+  "requirements": ["gkeepapi==0.11.5"]
+}

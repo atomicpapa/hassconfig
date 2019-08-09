@@ -1,0 +1,8 @@
+{
+  "domain": "noaa_alerts",
+  "name": "Noaa Alerts",
+  "documentation": "https://github.com/dcshoecomp/noaa_alerts",
+  "requirements": ["noaa_sdk"],
+  "dependencies": [],
+  "codeowners": ["@dcshoecomp"]
+}

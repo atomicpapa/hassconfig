@@ -1,0 +1,26 @@
+---
+
+# Config for keep_notes_sensor custom component for Google Keep
+# https://github.com/klejejs/ha_keep_notes_sensor
+
+# Also has a corresponding Lovelace card
+# https://github.com/klejejs/lovelace-keep-notes-card
+
+sensor:
+  - platform: keep_notes_sensor
+    name: "William's Chores"
+    username: !secret keepuser
+    password: !secret keeppass
+    list_id: !secret keepwilliam
+    
+  - platform: keep_notes_sensor
+    name: "Emmy's Chores"
+    username: !secret keepuser
+    password: !secret keeppass
+    list_id: !secret keepemmy
+    
+  - platform: keep_notes_sensor
+    name: "Lola's Chores"
+    username: !secret keepuser
+    password: !secret keeppass
+    list_id: !secret keeplola

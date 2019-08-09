@@ -1,15 +1,12 @@
 ---
 
-####################################################################
-#                                                                  #
-# Custom Component Config for Plex Recently Added                  #
-#                                                                  #
-# https://github.com/custom-components/sensor.plex_recently_added  #
-#                                                                  #
-####################################################################
+# Custom Component Config for Plex Recently Added
+
+# https://github.com/custom-components/sensor.plex_recently_added 
 
 sensor:
   - platform: plex_recently_added
+    name: Recently Added Movies
     token: !secret x-plex
     host: 192.168.1.16
     port: 32400
@@ -18,5 +15,16 @@ sensor:
     download_images: true
     max: 5
     section_types:
-    - movie
-    - show
+      - movie
+
+  - platform: plex_recently_added
+    name: Recently Added TV
+    token: !secret x-plex
+    host: 192.168.1.16
+    port: 32400
+    ssl: false
+    ssl_cert: false
+    download_images: true
+    max: 5
+    section_types:
+    - shows

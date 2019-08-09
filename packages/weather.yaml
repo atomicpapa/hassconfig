@@ -11,6 +11,10 @@
 weather:
   - platform: openweathermap
     api_key: !secret owm_key
+
+  - platform: darksky
+    api_key: !secret darksky_api
+    mode: daily
     
 sensor:
   - platform: openweathermap
@@ -33,3 +37,25 @@ sensor:
       - precip_probability
       - uv_index
       - minutely_summary
+
+# Config for moaa_alerts custom component
+# https://github.com/dcshoecomp/noaa_alerts
+# see also: /custom_components/noaa_alerts and /automations/weather.yaml
+
+  - platform: noaa_alerts
+    zoneid: TXZ205
+
+# Config for IQVIA allergen, cold, & disease sensors.
+# https://www.home-assistant.io/components/iqvia/
+# see also: /automations/weather.yaml
+iqvia:
+  zip_code: "78209" #!secret zip_code
+  monitored_conditions:
+    - allergy_average_forecasted
+    - allergy_index_today
+    - allergy_index_tomorrow
+    - asthma_average_forecasted
+    - asthma_index_today
+    - asthma_index_tomorrow
+    - disease_average_forecasted
+    - disease_index_today

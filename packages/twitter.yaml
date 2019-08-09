@@ -1,5 +1,10 @@
 ---
 
+# Config for Twitter notify component. Some Automations 
+# will post an update to Twitter when triggered.
+
+# See also: /Automations folder
+
 notify:
   - name: twitter
     platform: twitter

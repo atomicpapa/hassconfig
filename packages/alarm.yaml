@@ -1,0 +1,14 @@
+---
+
+# Config related to alarm system.  Config for various sensors
+# will be included in their respective packages or in integrations
+# for ESPhome
+
+# see also: mqtt_sensors.yaml for RF and Wyze Sense sensors
+
+alarm_control_panel:
+  - platform: manual_mqtt
+    state_topic: home/alarm
+    command_topic: home/alarm/set
+    name: Alarm
+    code: !secret alarm_code

@@ -1,5 +1,10 @@
 ---
 
+# Config for Home Assistant Community Store (HACS) custom component.
+# HACS provides a means to install custom components, custom Lovelace
+# cards, Scripts, Appdaemon apps, and Themes from within Home Assistant.
+# https://github.com/custom-components/hacs
+
 hacs:
   token: !secret hacs
   appdaemon: true

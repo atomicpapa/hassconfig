@@ -2,10 +2,10 @@
 
 tweet_engine:
    sequence:
-    - service: notify.BearStoneHA
+    - service: notify.twitter
       data_template:
         message: >-
           {{ tweet }} #IOT #SmartHome
-        data:
-          media: >-
-            {{image}}
+        # data:
+        #   media: >-
+        #     {{image}}
