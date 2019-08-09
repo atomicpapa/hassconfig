@@ -10,6 +10,8 @@ __pycache__
 *.conf
 *.db
 *.db-journal
+*.db-wal
+*.db-shm
 *.log
 *.noload
 *.txt
@@ -47,4 +49,4 @@ dlib_unknown_faces
 *.pickle
 .pc-session
 .vscode
-*.jpg
+www/custom-lovelace/upcoming-media-card
