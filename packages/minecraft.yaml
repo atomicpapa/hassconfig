@@ -1,0 +1,8 @@
+---
+
+# Config for Minecraft sensor custom component
+
+sensor:
+  - platform: minecraft
+    name: The Library
+    server: 192.168.1.16:25565
