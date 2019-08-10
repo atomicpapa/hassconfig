@@ -1,6 +1,7 @@
 ---
 
 # Config for Minecraft sensor custom component
+# https://github.com/olenoerby/MinecraftServer-HA
 
 sensor:
   - platform: minecraft
