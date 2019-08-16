@@ -37,13 +37,17 @@ sensor:
       - precip_probability
       - uv_index
       - minutely_summary
+      # - apparent_temperature_high
+      - alerts
 
-# Config for moaa_alerts custom component
-# https://github.com/dcshoecomp/noaa_alerts
-# see also: /custom_components/noaa_alerts and /automations/weather.yaml
+  - platform: template
+    sensors:
+      heat_index:
+        friendly_name: 'Heat Incex'
+        #formula taken from http://www.srh.noaa.gov/ama/?n=heatindex
+        value_template: '{{ (((-42.379 + (2.04901523*((states.weather.dark_sky.attributes.temperature|float))) + (10.14333127*(states.weather.dark_sky.attributes.humidity|float)) - (0.22475541*((states.weather.dark_sky.attributes.temperature|float))*(states.weather.dark_sky.attributes.humidity|float)) - (6.83783 * (10**(-3))*(((states.weather.dark_sky.attributes.temperature|float))**2)) - (5.481717 * (10**(-2))*((states.weather.dark_sky.attributes.humidity|float)**2)) + (1.22874 * (10**(-3))*(((states.weather.dark_sky.attributes.temperature|float))**2*(states.weather.dark_sky.attributes.humidity|float))) + (8.5282 * (10**(-4))*(((states.weather.dark_sky.attributes.temperature|float))*(states.weather.dark_sky.attributes.humidity|float)**2)) - (1.99 * (10**(-6))*(((states.weather.dark_sky.attributes.temperature|float))**2)*(states.weather.dark_sky.attributes.humidity|float)**2))))|round(1) }}'
+        unit_of_measurement: '°F'
 
-  - platform: noaa_alerts
-    zoneid: TXZ205
 
 # Config for IQVIA allergen, cold, & disease sensors.
 # https://www.home-assistant.io/components/iqvia/
@@ -59,3 +63,11 @@ iqvia:
     - asthma_index_tomorrow
     - disease_average_forecasted
     - disease_index_today
+
+camera:
+  - platform: generic
+    still_image_url: 'https://icons.wxug.com/data/weather-maps/radar/united-states/san-antonio-texas-region-current-radar-animation.gif'
+    name: 'Local Radar'
+  - platform: generic
+    still_image_url: 'https://radar.weather.gov/Conus/full_loop.php'
+    name: 'National Radar'

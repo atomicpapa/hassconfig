@@ -1,0 +1,15 @@
+---
+
+# Automation that starts sleep script when goodnight input boolean is turned on
+
+
+- alias: Start Sleep script
+  initial_state: on
+  trigger:
+    - platform: state
+      entity_id: input_boolean.goodnight
+      from: "off"
+      to: "on"
+
+  action:
+    - service: script.sleep

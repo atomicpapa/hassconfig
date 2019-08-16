@@ -24,3 +24,8 @@ text_notifications:
   name: Text Notifications
   icon: mdi:cellphone-wireless
   initial: on
+
+sleeping:
+  name: Sleeping
+  icon: mdi:sleep
+  initial: off

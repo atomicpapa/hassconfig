@@ -1,0 +1,18 @@
+---
+########  10pm Automations  #########
+
+- alias: 'Girls Allergy Meds'
+  initial_state: 'on'
+  trigger:
+    platform: time
+    at: '22:05:00'
+
+  condition:
+    condition: state
+    entity_id: device_tracker.lola
+    state: "home"
+
+  action:
+    - service: script.speech_engine
+      data:
+        call_girls_allergy_meds: 1

@@ -1,0 +1,48 @@
+#-------------------------------------------
+# @CCOSTAN
+# Original Repo : https://github.com/CCOSTAN/Home-AssistantConfig
+#-------------------------------------------
+homeassistant:
+  customize:
+    input_boolean.lastmsg:
+      friendly_name: 'Repeat Message'
+      icon: mdi:repeat-once
+
+      hidden: False
+#-------------------------------------------
+input_boolean:
+  lastmsg:
+    name: Last Message
+    initial: off
+#-------------------------------------------
+sensor:
+  - platform: mqtt
+    state_topic: "tts/lastmsg"
+    name: "Last Message"
+##############################################################################
+###  Automations -
+##############################################################################
+
+automation:
+  - alias: 'Repeat Last Message'
+
+    trigger:
+      - platform: state
+        entity_id: input_boolean.lastmsg
+        to: 'on'
+
+    action:
+      - service: tts.google_translate_say
+        entity_id:
+          - media_player.muse
+          - media_player.apollo
+        data_template:
+          message: >
+            <speak>
+            {{states.sensor.last_message.state}}
+            </speak>
+          cache: true
+
+      - service: input_boolean.turn_off
+        entity_id:
+          - input_boolean.lastmsg

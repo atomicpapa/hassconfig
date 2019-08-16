@@ -1,0 +1,27 @@
+#Weather forecast for the next 24 hours daily at 7pm
+
+- alias: 'Timed 1900'
+  initial_state: 'on'
+  trigger:
+    platform: time
+    at: '19:00:00'
+
+  action:
+    - service: script.speech_engine
+      data:
+        call_weather_tomorrow: 1
+
+    - service: script.tweet_engine
+      data_template:
+        tweet: >
+          "My family needs to prepare for tomorrow, so I just gave them the weather forecast for the next 24 hours. (http://darksky.net)"
+
+- alias: 'Brush your teeth'
+  trigger:
+    platform: time
+    at: '19:30:00'
+
+  action:
+    - service: script.speech_engine
+      data:
+        call_brush_your_teeth: 1

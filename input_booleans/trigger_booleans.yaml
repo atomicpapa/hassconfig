@@ -1,0 +1,8 @@
+---
+
+# Input Booleans used to trigger automations
+
+goodnight:
+  name: Good Night
+  initial: off
+  icon: mdi:hotel

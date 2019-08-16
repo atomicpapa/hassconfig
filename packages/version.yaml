@@ -1,0 +1,14 @@
+---
+
+# Version sensor package
+# https://www.home-assistant.io/components/version/
+
+sensor:
+  - platform: version
+    name: Current Installed Version
+    source: local
+
+  - platform: version
+    name: Current Available Version
+    source: docker
+    image: qemux86-64

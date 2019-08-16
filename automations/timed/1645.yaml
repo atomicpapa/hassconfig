@@ -1,0 +1,35 @@
+
+- alias: 'Timed 1645'
+  initial_state: 'on'
+
+  trigger:
+    - platform: time
+      at: '16:45:00'
+  condition:
+      condition: and
+      conditions:
+        - condition: time
+          weekday:
+            - mon
+            - tue
+            - wed
+            - thu
+            - fri
+        - condition: state
+          entity_id: group.family
+          state: 'home'
+        - condition: state
+          entity_id: input_boolean.school_mode
+          state: 'on'
+  action:
+    - service: script.speech_engine
+      data:
+        call_outside_weather: 1
+        call_pollen: 1
+        call_family_calendar: 1
+        call_responsibilities: 1
+
+    - service: script.tweet_engine
+      data_template:
+        tweet: >
+          "Time for the kids to do their chores, so I just clued them in!  I'm sure they love me for it!"

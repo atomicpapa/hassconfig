@@ -7,13 +7,13 @@
 - alias: Noaa Alert - Text
   initial_state: 'on'
   trigger:
-    entity_id: sensor.noaa_alerts_txz205
+    entity_id: sensor.dark_sky_alerts
     from: ‘0’
     platform: state
   action:
     - service: persistent_notification.create
       data_template:
-        message: ‘{{ states.sensor.noaa_alerts_txz205.attributes.description }}’
+        message: ‘{{ states.sensor.dark_sky_alerts.attributes.description }}’
 
     - service: notify.pushbullet
       data_template:
@@ -22,7 +22,7 @@
 - alias: Noaa Alert - TTS
   initial_state: 'on'
   trigger:
-    entity_id: sensor.noaa_alerts_txz205
+    entity_id: sensor.dark_sky_alerts
     from: ‘0’
     platform: state
   condition:
@@ -46,6 +46,6 @@
     - service: tts.google_translate_say
       entity_id: media_player.muse
       data_template:
-        message: ‘Attention.  Weather Alert follows. {{ states.sensor.noaa_alerts_txz205.attributes.headline }}’
+        message: ‘Attention.  Weather Alert follows. {{ states.sensor.dark_sky_alerts.attributes.description }}’
 
 # Allergy Notifications

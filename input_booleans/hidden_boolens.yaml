@@ -1,0 +1,18 @@
+---
+
+# Hidden Booleans that provide conditions for automations
+
+william_meds:
+  name: Williams Meds
+  initial: off
+  icon: mdi:pill
+
+emmy_meds:
+  name: Eleanors Meds
+  initial: off
+  icon: mdi:pill
+
+lola_meds:
+  name: Lolas Meds
+  initial: off
+  icon: mdi:pill

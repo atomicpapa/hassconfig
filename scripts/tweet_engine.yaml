@@ -1,11 +1,11 @@
 ---
 
 tweet_engine:
-   sequence:
+  sequence:
     - service: notify.twitter
       data_template:
         message: >-
-          {{ tweet }} #IOT #SmartHome
+          {{ tweet }} #IOT #SmartHome #HomeAssistant
         # data:
         #   media: >-
         #     {{image}}
