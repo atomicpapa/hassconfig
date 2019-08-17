@@ -6,4 +6,9 @@ person.lola:
   entity_picture: https://life360-img.s3.amazonaws.com/img/user_images/8e268d48-4e28-43fe-ae17-0abb0448d77e/5d43cd79-854b-454a-82c8-c3021802d495.png?fd=2
 person.emmy:
   entity_picture: https://www.life360.com/img/user_images/0502d03e-cf67-4d79-8d50-2ddab2d225cd/393664de-f036-4f90-9c62-584babeb7870.jpg?fd=2
-device_tracker.life360_lola: {}
+input_boolean.emmy_meds:
+  friendly_name: Eleanor's Meds Taken
+input_boolean.lola_meds:
+  friendly_name: Lola's Morning Meds Taken
+input_boolean.william_meds:
+  friendly_name: William's Morning Meds Taken
