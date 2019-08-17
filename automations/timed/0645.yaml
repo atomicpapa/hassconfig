@@ -1,0 +1,36 @@
+---
+
+# Automations at 6:45 AM
+
+- alias: 'Timed 0645'
+  initial_state: 'on'
+  trigger:
+    - platform: time
+      at: '06:45:00'
+
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolen.school_mode
+        state: 'on'
+      - condition: or  
+        conditions:
+          - condition: state
+            entity_id: input_boolean.williams_meds
+            state:  'off'
+          - condition: state
+            entity_id: input_boolean.emmy_meds
+            state:  'off'
+          - condition: state
+            entity_id: input_boolean.lola_meds
+            state:  'off'
+
+  action:
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.alert_mode
+      
+    - service: script.speech_engine
+      data:
+        call_no_announcment: 1
+        call_med_reminder: 1
