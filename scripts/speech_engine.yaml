@@ -67,18 +67,6 @@ speech_engine:
             {%- endif -%}
           {%- endmacro -%}
 
-          {%- macro medicine() -%}
-            {% if is_state('input_boolean.emmy_meds', 'off') -%}
-              It looks like Eleanor has not taken her medicine yet. Please make sure she takes her medicine now.
-            {% endif -%}
-            {% if is_state('input_boolean.lola_meds', 'off') -%}
-              It looks like Lola has not taken her medicine yet. Please make sure she takes her medicine now.
-            {% endif -%}
-            {% if is_state('input_boolean.william_meds', 'off') -%}
-              It looks like William has not taken his medicine yet. Please make sure he takes his medicine now.
-            {% endif -%}
-          {%- endmacro -%}
-
           {%- macro iss() -%}
             {% if is_state('binary_sensor.iss', 'on') -%}
               Here is something interesting. The international space station is above us now. There are {{ states.binary_sensor.iss.attributes['number_of_people_in_space'] }} people in space right now.
@@ -105,6 +93,20 @@ speech_engine:
             {% if states.sensor.holiday.state != '' %}
               Today is {{ states.sensor.holiday.state }}.
             {% endif %}
+          {%- endmacro -%}
+
+          {%- macro med_reminder() -%}
+            Don't leave yet.
+            {% if states.input_boolean.emmy_meds.state == 'off' %}
+              Eleanor
+            {%- endif -%}
+            {% if states.input_boolean.lola_meds.state == 'off' %}
+              Lola
+            {%- endif -%}
+            {% if states.input_boolean.williams_meds.state == 'off' %}
+              William
+            {%- endif -%}
+              have not taken meds yet.  Please take them before leaving for school.
           {%- endmacro -%}
 
           {# ********************************************* #}
@@ -138,8 +140,8 @@ speech_engine:
 
           {{ NewDevice }}
 
-          {% if now().strftime('%H')|int > 21 %}
-            {{ medicine() }}
+          {% if call_med_reminder == 1 %}
+            {{ med_reminder() }}
           {% endif %}
 
           {% if value1 is not none %}
