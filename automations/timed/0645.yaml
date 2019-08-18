@@ -34,3 +34,8 @@
       data:
         call_no_announcment: 1
         call_med_reminder: 1
+        
+    - service: notify.mobile_app_pixel_xl_ariela
+      data:
+        message: "Someone hasn't had their meds yet!"
+        title: "Warning!!"

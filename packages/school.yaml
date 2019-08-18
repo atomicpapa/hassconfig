@@ -1,0 +1,61 @@
+---
+
+# School stuff
+
+# Much of this is based on sensors created by skavala and brazenly repurposed from ccostan's repo  :-)
+
+sensor:
+  - platform: rest
+    resource: https://raw.githubusercontent.com/atomicpapa/hassconfig/master/json_data/school_holidays.json
+    name: NEISD Holiday
+    scan_interval: 7200
+    value_template: >
+      {% set today = now().month  ~ '/' ~ now().day ~ '/' ~ now().year %}
+      {% set neisd_holiday =  value_json.SCHOOL.neisd_holidays[ today ] %}
+      {{neisd_holiday}}
+      
+  - platform: rest
+    resource: https://raw.githubusercontent.com/atomicpapa/hassconfig/master/json_data/school_holidays.json
+    name: SST Holiday
+    scan_interval: 7200
+    value_template: >
+      {% set today = now().month  ~ '/' ~ now().day ~ '/' ~ now().year %}
+      {% set sst_holiday =  value_json.SCHOOL.sst_holidays[ today ] %}
+      {{sst_holiday}}
+
+automation:
+  - alias: School Holiday
+    initial_state: 'on'
+    trigger:
+      - platform: state
+        entity_id:
+          - sensor.neisd_holiday
+          - sensor.sst_holiday
+
+    condition:
+      condition: or
+      conditions:
+        - condition: template
+          value_template: "{{ states('trigger.entity_id') != 'unknown' }}"
+        - condition: template
+          value_template: "{{ states.trigger.entity_id.state | trim != '' }}"
+
+    action:
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.school_mode
+
+  - alias: 'School - Weekends'
+    initial_state: 'on'
+    trigger:
+      platform: time
+      at: '00:15:00'
+      
+    condition:
+      condition: time
+      weekday:
+        - sat
+        - sun
+
+    action:
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.school_mode

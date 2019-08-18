@@ -97,17 +97,35 @@ speech_engine:
 
           {%- macro med_reminder() -%}
             Don't leave yet.
-            {% if states.input_boolean.emmy_meds.state == 'off' %}
-              Eleanor
+            {% if states.input_boolean.emmy_meds.state == 'off' and states.input_boolean.lola_meds.state == 'off' and states.input_boolean.williams_meds.state == 'off' %}
+              Eleanor, Lola and William have not taken meds yet.  Please take them before leaving for school.
+            {% elif states.input_boolean.emmy_meds.state == 'off' and states.input_boolean.lola_meds.state == 'off' %}
+              Eleanor and Lola have not taken meds yet.  Please take them before leaving for school.
+            {% elif states.input_boolean.emmy_meds.state == 'off' and states.input_boolean.williams_meds.state == 'off' %}
+              Eleanor and William have not taken meds yet.  Please take them before leaving for school.
+            {% elif states.input_boolean.lola_meds.state == 'off' and states.input_boolean.williams_meds.state == 'off' %}
+              Lola and William have not taken meds yet.  Please take them before leaving for school.
+            {% elif states.input_boolean.emmy_meds.state == 'off' %}
+              Eleanor has not taken meds yet.  Please take them before leaving for school.
+            {% elif states.input_boolean.lola_meds.state == 'off' %}
+              Lola has not taken meds yet.  Please take them before leaving for school.
+            {% elif states.input_boolean.williams_meds.state == 'off' %}
+              William has not taken meds yet.  Please take them before leaving for school.
             {%- endif -%}
-            {% if states.input_boolean.lola_meds.state == 'off' %}
-              Lola
-            {%- endif -%}
-            {% if states.input_boolean.williams_meds.state == 'off' %}
-              William
-            {%- endif -%}
-              have not taken meds yet.  Please take them before leaving for school.
           {%- endmacro -%}
+
+          {%- macro weather_tomorrow() -%}
+            Tomorrow the weather will be {{ states.sensor.dark_sky_summary_0d.state }}.  Please dress accordingly.
+          {%- endmacro -%}
+
+          {%- macro brush_your_teeth() -%}
+            It's time to brush your teeth, so get to it!
+          {%- endmacro -%}
+
+          {%- macro girls_allergy_meds() -%}
+            It's time to take allergy meds! 
+          {%- endmacro -%}
+
 
           {# ********************************************* #}
           {#  ******** Start the Speech routines ********  #}
@@ -142,6 +160,18 @@ speech_engine:
 
           {% if call_med_reminder == 1 %}
             {{ med_reminder() }}
+          {% endif %}
+
+          {% if call_weather_tomorrow == 1 %}
+            {{ weather_tomorrow() }}
+          {% endif %}
+
+          {% if call_brush_your_teeth == 1 %}
+            {{ brush_your_teeth() }}
+          {% endif %}
+
+          {% if call_girls_allergy_meds == 1 %}
+            {{ girls_allergy_meds() }}
           {% endif %}
 
           {% if value1 is not none %}

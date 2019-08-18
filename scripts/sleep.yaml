@@ -1,11 +1,11 @@
 ---
 
-# Goodnight script that connects Google Home to Home Assistant to Tasker and allows 
-# telling Google "Goodnight" to activate automations in HASS and start my Sleep Tracker
-# on my Android phone
+# sleep script performs several actions detailed below, all related to
+# sleeping and waking up.
 
 sleep:
   sequence:
+    # this turns off all interior lights
     - service: light.turn_off
       data:
         entity_id:
@@ -17,13 +17,19 @@ sleep:
           - light.girls
           - light.livingroom_dimmer
 
+    # this sends a notification to my phone.  That notification is picked
+    # up by Tasker which starts Sleep Tracking in the Sleep As Android app
     - service: notify.mobile_app_pixel_xl_ariela
       data:
         message: Good Night
         title: Sleep
 
+    # this turns on an input boolean that will be turned off by Tasker when
+    # I stop SLeep Tracking on my phone and used to trigger an automation
     - service: input_boolean.turn_on
       entity_id: input_boolean.sleeping
 
+    # this turns off input_boolean.goodnight so it will be ready to activate
+    # this script the next night
     - service: input_boolean.turn_off
       entity_id: input_boolean.goodnight

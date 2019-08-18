@@ -1,9 +1,12 @@
 ---
 
-# Automation that starts sleep script when goodnight input boolean is turned on
+# leep related automations
 
+# Start Sleep automation is activated by telling my Google Home "OK Google, Goodnight".
+# This activates a Routine in Google Assistant that turns on input_boolean.goodnight
+# and starts an ambient noise playing on my Google Home.
 
-- alias: Start Sleep script
+- alias: Start Sleep
   initial_state: on
   trigger:
     - platform: state
@@ -13,3 +16,29 @@
 
   action:
     - service: script.sleep
+
+# Stop SLeep automation is activated when I turn off Sleep Tracking in the morning.  This event is
+# picked up by tasker and turns off input_boolean.sleeping using the Home Assistant Tasker Plugin.
+
+- alias: Stop sleep
+  initial_state: 'on'
+  trigger:
+    - platform: state
+      entity_id: input_boolean.sleeping
+      from: 'on'
+      to: 'off'
+
+  condition:
+    - condition: time
+      after: '06:00:00'
+      before: '10:00:00'
+
+  action:
+    - delay:
+        minutes: 5
+
+    - service: script.speech_engine
+      data:
+        call_inside_weather: 1
+        call_outside_weather: 1
+        call_holiday: 1
