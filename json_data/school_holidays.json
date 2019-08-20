@@ -35,6 +35,7 @@
       "5/25/2020":"Memorial Day"
     },
     "neisd_holidays":{
+      "8/19/2019": "Test Holiday",
       "9/2/2019": "Labor Day",
       "10/14/2019": "Staff Development Day",
       "11/25/2019": "Thanksgiving Break",

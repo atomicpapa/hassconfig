@@ -5,11 +5,14 @@
   initial_state: 'on'
   trigger:
     platform: time
-    at: '00:00:00'
+    at: '00:00:05'
 
   action:
     - service: input_boolean.turn_off
-      entity_id: input_boolean.dude_meds
+      entity_id: 
+        - input_boolean.william_meds
+        - input_boolean.emmy_meds
+        - input_boolean.lola_meds
 
     - service: mqtt.publish
       data:
@@ -19,4 +22,18 @@
 
     - service: input_boolean.turn_on
       entity_id: input_boolean.school_mode
+
+- alias: 'Trash Day'
+  initial_state: 'on'
+  trigger:
+  - platform: time
+    at: '00:10:00'
+
+  condition:
+    - condition: time
+      weekday:
+        - wed
+  action:
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.trashday
 

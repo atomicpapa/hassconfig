@@ -6,3 +6,8 @@ goodnight:
   name: Good Night
   initial: off
   icon: mdi:hotel
+
+trashday:
+  name: Trash Day Tomorrow
+  initial: off
+  icon: mdi:trash-can

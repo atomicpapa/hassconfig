@@ -1,0 +1,47 @@
+---
+- alias: Washing Machine State - Start
+  initial_state: on
+  trigger: 
+    platform: numeric_state
+    entity_id: sensor.washing_machine_power
+    above: 4
+    for:
+      seconds: 15
+  condition:
+    condition: template
+    value_template: "{{ states.sensor.washing_machine_state.state != 'Washing' }}"
+  action:
+    - service: mqtt.publish
+      data:
+        topic: hass/state/washer
+        payload: 'Washing'
+        retain: 'true'
+
+- alias: 'Washing Machine State - Idle'
+  initial_state: on
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.washing_machine_power
+    below: 4
+    for:
+      minutes: 5
+  action:
+    - service: mqtt.publish
+      data:
+        topic: hass/state/washer
+        payload: 'Idle'
+        retain: 'true'
+
+- alias: Washing Machine Alert
+  initial_state: on
+  trigger: 
+    platform: state
+    entity_id: 
+      - sensor.washing_machine_state
+    from: "Washing"
+    to: "Idle"
+  action:
+    - service: script.speech_engine
+      data:
+        call_no_announcement: 1
+        call_washer_done: 1

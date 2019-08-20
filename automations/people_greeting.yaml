@@ -1,0 +1,72 @@
+##########  ############################################################
+##  Announce when people come or go.
+## Announce over all Chromecast Audios & Google Homes
+######################################################################
+- alias: 'People Greeting'
+  initial_state: 'on'
+  trigger:
+    - platform: state
+      entity_id:
+        - person.glenn
+        - person.eryin
+      to: 'home'
+
+  action:
+    - wait_template: "{{ states.binary_sensor.front_door.state == 'on' }}"
+      timeout: 00:05:00
+    - service: script.speech_engine
+      data_template:
+        personarriving: >
+          {% set person = trigger.entity_id.split('.')[1].split('_')[0] %}
+          {%- macro greeting_sentence(person) -%}
+          {{ [
+          "Welcome home " ~ person,
+          person + "welcome back home"
+          ] | random }}
+          {%- endmacro -%}
+          "{{greeting_sentence(person)}}"
+
+- alias: 'Girls After School Greeting'
+
+  trigger:
+    - platform: state
+      entity_id:
+        - person.emmy
+        - person.lola
+      to: 'home'
+
+  condition:
+    condition: or
+    conditions:
+      - condition: and
+        conditions:
+          - condition: state
+            entity_id: input_boolean.school_mode
+            state: 'on'
+          - condition: time
+            after: '15:00:00'
+            before: '18:00:00'
+
+  action:
+    - service: notify.mobile_app_emmy_s_phone
+      data:
+        title: "Responsibilities"
+        message: "Cat Boxes, Dining Room, Bathroom"
+    - service: notify.mobile_app_lolas_phone
+      data:
+        title: "Responsibilities"
+        message: "Bathroom, Living Room, Cat Box"
+    - wait_template: "{{ states.binary_sensor.front_door.state == 'on' }}"
+      timeout: 00:05:00
+    - service: script.speech_engine
+      data_template:
+        personarriving: >
+          {% set person = trigger.entity_id.split('.')[1].split('_')[0] %}
+          {%- macro greeting_sentence(person) -%}
+          {{ [
+          "Welcome back home " ~ person + "I hope you had a great day at school!",
+          "Hi" ~ person + "welcome home!"
+          ] | random }}
+          {%- endmacro -%}
+          "{{greeting_sentence(person)}}"
+        call_responsibilities: 1

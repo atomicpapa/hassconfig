@@ -73,9 +73,20 @@ speech_engine:
             {% endif -%}
           {%- endmacro -%}
 
+          {%- macro washer_done() -%}
+              Attention.  The washing machine has completed its cycle and is ready to be moved to the dryer.
+          {%- endmacro -%}
+
           {%- macro moon() -%}
             {%- if states.sensor.moon.state == 'Full moon' -%}
               Check out the full moon tonight!
+            {%- endif -%}
+          {%- endmacro -%}
+
+          {%- macro responsibilities() -%}
+            Todays responsibilities have been sent to your phones.  Please complete them in a timely manner.
+            {%- if states.input_boolean.trashday.state == 'on' -%}
+              And tomorrow is a trash day, so please take the cans to the curb.
             {%- endif -%}
           {%- endmacro -%}
 
@@ -150,6 +161,10 @@ speech_engine:
 
           {% if call_outside_weather == 1 and is_state('sun.sun', 'above_horizon') %}
             {{ outside_weather() }}
+          {% endif %}
+
+          {% if call_washer_done == 1 %}
+            {{ washer_done() }}
           {% endif %}
 
           {% if call_dark_outside == 1 %}

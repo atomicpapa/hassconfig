@@ -1,0 +1,71 @@
+######################################################################
+##  Stuff that needs to happen on school days
+######################################################################
+
+- alias: 'School Day Morning Startup'
+  initial_state: 'on'
+  trigger:
+    - platform: time
+      at: '06:00:00'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.school_mode
+      state: 'on'
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.girls
+        - light.boy
+        - light.living_room_dimmer
+        - light.desk_lamp
+        - light.hall
+        - light.entry_hall
+        
+    - service: script.speech_engine
+      data:
+        call_school_morning: 1
+
+    - service: script.tweet_engine
+      data_template:
+        tweet: >
+          {{ [
+          "Today is a School day.  I will turn on some lights to get this day started!",
+          "Up at the crack of Dawn for School.  We need some lights on.",
+          "This is way early.  We need some lights on.",
+          "Time to wake up the house with some gentle lighting. (http://amzn.to/2eoQTJy)"
+          ] | random + " #Hue"}}
+
+- alias: 'School Day Morning Wind Down'
+  initial_state: 'on'
+  trigger:
+    - platform: time
+      at: '07:30:00'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.school_mode
+      state: 'on'
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.girls
+        - light.boy
+        - light.hall
+        - light.entry_hall

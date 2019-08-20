@@ -1,16 +1,34 @@
 ---
 ########  10pm Automations  #########
 
+- alias: Set AC to 73
+  initial_state: 'on'
+  trigger:
+    platform: time
+    at: '22:00:00'
+
+  action:
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.thermostat
+        hvac_mode: cool
+        temperature: 73
+  
 - alias: 'Girls Allergy Meds'
   initial_state: 'on'
   trigger:
     platform: time
-    at: '22:05:00'
+    at: '22:01:00'
 
   condition:
-    condition: state
-    entity_id: device_tracker.lola
-    state: "home"
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: person.lola
+        state: "home"
+      - condition: state
+        entity_id: person.emmy
+        state: 'home'
 
   action:
     - service: script.speech_engine

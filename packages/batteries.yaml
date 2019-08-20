@@ -1,0 +1,47 @@
+---
+
+# Batteries
+
+
+
+automation:
+
+  - alias: Watch Battery Low
+    initial_state: 'on'
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.ticwatch_battery
+        below: 40
+
+    action:
+      - service: persistent_notification.create
+        data:
+          title: TicWatch
+          message: Battery level is starting to get Low
+          notification_id: 0001
+
+      - service: notify.mobile_app_pixel_xl_ariela
+        data:
+          title: TicWatch
+          message: Battery Level is getting low
+          icon: mdi:clock-alert-outline
+
+  - alias: Watch Battery Critical
+    initial_state: 'on'
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.ticwatch_battery
+        below: 20
+
+    action:
+      - service: persistent_notification.create
+        data:
+          title: TicWatch
+          message: Battery level is CRITICAL
+          notification_id: 0001
+
+      - service: notify.mobile_app_pixel_xl_ariela
+        data:
+          title: TicWatch
+          message: Battery Level is CRITICAL
+          icon: mdi:close-octagon

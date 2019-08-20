@@ -1,6 +1,6 @@
 ---
 
-# leep related automations
+# Sleep related automations
 
 # Start Sleep automation is activated by telling my Google Home "OK Google, Goodnight".
 # This activates a Routine in Google Assistant that turns on input_boolean.goodnight

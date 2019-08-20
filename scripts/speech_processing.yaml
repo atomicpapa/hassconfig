@@ -54,10 +54,7 @@ speech_processing:
     - service: tts.google_translate_say
       data_template:
         entity_id: media_player.muse
-        message: >-
-          <speak>
-            {{ speech_message }}
-          </speak>
+        message: {{ speech_message }}
         cache: true
 
     - service: input_boolean.turn_off
