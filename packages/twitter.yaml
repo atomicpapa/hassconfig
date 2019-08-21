@@ -12,3 +12,64 @@ notify:
     consumer_secret: !secret twitter_consumer_secret
     access_token: !secret twitter_access_token
     access_token_secret: !secret twitter_access_secret
+
+# Sensors picked up from MQTT stream
+# sensor:
+#   - platform: template
+
+automation:
+
+# Send data from IFTTT to MQTT stream so it can be picked up as sensors
+  - alias: Twitter Followers
+    initial_state: 'on'
+    trigger:
+      - platform: event
+        event_type: ifttt_webhook_received
+        event_data:
+          action: new_follower
+
+    action:
+      - service_template: mqtt.publish
+        data:
+          topic: /hass/twitter/new_follower
+          payload_template: '{{ trigger.event.data }}'
+          retain: true
+
+# Play a chirp over GH's when we get a new follower
+  - alias: Twitter Followers Chirp
+    initial_state: 'on'
+    trigger:
+      - platform: event
+        event_type: ifttt_webhook_received
+        event_data:
+          action: new_follower
+
+    condition:
+      - condition: time 
+        after: "09:00:00"
+        before: "22:00:00"
+
+    action:
+      - service: media_player.media_play
+        data_template:
+          entity_id: "all"
+          media_content_id: "https://raw.githubusercontent.com/CCOSTAN/Home-AssistantConfig/master/config/sounds/twitter-chirp.mp3"
+          media_content_type: audio/mp4
+
+# {
+#     "event_type": "ifttt_webhook_received",
+#     "data": {
+#         "name": "atomicblahblah",
+#         "location": "",
+#         "when": "August 21, 2019 at 12:47AM",
+#         "count": 0,
+#         "webhook_id": "ea3d67d3b79542705f7c0e4d7e434ae23b39fff0ad49993c6fff9b5c1145a480"
+#     },
+#     "origin": "LOCAL",
+#     "time_fired": "2019-08-21T05:47:33.747466+00:00",
+#     "context": {
+#         "id": "4166fed9578243f19ff296be33738ab8",
+#         "parent_id": null,
+#         "user_id": null
+#     }
+# }

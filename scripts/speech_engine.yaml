@@ -137,6 +137,16 @@ speech_engine:
             It's time to take allergy meds! 
           {%- endmacro -%}
 
+          {%- macro ring_ding() -%}
+            {{ [
+              "Looks like someone is at the front foor.  Maybe you should see who it is.",
+              "Ding Dong.  I wonder who it is?",
+              "Pardon me, but there appears to be some ruffian at the door.",
+              "Everyone hide!  They're here to get us!"
+            ]|random }}
+          {%- endmacro -%}
+
+
 
           {# ********************************************* #}
           {#  ******** Start the Speech routines ********  #}
@@ -193,8 +203,12 @@ speech_engine:
             {{ value1 }}
           {% endif %}
 
+          {% if call_ring_ding == 1 %}
+            {{ ring_ding }}
+          {% endif %}
+
           {# call a Random fact about the house or inspiration quote #}
-          {{ ([iss, iss, moon, uv, moon, uv, moon, uv, holiday, holiday, outside_weather, outside_weather, inspirational_quote]|random)() }}
+          {{ ([iss, iss, moon, uv, moon, uv, moon, uv, holiday, holiday, outside_weather, outside_weather]|random)() }}
 
     - service: input_boolean.turn_off
       data:
