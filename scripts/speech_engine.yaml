@@ -48,7 +48,15 @@ speech_engine:
           {%- endmacro -%}
 
           {%- macro outside_weather() -%}
-            Outside, it is going to be {{ states('sensor.dark_sky_minutely_summary') }}
+            Outside, it is currently {{ states.weather.dark_sky.attributes['current_temperature'] }} degrees and {{ states('sensor.dark_sky_summary') }}
+          {%- endmacro -%}
+
+          {%- macro weather_today() -%}
+            The weather today is supposed to be {{ states.sensor.dark_sky_summary_0d.state }}.  Please dress accordingly.
+          {%- endmacro -%}
+
+          {%- macro weather_tomorrow() -%}
+            Tomorrow the weather will be {{ states.sensor.dark_sky_summary_1d.state }}.  Please dress accordingly.
           {%- endmacro -%}
 
           {%- macro window_check() -%}
@@ -125,10 +133,6 @@ speech_engine:
             {%- endif -%}
           {%- endmacro -%}
 
-          {%- macro weather_tomorrow() -%}
-            Tomorrow the weather will be {{ states.sensor.dark_sky_summary_0d.state }}.  Please dress accordingly.
-          {%- endmacro -%}
-
           {%- macro brush_your_teeth() -%}
             It's time to brush your teeth, so get to it!
           {%- endmacro -%}
@@ -180,8 +184,16 @@ speech_engine:
             {{ inside_weather() }}
           {% endif %}
 
-          {% if call_outside_weather == 1 and is_state('sun.sun', 'above_horizon') %}
+          {% if call_outside_weather == 1 %}
             {{ outside_weather() }}
+          {% endif %}
+
+          {% if call_weather_today == 1 %}
+            {{ weather_today() }}
+          {% endif %}
+
+          {% if call_weather_tomorrow == 1 %}
+            {{ weather_tomorrow() }}
           {% endif %}
 
           {% if call_washer_done == 1 %}
@@ -196,10 +208,6 @@ speech_engine:
 
           {% if call_med_reminder == 1 %}
             {{ med_reminder() }}
-          {% endif %}
-
-          {% if call_weather_tomorrow == 1 %}
-            {{ weather_tomorrow() }}
           {% endif %}
 
           {% if call_brush_your_teeth == 1 %}
@@ -221,8 +229,6 @@ speech_engine:
           {% if call_weather_alert == 1 %}
             {{ weather_alert }}
           {% endif %}
-
-
 
           {# call a Random fact about the house or inspiration quote #}
           {{ ([iss, iss, moon, uv, moon, uv, moon, uv, holiday, holiday, outside_weather, outside_weather]|random)() }}
