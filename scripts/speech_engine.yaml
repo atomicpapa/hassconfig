@@ -181,7 +181,7 @@ speech_engine:
           {# Called from Annoucenments #}
           {{ personarriving }}
 
-          {% ic call_school_day_alarm == 1 %}
+          {% if call_school_day_alarm == 1 %}
             {{ school_day_alarm()}}
           {% endif %}
 
