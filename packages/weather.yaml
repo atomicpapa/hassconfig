@@ -28,6 +28,7 @@ sensor:
     api_key: !secret darksky_api
     forecast:
       - 0
+      - 1
     hourly_forecast:
       - 0
       - 1
@@ -71,3 +72,37 @@ camera:
   - platform: generic
     still_image_url: 'https://radar.weather.gov/Conus/full_loop.php'
     name: 'National Radar'
+
+# Automations related to severe weather conditions
+
+automation:
+
+# NOAA Alerts
+  - alias: Noaa Alert - Text
+    initial_state: 'on'
+    trigger:
+      entity_id: sensor.dark_sky_alerts
+      from: ‘0’
+      platform: state
+    action:
+      - service: persistent_notification.create
+        data_template:
+          message: ‘{{ states.sensor.dark_sky_alerts.attributes.description }}’
+
+      - service: notify.pushbullet
+        data_template:
+          message: '{{ states.sensor.noaa_alerts_txz205.attributes.headline }}'
+        
+  - alias: Noaa Alert - TTS
+    initial_state: 'on'
+    trigger:
+      entity_id: sensor.dark_sky_alerts
+      from: ‘0’
+      platform: state
+  
+    action:
+      - service: script.speech_engine
+        data:
+          call_no_announcement: 1
+          call_weather_alert: 1
+# Allergy Notifications

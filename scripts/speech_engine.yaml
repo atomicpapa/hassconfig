@@ -146,7 +146,18 @@ speech_engine:
             ]|random }}
           {%- endmacro -%}
 
+          {%- macro weather_alert() -%}
+            Attention.  Weather Alert follows. {{ states.sensor.dark_sky_alerts.attributes.description }}
+          {%- endmacro -%}
 
+          {%- macro school_day_alarm() -%}
+            {{ [
+              "Rise and Shine!  It's time to get ready for school!",
+              "Wake Up!  It's a school day and it's time to get ready!",
+              "Wakey Wakey! Another exciting day of learning is about to begin!",
+              "Yet another exciting school day is upon us!  Time to rock and roll!"
+            ]|random}}
+          {%- endmacro -%}
 
           {# ********************************************* #}
           {#  ******** Start the Speech routines ********  #}
@@ -206,6 +217,12 @@ speech_engine:
           {% if call_ring_ding == 1 %}
             {{ ring_ding }}
           {% endif %}
+
+          {% if call_weather_alert == 1 %}
+            {{ weather_alert }}
+          {% endif %}
+
+
 
           {# call a Random fact about the house or inspiration quote #}
           {{ ([iss, iss, moon, uv, moon, uv, moon, uv, holiday, holiday, outside_weather, outside_weather]|random)() }}
