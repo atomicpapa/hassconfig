@@ -1,5 +1,7 @@
 <h1>AtomicPapa's Home Assistant Config</h1>
 
+<a href = "https://travis-ci.org/atomicpapa/hassconfig"><img src = "https://travis-ci.org/atomicpapa/hassconfig.svg?branch=master"/></a>
+
 If you find my repo useful, please Star it!  :-)
 
 Above are the various configuration files for my Home Assistant (HASS) setup.  Currently, HASS is running in Docker on a Dell i3 desktop computer with 8G of RAM and a 1TB HDD.  It's running Ubuntu Server 16.04 LTS.  In Docker I am currently running:
