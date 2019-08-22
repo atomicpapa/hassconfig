@@ -75,3 +75,6 @@ automation:
       - service: script.speech_engine
         data:
           call_school_day_alarm: 1
+          call_outside_weather: 1
+          call_weather_today: 1
+
