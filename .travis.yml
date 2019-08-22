@@ -6,6 +6,8 @@ python:
 
 before_install:
   - mv travis-secrets.yaml secrets.yaml
+  ### Remove stream component
+  - sed -i 's/^stream:/#stream:/g' configuration.yaml
 
 install:
   - pip3 install homeassistant
