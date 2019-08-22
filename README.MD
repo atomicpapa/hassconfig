@@ -3,8 +3,8 @@
 
 <div align="center">
 <a href = "https://travis-ci.org/atomicpapa/hassconfig"><img src = "https://travis-ci.org/atomicpapa/hassconfig.svg?branch=master"/></a>
-<a href="https://github.com/atomicpapa/hassconfig/commits/master"><img src="https://img.shields.io/github/last-commit/atomicpapa/hassconfig.svg?style=plasticr"/></a>
-<a href = "https://www.twitter.com/Atomic_HA"><img src="https://img.shields.io/twitter/follow/Atomic_HA"></a>
+<a href="https://github.com/atomicpapa/hassconfig/commits/master"><img src="https://img.shields.io/github/last-commit/atomicpapa/hassconfig"/></a>
+<a href = "https://www.twitter.com/Atomic_HA"><img src="https://img.shields.io/twitter/follow/Atomic_HA"/></a>
 </div>
 
 Above are the various configuration files for my Home Assistant (HASS) setup.  Currently, HASS is running in Docker on a Dell i7 desktop computer with 16G of RAM, a 1TB internal HDD and a 10TB Western Digital external HDD.  It's running Ubuntu Server 18.04 LTS.  
