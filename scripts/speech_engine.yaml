@@ -43,6 +43,16 @@ speech_engine:
             ]|random }}
           {%- endmacro -%}
 
+          {%- macro school_day_alarm() -%}
+            {{ [
+              'Rise and Shine!  Its time to get ready for school!',
+              'Wake Up!  Its a school day and it
+              s time to get ready!',
+              'Wakey Wakey! Another exciting day of learning is about to begin!',
+              'Yet another exciting school day is upon us!  Time to rock and roll!'
+            ]|random}}
+          {%- endmacro -%}
+
           {%- macro inside_weather() -%}
             Inside the house, it is {{ states.climate.thermostat.attributes['current_temperature'] }} degrees.
           {%- endmacro -%}
@@ -143,10 +153,10 @@ speech_engine:
 
           {%- macro ring_ding() -%}
             {{ [
-              "Looks like someone is at the front foor.  Maybe you should see who it is.",
-              "Ding Dong.  I wonder who it is?",
-              "Pardon me, but there appears to be some ruffian at the door.",
-              "Everyone hide!  They're here to get us!"
+              'Looks like someone is at the front foor.  Maybe you should see who it is.',
+              'Ding Dong.  I wonder who it is?',
+              'Pardon me, but there appears to be some ruffian at the door.',
+              'Everyone hide!  They are here to get us!'
             ]|random }}
           {%- endmacro -%}
 
@@ -154,21 +164,12 @@ speech_engine:
             Attention.  Weather Alert follows. {{ states.sensor.dark_sky_alerts.attributes.description }}
           {%- endmacro -%}
 
-          {%- macro school_day_alarm() -%}
-            {{ [
-              "Rise and Shine!  It's time to get ready for school!",
-              "Wake Up!  It's a school day and it's time to get ready!",
-              "Wakey Wakey! Another exciting day of learning is about to begin!",
-              "Yet another exciting school day is upon us!  Time to rock and roll!"
-            ]|random}}
-          {%- endmacro -%}
-
           {# ********************************************* #}
           {#  ******** Start the Speech routines ********  #}
           {# ********************************************* #}
 
           {% if call_no_announcement != 1 %}
-            {% if now().strftime('%H')|int < 12 and now().strftime('%H')|int > 6 %}
+            {% if now().strftime('%H')|int < 12 and now().strftime('%H')|int >= 6 %}
               Good morning.
             {% elif now().strftime('%H')|int >= 12 and now().strftime('%H')|int < 17 %}
               Good afternoon.
@@ -179,6 +180,10 @@ speech_engine:
 
           {# Called from Annoucenments #}
           {{ personarriving }}
+
+          {% ic call_school_day_alarm == 1 %}
+            {{ school_day_alarm()}}
+          {% endif %}
 
           {% if call_inside_weather == 1 %}
             {{ inside_weather() }}
