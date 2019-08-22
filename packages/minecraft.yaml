@@ -1,9 +1,0 @@
----
-
-# Config for Minecraft sensor custom component
-# https://github.com/olenoerby/MinecraftServer-HA
-
-# sensor:
-#   - platform: minecraft
-#     name: The Library
-#     server: 192.168.1.16:25565
