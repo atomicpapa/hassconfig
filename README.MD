@@ -37,14 +37,15 @@ and 18 additional containers including Minecraft, Plex Media Server and others.
   <li>10+ RF Door/Window Contact Sensors
   <li>Ring Doorbell</li>
   <li>1 Tuya color light bulb</li>
-  <li>1 Wyze Cam v2</li>>
+  <li>1 Wyze Cam v2</li>
   <li>Honeywell WiFi Thermostat</li>
   <li>1 Wyze Motion Sensor</li>
   <li>1 Wyze Door/Window Sensor (not sure where the other one disappeared to, but I did find the magnet!)</li>
 
 </ul>
 
-Additions coming quickly will include:
+<h3>Additions coming quickly will include:</h3>
+
 <ul>
   <li>Kindle Fire tablets for user interfaces</li>
   <li>WiFi controlled RGB LED strip lights inside and outside</li>
