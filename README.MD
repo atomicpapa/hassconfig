@@ -42,6 +42,7 @@ and 18 additional containers including Minecraft, Plex Media Server and others.
   <li>Honeywell WiFi Thermostat</li>
   <li>1 Wyze Motion Sensor</li>
   <li>1 Wyze Door/Window Sensor (not sure where the other one disappeared to, but I did find the magnet!)</li>
+  <li>several Teckin SP10 and SP20 (Power Monitoring) Switches</li>
 
 </ul>
 
