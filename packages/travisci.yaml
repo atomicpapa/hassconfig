@@ -6,5 +6,6 @@ sensor:
   - platform: travisci
     api_key: !secret travis_ci_sensor_token
     # repository: atomicpapa/hassconfig
+    branch: master
     monitored_conditions:
       - state
