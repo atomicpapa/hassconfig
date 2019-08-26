@@ -31,7 +31,7 @@ speech_engine:
           state: 'on'
 
     - service: script.speech_processing
-      data_template: 
+      data_template:
         speech_message: >-
           {%- macro dark_outside() -%}
             {{ [
@@ -46,11 +46,18 @@ speech_engine:
           {%- macro school_day_alarm() -%}
             {{ [
               'Rise and Shine!  Its time to get ready for school!',
-              'Wake Up!  Its a school day and it
-              s time to get ready!',
+              'Wake Up!  Its a school day and its time to get ready!',
               'Wakey Wakey! Another exciting day of learning is about to begin!',
               'Yet another exciting school day is upon us!  Time to rock and roll!'
             ]|random}}
+          {%- endmacro -%}
+
+          {%- macro alarm() -%}
+            {{ [
+              'Rise and Shine!  A new day is upon us!',
+              'Welcome back to the land of the living!',
+              'Rock and roll baby! Its a new day and you have stuff to do!'
+            ]|random }}
           {%- endmacro -%}
 
           {%- macro inside_weather() -%}
@@ -148,7 +155,7 @@ speech_engine:
           {%- endmacro -%}
 
           {%- macro girls_allergy_meds() -%}
-            It's time to take allergy meds! 
+            It's time to take allergy meds!
           {%- endmacro -%}
 
           {%- macro ring_ding() -%}
@@ -182,7 +189,11 @@ speech_engine:
           {{ personarriving }}
 
           {% if call_school_day_alarm == 1 %}
-            {{ school_day_alarm()}}
+            {{ school_day_alarm() }}
+          {% endif %}
+
+          {% if call_alarm == 1 %}
+            {{ alarm() }}
           {% endif %}
 
           {% if call_inside_weather == 1 %}
