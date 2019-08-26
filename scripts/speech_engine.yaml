@@ -52,7 +52,7 @@ speech_engine:
             ]|random}}
           {%- endmacro -%}
 
-          {%- macro alarm -%}
+          {%- macro alarm() -%}
             {{ [
               'Rise and Shine!  A new day is upon us!',
               'Welcome back to the land of the living!',
