@@ -20,7 +20,7 @@
 # Stop SLeep automation is activated when I turn off Sleep Tracking in the morning.  This event is
 # picked up by tasker and turns off input_boolean.sleeping using the Home Assistant Tasker Plugin.
 
-- alias: Stop sleep
+- alias: Stop sleep - School Day
   initial_state: 'on'
   trigger:
     - platform: state
@@ -29,21 +29,49 @@
       to: 'off'
 
   condition:
-    - condition: time
-      after: '05:59:00'
-      before: '10:00:00'
+    conditions:
+      - condition: time
+        after: '05:59:00'
+        before: '10:00:00'
+      - condition: state
+        entity_id: input_boolean.school_mode
+        state: 'on'
 
   action:
     - delay:
         minutes: 5
 
     - service: script.speech_engine
-      data_template: >-
-        {{ if states.input_boolean.school_mode.state == 'on' }}
-          call_school_day_alarm: 1
-        {{ else }}
-          call_alarm: 1
-        {{ endif }}
+      data:
+        call_school_day_alarm: 1
+        call_inside_weather: 1
+        call_outside_weather: 1
+        call_holiday: 1
+
+- alias: Stop sleep - Non-School Day
+  initial_state: 'on'
+  trigger:
+    - platform: state
+      entity_id: input_boolean.sleeping
+      from: 'on'
+      to: 'off'
+
+  condition:
+    conditions:
+      - condition: time
+        after: '05:59:00'
+        before: '10:00:00'
+      - condition: state
+        entity_id: input_boolean.school_mode
+        state: 'off'
+
+  action:
+    - delay:
+        minutes: 5
+
+    - service: script.speech_engine
+      data:
+        call_alarm: 1
         call_inside_weather: 1
         call_outside_weather: 1
         call_holiday: 1
