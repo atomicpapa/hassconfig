@@ -5,8 +5,9 @@
 sensor:
   - platform: travisci
     api_key: !secret travis_token
-    # repository: atomicpapa/hassconfig
+    repository: hassconfig
     branch: master
     scan_interval: 2400
     monitored_conditions:
       - state
+      - last_build_state
