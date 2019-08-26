@@ -38,7 +38,7 @@
         minutes: 5
 
     - service: script.speech_engine
-      data_template:
+      data_template: >-
         {{ if states.input_boolean.school_mode.state == 'on' }}
           call_school_day_alarm: 1
         {{ else }}
