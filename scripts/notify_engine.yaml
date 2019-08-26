@@ -1,0 +1,44 @@
+---
+######################################################################################################
+
+###  Script jacked from @CCOSTAN
+
+###Script to send notifications to our mobile phones! Call like this:
+  # action:
+    # service: script.notify_engine
+    # data_template:
+      # title: 'Title'
+      # value1: 'Startup: Home Assistant is Up and Running!'
+      # value2: "{{ trigger.to_state.state }}"
+      # value3:
+      # who: "glenn | eryin | emmy | lola | family | parents"
+
+######################################################################################################
+
+notify_engine:
+  sequence:
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: input_boolean.text_notifications
+          state: 'on'
+
+    - service_template: >
+          {% if who == 'glenn' %}
+            notify.mobile_app_pixel_xl_ariela
+          {% elif who == 'eryin' %}
+            notify.ios_eryin
+          {% elif who == 'emmy' %}
+            notify.mobile_app_emmys_phone
+          {% elif who == 'lola' %}
+            notify.mobile_app_emmys_phone
+          {% elif who == 'parents' %}
+            notify.parents
+          {% elif who == 'family' %}
+            notify.family
+          {% else %}
+            notify.family
+          {% endif %}
+      data_template:
+        title: "{{ title }}"
+        message: "{{ value1 }} {{ value2 }} {{ value3 }}"
