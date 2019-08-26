@@ -1,0 +1,23 @@
+---
+
+#  Garbage Collection
+
+
+sensor:
+  - platform: garbage_collection
+    name: waste
+    frequency: "weekly"
+    collection_days:
+    - thu
+
+  - platform: garbage_collection
+    name: recycle
+    frequency: "weekly"
+    collection_days:
+    - mon
+
+  - platform: garbage_collection
+    name: yard
+    frequency: "weekly"
+    collection_days:
+    - mon
