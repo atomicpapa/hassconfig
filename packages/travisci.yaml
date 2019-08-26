@@ -7,7 +7,7 @@ sensor:
     api_key: !secret travis_token
     repository: hassconfig
     branch: master
-    scan_interval: 2400
+    # scan_interval: 2400
     monitored_conditions:
       - state
       - last_build_state
