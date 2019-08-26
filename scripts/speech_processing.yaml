@@ -31,7 +31,7 @@ speech_processing:
           conditions:
             - condition: time
               after: '06:00:00'
-              before: '20:00:00'
+              before: '22:15:00'
             - condition: state
               entity_id: input_boolean.alert_mode
               state: 'on'
@@ -47,12 +47,12 @@ speech_processing:
             0.8
           {% elif states.input_boolean.school_mode.state == 'on' and now().strftime('%H')|int >= 6 and now().strftime('%H')|int < 20 %}
             0.8
-          {% elif states.input_boolean.school_mode.state != 'on'and now().strftime('%H')|int < 10 and now().strftime('%H')|int >= 6 %}
+          {% elif states.input_boolean.school_mode.state != 'on' and now().strftime('%H')|int < 10 and now().strftime('%H')|int >= 6 %}
             0.5
-          {% elif states.input_boolean.school_mode.state != 'on'and now().strftime('%H')|int > 10 and now().strftime('%H')|int < 20 %}
+          {% elif states.input_boolean.school_mode.state != 'on' and now().strftime('%H')|int > 10 and now().strftime('%H')|int < 20 %}
             0.8
           {% else %}
-            0.3
+            0.4
           {% endif %}
 
     - service: tts.google_translate_say

@@ -5,7 +5,7 @@ tweet_engine:
     - service: notify.twitter
       data_template:
         message: >-
-          {{ tweet }} #IOT #SmartHome #HomeAssistant
+          {{ tweet }} https://github.com/atomicpapa/hassconfig #SmartHome #HomeAssistant 
         # data:
         #   media: >-
         #     {{image}}
