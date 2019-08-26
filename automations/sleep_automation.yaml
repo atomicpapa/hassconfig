@@ -39,11 +39,11 @@
 
     - service: script.speech_engine
       data_template:
-        {% if states.input_boolean.school_mode.state == 'on' %}
+        {{ if states.input_boolean.school_mode.state == 'on' }}
           call_school_day_alarm: 1
-        {% else %}
+        {{ else }}
           call_alarm: 1
-        {% endif %}
+        {{ endif }}
         call_inside_weather: 1
         call_outside_weather: 1
         call_holiday: 1
