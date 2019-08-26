@@ -1,0 +1,27 @@
+---
+
+# Version sensor and upadter package
+# https://www.home-assistant.io/components/version/
+# https://www.home-assistant.io/components/updater/
+
+sensor:
+  - platform: version
+    name: Current Installed Version
+    source: local
+
+  - platform: version
+    name: Current Available Version
+    source: docker
+    image: qemux86-64
+
+automation:
+  - alias: Update Available
+    trigger:
+      platform: state
+      entity_id: updater.updater
+    action:
+      service: script.notify_engine
+      data:
+        title: "Update available"
+        message: "Update available for Home Assistant"
+        who: 'glenn'
