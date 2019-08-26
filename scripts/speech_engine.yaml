@@ -58,6 +58,7 @@ speech_engine:
               'Welcome back to the land of the living!',
               'Rock and roll baby! Its a new day and you have stuff to do!'
             ]|random }}
+          {%- endmacro -%}
 
           {%- macro inside_weather() -%}
             Inside the house, it is {{ states.climate.thermostat.attributes['current_temperature'] }} degrees.
