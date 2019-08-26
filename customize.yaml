@@ -12,3 +12,9 @@ input_boolean.lola_meds:
   friendly_name: Lola's Morning Meds Taken
 input_boolean.william_meds:
   friendly_name: William's Morning Meds Taken
+sensor.current_installed_verion:
+  friendly_name: Current HASS Version
+  icon: mdi:home-assistant
+sensor.current_available_version:
+  friendly_name: Available HASS Version
+  icon: mdi:home-assistant
