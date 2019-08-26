@@ -8,6 +8,6 @@ sensor:
     repository: hassconfig
     branch: master
     # scan_interval: 2400
-    monitored_conditions:
-      - state
-      - last_build_state
+    # monitored_conditions:
+    #   - state
+    #   - last_build_state
