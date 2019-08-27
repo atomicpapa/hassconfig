@@ -133,19 +133,19 @@ speech_engine:
 
           {%- macro med_reminder() -%}
             Don't leave yet.
-            {% if states.input_boolean.emmy_meds.state == 'off' and states.input_boolean.lola_meds.state == 'off' and states.input_boolean.williams_meds.state == 'off' %}
+            {% if states.input_boolean.emmy_meds.state == 'off' and states.input_boolean.lola_meds.state == 'off' and states.input_boolean.william_meds.state == 'off' %}
               Eleanor, Lola and William have not taken meds yet.  Please take them before leaving for school.
             {% elif states.input_boolean.emmy_meds.state == 'off' and states.input_boolean.lola_meds.state == 'off' %}
               Eleanor and Lola have not taken meds yet.  Please take them before leaving for school.
-            {% elif states.input_boolean.emmy_meds.state == 'off' and states.input_boolean.williams_meds.state == 'off' %}
+            {% elif states.input_boolean.emmy_meds.state == 'off' and states.input_boolean.william_meds.state == 'off' %}
               Eleanor and William have not taken meds yet.  Please take them before leaving for school.
-            {% elif states.input_boolean.lola_meds.state == 'off' and states.input_boolean.williams_meds.state == 'off' %}
+            {% elif states.input_boolean.lola_meds.state == 'off' and states.input_boolean.william_meds.state == 'off' %}
               Lola and William have not taken meds yet.  Please take them before leaving for school.
             {% elif states.input_boolean.emmy_meds.state == 'off' %}
               Eleanor has not taken meds yet.  Please take them before leaving for school.
             {% elif states.input_boolean.lola_meds.state == 'off' %}
               Lola has not taken meds yet.  Please take them before leaving for school.
-            {% elif states.input_boolean.williams_meds.state == 'off' %}
+            {% elif states.input_boolean.william_meds.state == 'off' %}
               William has not taken meds yet.  Please take them before leaving for school.
             {%- endif -%}
           {%- endmacro -%}
