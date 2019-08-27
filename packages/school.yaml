@@ -139,7 +139,7 @@ automation:
     action:
       - service: script.speech_engine
         data:
-          call_no_announcment: 1
+          call_no_announcement: 1
           call_med_reminder: 1
 
       - service: script.notify_engine
