@@ -3,7 +3,7 @@
 ### SCRIPT STOLEN BRAZENLY FROM CARLO.  I'M NOT ASHAMED TO ADMIT IT!
 
 ######################################################################################################
-###Script to send notifications to the ChromeCast Audios during normal hours and only when we are home! Call like this:
+### Script to send notifications to the ChromeCast Audios during normal hours and only when we are home! Call like this:
   # action:
     # service: script.speech_engine
     # data:
@@ -132,7 +132,7 @@ speech_engine:
           {%- endmacro -%}
 
           {%- macro med_reminder() -%}
-            Don't leave for schoolyet.
+            Don't leave for school yet.
             {% if states.input_boolean.emmy_meds.state == 'off' and states.input_boolean.lola_meds.state == 'off' and states.input_boolean.william_meds.state == 'off' %}
               Eleanor, Lola and William have not taken their morning meds.  Please take them before leaving for school.
             {% elif states.input_boolean.emmy_meds.state == 'off' and states.input_boolean.lola_meds.state == 'off' %}
@@ -151,6 +151,17 @@ speech_engine:
               Everyone has taken their meds this morning!  Have a great day!
             {%- endif -%}
           {%- endmacro -%}
+          
+          {% macro garbage_collection() %}
+            {% if states.sensor.waste.state == 1 %}
+              Tomorrow is our garbage day. Please take out the brown trash cans.
+            {% elif states.sensor.waste.state == 0 %}
+              Today is trash day.  Please ensure that the trash bins were taken out.
+            {% elif states.sensor.recycle.state == 1 %}
+              Tomorrow is recycle and yard waste collection day.  Please take out the blue and or green cans if needed.
+            {% elif states.sensor.recycle.state == 0 %}
+              Today is recycle and yard waste collection day.  Please ensure that there were taken out if needed.
+          {% endmacro %}
 
           {%- macro brush_your_teeth() -%}
             It's time to brush your teeth, so get to it!
@@ -212,6 +223,10 @@ speech_engine:
 
           {% if call_weather_tomorrow == 1 %}
             {{ weather_tomorrow() }}
+          {% endif %}
+
+          {% if call_garbage_collection == 1 %}
+            {{ garbage_collection() }}
           {% endif %}
 
           {% if call_washer_done == 1 %}
