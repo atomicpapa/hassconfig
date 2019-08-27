@@ -41,7 +41,7 @@ speech_processing:
 
     - service: media_player.volume_set
       data_template:
-        entity_id: "all"
+        entity_id: media_player.whole_house
         volume_level: >-
           {% if states.input_boolean.alert_mode.state == 'on' %}
             0.8
@@ -57,7 +57,7 @@ speech_processing:
 
     - service: tts.google_translate_say
       data_template:
-        entity_id: "all"
+        entity_id: media_player.whole_house
         message: '{{ speech_message }}'
         cache: true
 
