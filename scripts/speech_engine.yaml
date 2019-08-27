@@ -1,20 +1,21 @@
 ---
 
-### SCRIPT STOLEN BRAZENLY FROM CARLO.  I'M NOT ASHAMED TO ADMIT IT!
+### SCRIPT STOLEN BRAZENLY FROM @CCOSTAN.  I'M NOT ASHAMED TO ADMIT IT!
+# Edited heavily to fit my needs
 
 ######################################################################################################
 # Script to send notifications to the ChromeCast Audios during normal hours and only when we are home! Call like this:
-  # action:
-    # service: script.speech_engine
-    # data:
-    #   call_no_announcement:
-    #   call_dark_outside:
-    #   call_window_check:
-    #   call_garage_check:
-    #   call_responsibilities
-    #   call_light_check
-    #   call_inside_weather
-    #   call_outside_weather
+#   action:
+#     service: script.speech_engine
+#     data:
+#       call_no_announcement:
+#       call_dark_outside:
+#       call_window_check:
+#       call_garage_check:
+#       call_responsibilities
+#       call_light_check
+#       call_inside_weather
+#       call_outside_weather
 # # @CCOSTAN
 # Original Repo : https://github.com/CCOSTAN/Home-AssistantConfig
 ######################################################################################################
