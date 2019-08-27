@@ -8,8 +8,8 @@
      platform: time
      at: '06:00:00'
   action:
-    - service: cliamate.set_temperature
+    - service: climate.set_temperature
       data:
         entity_id: climate.thermostat
         hvac_mode: cool
-        temperature: 76 
+        temperature: 76
