@@ -3,15 +3,15 @@
 
 ###  Script jacked from @CCOSTAN
 
-###Script to send notifications to our mobile phones! Call like this:
-  # action:
-    # service: script.notify_engine
-    # data_template:
-      # title: 'Title'
-      # value1: 'Startup: Home Assistant is Up and Running!'
-      # value2: "{{ trigger.to_state.state }}"
-      # value3:
-      # who: "glenn | eryin | emmy | lola | family | parents"
+# Script to send notifications to our mobile phones! Call like this:
+#   action:
+#     service: script.notify_engine
+#     data_template:
+#       title: 'Title'
+#       value1: 'Startup: Home Assistant is Up and Running!'
+#       value2: "{{ trigger.to_state.state }}"
+#       value3:
+#       who: "glenn | eryin | emmy | lola | family | parents"
 
 ######################################################################################################
 
