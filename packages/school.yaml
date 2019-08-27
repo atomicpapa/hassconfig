@@ -131,22 +131,9 @@ automation:
         at: '06:30:00'
 
     condition:
-      condition: and
-      conditions:
-        - condition: state
-          entity_id: input_boolen.school_mode
-          state: 'on'
-        - condition: or
-          conditions:
-            - condition: state
-              entity_id: input_boolean.williams_meds
-              state:  'off'
-            - condition: state
-              entity_id: input_boolean.emmy_meds
-              state:  'off'
-            - condition: state
-              entity_id: input_boolean.lola_meds
-              state:  'off'
+      - condition: state
+        entity_id: input_boolen.school_mode
+        state: 'on'
 
     action:
       - service: script.speech_engine

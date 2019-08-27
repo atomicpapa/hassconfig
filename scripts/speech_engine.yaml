@@ -132,21 +132,23 @@ speech_engine:
           {%- endmacro -%}
 
           {%- macro med_reminder() -%}
-            Don't leave yet.
+            Don't leave for schoolyet.
             {% if states.input_boolean.emmy_meds.state == 'off' and states.input_boolean.lola_meds.state == 'off' and states.input_boolean.william_meds.state == 'off' %}
-              Eleanor, Lola and William have not taken meds yet.  Please take them before leaving for school.
+              Eleanor, Lola and William have not taken their morning meds.  Please take them before leaving for school.
             {% elif states.input_boolean.emmy_meds.state == 'off' and states.input_boolean.lola_meds.state == 'off' %}
-              Eleanor and Lola have not taken meds yet.  Please take them before leaving for school.
+              Eleanor and Lola have not taken their morning meds.  Please take them before leaving for school.
             {% elif states.input_boolean.emmy_meds.state == 'off' and states.input_boolean.william_meds.state == 'off' %}
-              Eleanor and William have not taken meds yet.  Please take them before leaving for school.
+              Eleanor and William have not taken their morning meds.  Please take them before leaving for school.
             {% elif states.input_boolean.lola_meds.state == 'off' and states.input_boolean.william_meds.state == 'off' %}
-              Lola and William have not taken meds yet.  Please take them before leaving for school.
+              Lola and William have not taken their morning meds.  Please take them before leaving for school.
             {% elif states.input_boolean.emmy_meds.state == 'off' %}
-              Eleanor has not taken meds yet.  Please take them before leaving for school.
+              Eleanor has not taken her morning meds.  Please take them before leaving for school.
             {% elif states.input_boolean.lola_meds.state == 'off' %}
-              Lola has not taken meds yet.  Please take them before leaving for school.
+              Lola has not taken her morning meds.  Please take them before leaving for school.
             {% elif states.input_boolean.william_meds.state == 'off' %}
-              William has not taken meds yet.  Please take them before leaving for school.
+              William has not taken his morning meds.  Please take them before leaving for school.
+            {% else %}
+              Everyone has taken their meds this morning!  Have a great day!
             {%- endif -%}
           {%- endmacro -%}
 
