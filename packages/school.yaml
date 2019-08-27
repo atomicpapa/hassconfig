@@ -112,6 +112,7 @@ automation:
           call_school_day_alarm: 1
           call_inside_weather: 1
           call_outside_weather: 1
+          call_garbage_collection: 1
           call_holiday: 1
 
       - service: script.tweet_engine
