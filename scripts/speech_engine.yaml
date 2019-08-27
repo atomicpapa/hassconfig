@@ -92,7 +92,7 @@ speech_engine:
             {% endif %}
           {%- endmacro -%}
 
-          {%- macro pollen_tomorrow-%}
+          {%- macro pollen_tomorrow() -%}
             Tomorrows allergy index will be {{states.sensor.allergy_index_tomorrow.state}}
           {%- endmacro -%}
 
