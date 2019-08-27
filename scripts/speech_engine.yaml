@@ -77,6 +77,25 @@ speech_engine:
             Tomorrow the weather will be {{ states.sensor.dark_sky_summary_1d.state }}.  Please dress accordingly.
           {%- endmacro -%}
 
+          {%- macro pollen_today() -%}
+            Allergy Index for today is {{states.sensor.allergy_index_today.state}} which is in the
+            {% if states.sensor.allergy_index_today.state <= 2.4 %}
+              low range
+            {% elif states.sensor.allergy_index_today.state > 2.4 and states.sensor.allergy_index_today.state <= 4.8 %}
+              low medium range
+            {% elif states.sensor.allergy_index_today.state > 4.8 and states.sensor.allergy_index_today.state <= 7.2 %}
+              medium range
+            {% elif states.sensor.allergy_index_today.state > 7.2 and states.sensor.allergy_index_today.state <= 9.6 %}
+              medium high range
+            {% else %}
+              high range
+            {% endif %}
+          {%- endmacro -%}
+
+          {%- macro pollen_tomorrow-%}
+            Tomorrows allergy index will be {{states.sensor.allergy_index_tomorrow.state}}
+          {%- endmacro -%}
+
           {%- macro window_check() -%}
             {% if states.group.entry_points.state != 'off' -%}
               {% set comma = joiner(', ') %}
@@ -225,6 +244,14 @@ speech_engine:
 
           {% if call_weather_tomorrow == 1 %}
             {{ weather_tomorrow() }}
+          {% endif %}
+
+          {% if call_pollen_today == 1 %}
+            {{ pollen_today() }}
+          {% endif %}
+
+          {% if call_pollen_tomorrow == 1 %}
+            {{ pollen_tomorrow() }}
           {% endif %}
 
           {% if call_garbage_collection == 1 %}

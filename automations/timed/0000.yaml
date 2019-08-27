@@ -9,7 +9,7 @@
 
   action:
     - service: input_boolean.turn_off
-      entity_id: 
+      entity_id:
         - input_boolean.william_meds
         - input_boolean.emmy_meds
         - input_boolean.lola_meds
@@ -26,8 +26,8 @@
 - alias: 'Trash Day'
   initial_state: 'on'
   trigger:
-  - platform: time
-    at: '00:10:00'
+    - platform: time
+      at: '00:10:00'
 
   condition:
     - condition: time
@@ -36,4 +36,3 @@
   action:
     - service: input_boolean.turn_on
       entity_id: input_boolean.trashday
-

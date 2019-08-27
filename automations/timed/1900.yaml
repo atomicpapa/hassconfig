@@ -1,4 +1,6 @@
-#Weather forecast for the next 24 hours daily at 7pm
+---
+
+# Weather forecast for the next 24 hours daily at 7pm
 
 - alias: 'Timed 1900'
   initial_state: 'on'
@@ -10,6 +12,8 @@
     - service: script.speech_engine
       data:
         call_weather_tomorrow: 1
+        call_pollen_tomorrow: 1
+        call_garbage_collection: 1
 
     - service: script.tweet_engine
       data_template:
