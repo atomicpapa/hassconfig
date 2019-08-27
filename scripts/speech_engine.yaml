@@ -162,6 +162,7 @@ speech_engine:
               Tomorrow is recycle and yard waste collection day.  Please take out the blue and or green cans if needed.
             {% elif states.sensor.recycle.state == 0 %}
               Today is recycle and yard waste collection day.  Please ensure that there were taken out if needed.
+            {% endif %}
           {% endmacro %}
 
           {%- macro brush_your_teeth() -%}
