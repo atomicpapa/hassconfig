@@ -65,7 +65,7 @@ speech_engine:
           {%- endmacro -%}
 
           {%- macro outside_weather() -%}
-            Outside, it is currently {{ states.weather.dark_sky.attributes['current_temperature'] }} degrees and {{ states('sensor.dark_sky_summary') }}
+            Outside, it is currently {{ states.weather.dark_sky.attributes['temperature'] }} degrees and {{ states('sensor.dark_sky_summary') }}
           {%- endmacro -%}
 
           {%- macro weather_today() -%}
@@ -151,7 +151,7 @@ speech_engine:
               Everyone has taken their meds this morning!  Have a great day!
             {%- endif -%}
           {%- endmacro -%}
-          
+
           {% macro garbage_collection() %}
             {% if states.sensor.waste.state == 1 %}
               Tomorrow is our garbage day. Please take out the brown trash cans.
