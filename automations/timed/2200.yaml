@@ -13,7 +13,7 @@
         entity_id: climate.thermostat
         hvac_mode: cool
         temperature: 73
-  
+
 - alias: 'Girls Allergy Meds'
   initial_state: 'on'
   trigger:
@@ -33,4 +33,5 @@
   action:
     - service: script.speech_engine
       data:
+        call_no_announcement: 1
         call_girls_allergy_meds: 1
