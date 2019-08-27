@@ -8,16 +8,16 @@ sensor:
     name: waste
     frequency: "weekly"
     collection_days:
-    - thu
+      - thu
 
   - platform: garbage_collection
     name: recycle
     frequency: "weekly"
     collection_days:
-    - mon
+      - mon
 
   - platform: garbage_collection
     name: yard
     frequency: "weekly"
     collection_days:
-    - mon
+      - mon

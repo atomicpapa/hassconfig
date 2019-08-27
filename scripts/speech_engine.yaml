@@ -3,7 +3,7 @@
 ### SCRIPT STOLEN BRAZENLY FROM CARLO.  I'M NOT ASHAMED TO ADMIT IT!
 
 ######################################################################################################
-### Script to send notifications to the ChromeCast Audios during normal hours and only when we are home! Call like this:
+# Script to send notifications to the ChromeCast Audios during normal hours and only when we are home! Call like this:
   # action:
     # service: script.speech_engine
     # data:
