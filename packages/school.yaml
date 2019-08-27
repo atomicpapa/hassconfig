@@ -13,7 +13,7 @@ sensor:
       {% set today = now().month  ~ '/' ~ now().day ~ '/' ~ now().year %}
       {% set neisd_holiday =  value_json.SCHOOL.neisd_holidays[ today ] %}
       {{neisd_holiday}}
-      
+
   - platform: rest
     resource: https://raw.githubusercontent.com/atomicpapa/hassconfig/master/json_data/school_holidays.json
     name: SST Holiday
@@ -49,7 +49,7 @@ automation:
     trigger:
       platform: time
       at: '00:15:00'
-      
+
     condition:
       condition: time
       weekday:
@@ -78,3 +78,110 @@ automation:
           call_outside_weather: 1
           call_weather_today: 1
 
+
+  - alias: 'School Day Morning Startup'
+    initial_state: 'on'
+    trigger:
+      - platform: time
+        at: '06:00:00'
+
+    condition:
+      - condition: state
+        entity_id: input_boolean.school_mode
+        state: 'on'
+      - condition: time
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
+
+    action:
+      - service: light.turn_on
+        entity_id:
+          - light.girls
+          - light.boy
+          - light.living_room_dimmer
+          - light.desk_lamp
+          - light.hall
+          - light.entry_hall
+
+      - service: script.speech_engine
+        data:
+          call_school_day_alarm: 1
+          call_inside_weather: 1
+          call_outside_weather: 1
+          call_holiday: 1
+
+      - service: script.tweet_engine
+        data_template:
+          tweet: >
+            {{ [
+            "Today is a School day.  I will turn on some lights to get this day started! (https://www.amazon.com/dp/B07P8WZN84/)",
+            "Up at the crack of Dawn for School.  We need some lights on. (https://www.amazon.com/dp/B07P8WZN84/)",
+            "This is way early.  We need some lights on. (https://www.amazon.com/dp/B07P8WZN84/)",
+            "Time to wake up the house with some gentle lighting. (https://www.amazon.com/dp/B07P8WZN84/)"
+            ] | random + " #Hue"}}
+
+  - alias: 'Med Check'
+    initial_state: 'on'
+    trigger:
+      - platform: time
+        at: '06:30:00'
+
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: input_boolen.school_mode
+          state: 'on'
+        - condition: or
+          conditions:
+            - condition: state
+              entity_id: input_boolean.williams_meds
+              state:  'off'
+            - condition: state
+              entity_id: input_boolean.emmy_meds
+              state:  'off'
+            - condition: state
+              entity_id: input_boolean.lola_meds
+              state:  'off'
+
+    action:
+      - service: script.speech_engine
+        data:
+          call_no_announcment: 1
+          call_med_reminder: 1
+
+      - service: script.notify_engine
+        data_template:
+          who: 'glenn'
+          message: "Someone hasn't had their meds yet!"
+          title: "Med Check!!"
+
+  - alias: 'School Day Morning Wind Down'
+    initial_state: 'on'
+    trigger:
+      - platform: time
+        at: '07:30:00'
+
+    condition:
+      - condition: state
+        entity_id: input_boolean.school_mode
+        state: 'on'
+      - condition: time
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
+
+    action:
+      - service: light.turn_off
+        entity_id:
+          - light.girls
+          - light.boy
+          - light.hall
+          - light.entry_hall
