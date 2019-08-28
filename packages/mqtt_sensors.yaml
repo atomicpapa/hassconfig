@@ -21,7 +21,7 @@ binary_sensor:
     state_topic: "gosense/7778F8F3"
     device_class: battery
     value_template: "{{ value_json.properties.battery }}"
-    json_attributes_topic: "gosense/7778F8F3"
+    # json_attributes_topic: "gosense/7778F8F3"
 
   - platform: mqtt
     name: "Test"
