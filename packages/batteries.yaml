@@ -1,8 +1,14 @@
 ---
 
 # Batteries
-
-
+sensor:
+  - platform: template
+    sensors:
+      fridge_battery:
+        friendly_name: 'Fridge Sensor Battery'
+        value_template: "{{ state_attr('binary_sensor.fridge', 'battery_level') }}"
+        unit_of_measurement: '%'
+        device_class: battery
 
 automation:
 
