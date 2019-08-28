@@ -55,6 +55,6 @@ and 18 additional containers including Minecraft, Plex Media Server and others.
   <li>More Wyze sensors</li>
 </ul>
 
-### See the Wiki for extended information on my setup
+### See the [Wiki](https://github.com/atomicpapa/hassconfig/wiki) for extended information on my setup
 
 
