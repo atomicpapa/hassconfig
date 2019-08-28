@@ -10,6 +10,12 @@ sensor:
         unit_of_measurement: '%'
         device_class: battery
 
+      - platform: mqtt
+        name: "Fridge Battery Level"
+        state_topic: "gosense/7778F8F3"
+        device_class: battery
+        value_template: "{{ value_json.properties.battery }}"
+
 automation:
 
   - alias: Watch Battery Low
