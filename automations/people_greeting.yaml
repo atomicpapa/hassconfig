@@ -21,7 +21,7 @@
           {%- macro greeting_sentence(person) -%}
           {{ [
           "Welcome home " ~ person,
-          person + "welcome back home"
+          person + " welcome back home"
           ] | random }}
           {%- endmacro -%}
           "{{greeting_sentence(person)}}"

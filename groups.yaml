@@ -7,3 +7,15 @@ family:
     - person.eryin
     - person.emmy
     - person.lola
+
+entry_points:
+  name: Points of Entry
+  entities:
+    - binary_sensor.girls_window_1
+    - binary_sensor.girls_window_2
+    - binary_sensor.boys_window_1
+    - binary_sensor.boys_window_2
+    - binary_sensor.front_door
+    - binary_sensor.back_door
+    - binary_sensor.garage_back_door
+    - binary_sensor.garage_door

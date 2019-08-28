@@ -5,17 +5,16 @@
 
 binary_sensor:
 
-#### Contact Sensors #####
+  #### Contact Sensors ####
 
   - platform: mqtt
-    name: "Wyze"
+    name: "Fridge"
     state_topic: "gosense/7778F8F3"
     payload_on: 1
     payload_off: 0
-    device_class: opening
+    device_class: door
     value_template: "{{ value_json.metadata.properties.state }}"
     json_attributes_topic: "gosense/7778F8F3"
-    #json_attributes_template: ""
 
   - platform: mqtt
     name: "Test"
@@ -67,7 +66,7 @@ binary_sensor:
     value_template: "{{ value_json.RfReceived.Data }}"
 
   - platform: mqtt
-    name: "Fridge"
+    name: "not Fridge"
     state_topic: "tele/rfbridge/RESULT"
     payload_on: "0x7B080A"
     payload_off: "0x7B080E"
@@ -114,7 +113,7 @@ binary_sensor:
     device_class: window
     value_template: "{{ value_json.RfReceived.Data }}"
 
-#### Motion Sensors ####
+    #### Motion Sensors ####
 
   - platform: mqtt
     name: "Living Room Motion"
