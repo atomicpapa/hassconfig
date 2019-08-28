@@ -17,6 +17,15 @@ binary_sensor:
     json_attributes_topic: "gosense/7778F8F3"
 
   - platform: mqtt
+    name: "Fridge Battery Level"
+    state_topic: "gosense/7778F8F3"
+    payload_on: 1
+    payload_off: 0
+    device_class: door
+    value_template: "{{ value_json.metadata.properties.battery }}"
+    json_attributes_topic: "gosense/7778F8F3"
+
+  - platform: mqtt
     name: "Test"
     state_topic: "tele/rfbridge/RESULT"
     payload_on: "0x317F0A"
