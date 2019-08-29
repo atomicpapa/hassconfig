@@ -5,8 +5,8 @@
 - alias: Set AC to 76
   initial_state: 'on'
   trigger:
-     platform: time
-     at: '06:00:00'
+    platform: time
+    at: '06:00:00'
   action:
     - service: climate.set_temperature
       data:
