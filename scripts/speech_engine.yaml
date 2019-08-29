@@ -152,7 +152,7 @@ speech_engine:
           {%- endmacro -%}
 
           {%- macro med_reminder() -%}
-            Don't leave for school yet.
+            Do not leave for school yet.
             {% if states.input_boolean.emmy_meds.state == 'off' and states.input_boolean.lola_meds.state == 'off' and states.input_boolean.william_meds.state == 'off' %}
               Eleanor, Lola and William have not taken their morning meds.  Please take them before leaving for school.
             {% elif states.input_boolean.emmy_meds.state == 'off' and states.input_boolean.lola_meds.state == 'off' %}
