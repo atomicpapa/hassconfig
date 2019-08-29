@@ -25,4 +25,28 @@ sensor:
       - wifi_signal_category
       - wifi_signal_strength
 
-      
+automation:
+  - alias: Ring Ding
+    initial_state: 'on'
+    trigger:
+      platform: state
+      entity_id: binary_sensor.ring_front_door_ding
+      to: 'on'
+    condition:
+      condition: time
+      after: '08:00:00'
+      before: '21:00:00'
+    action:
+      - service: script.speech_engine
+        data:
+          call_ring_ding: 1
+      - service: script.tweet_engine
+        data_template:
+          message:
+            tweet: >
+              {{ [
+                "Someone tickled my Ring Doorbell at {{ states.sensor.ring_front_door_last_ding.state }}",
+                "Quick!!! Hide!!!!  Someone just pressed my Ring Doorbell!",
+                "Someone just touched the magic button of my Ring Doorbell.  Oh yeeeeeeah",
+                "Everyone welcome our new visitor.  They just pressed my Ring Doorbell"
+              ] | random }}
