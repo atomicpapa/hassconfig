@@ -71,11 +71,19 @@ automation:
   - alias: Mark person as just arrived
     trigger:
       - platform: state
-        entity_id: &trigger_person
-          - person.glenn
-          - person.eryin
-          - person.emmy
-          - person.lola
+        entity_id: person.glenn
+        from: 'not_home'
+        to: 'home'
+      - platform: state
+        entity_id: person.eryin
+        from: 'not_home'
+        to: 'home'
+      - platform: state
+        entity_id: person.emmy
+        from: 'not_home'
+        to: 'home'
+      - platform: state
+        entity_id: person.lola
         from: 'not_home'
         to: 'home'
     action:
@@ -96,16 +104,39 @@ automation:
   - alias: Mark person as home
     trigger:
       - platform: state
-        entity_id: &trigger_input_select
-          - input_select.glenn_status_dropdown
-          - input_select.eryin_status_dropdown
-          - input_select.emmy_status_dropdown
-          - input_select.lola_status_dropdown
+        entity_id: input_select.glenn_status_dropdown
         to: 'Just Arrived'
         for:
           minutes: 10
       - platform: state
-        entity_id: *trigger_input_select
+        entity_id: input_select.eryin_status_dropdown
+        to: 'Just Arrived'
+        for:
+          minutes: 10
+      - platform: state
+        entity_id: input_select.emmy_status_dropdown
+        to: 'Just Arrived'
+        for:
+          minutes: 10
+      - platform: state
+        entity_id: input_select.lola_status_dropdown
+        to: 'Just Arrived'
+        for:
+          minutes: 10
+      - platform: state
+        entity_id: input_select.glenn_status_dropdown
+        from: 'Just Left'
+        to: 'Just Arrived'
+      - platform: state
+        entity_id: input_select.eryin_status_dropdown
+        from: 'Just Left'
+        to: 'Just Arrived'
+      - platform: state
+        entity_id: input_select.emmy_status_dropdown
+        from: 'Just Left'
+        to: 'Just Arrived'
+      - platform: state
+        entity_id: input_select.lola_status_dropdown
         from: 'Just Left'
         to: 'Just Arrived'
     action:
@@ -126,9 +157,21 @@ automation:
   - alias: Mark person as just left
     trigger:
       - platform: state
-        entity_id: *trigger_person
-        from: 'home'
-        to: 'not_home'
+        entity_id: person.glenn
+        from: 'not_home'
+        to: 'home'
+      - platform: state
+        entity_id: person.eryin
+        from: 'not_home'
+        to: 'home'
+      - platform: state
+        entity_id: person.emmy
+        from: 'not_home'
+        to: 'home'
+      - platform: state
+        entity_id: person.lola
+        from: 'not_home'
+        to: 'home'
     action:
       - service: input_select.select_option
         data_template:
@@ -147,7 +190,22 @@ automation:
   - alias: Mark person as away
     trigger:
       - platform: state
-        entity_id: *trigger_person
+        entity_id: person.glenn
+        to: 'Just Left'
+        for:
+          minutes: 10
+      - platform: state
+        entity_id: person.eryin
+        to: 'Just Left'
+        for:
+          minutes: 10
+      - platform: state
+        entity_id: person.emmy
+        to: 'Just Left'
+        for:
+          minutes: 10
+      - platform: state
+        entity_id: person.lola
         to: 'Just Left'
         for:
           minutes: 10
@@ -169,7 +227,22 @@ automation:
   - alias: Mark person as extended away
     trigger:
       - platform: state
-        entity_id: *trigger_input_select
+        entity_id: input_select.glenn_status_dropdown
+        to: 'Away'
+        for:
+          hours: 24
+      - platform: state
+        entity_id: input_select.eryin_status_dropdown
+        to: 'Away'
+        for:
+          hours: 24
+      - platform: state
+        entity_id: input_select.emmy_status_dropdown
+        to: 'Away'
+        for:
+          hours: 24
+      - platform: state
+        entity_id: input_select.lola_status_dropdown
         to: 'Away'
         for:
           hours: 24
