@@ -16,7 +16,7 @@ automation:
     trigger:
       - platform: numeric_state
         entity_id: sensor.ticwatch_battery
-        below: 40
+        below: 30
 
     action:
       - service: persistent_notification.create
