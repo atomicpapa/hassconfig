@@ -66,7 +66,7 @@ automation:
     action:
       - service: input_select.select_option
         data_template:
-          entity_id: &service_person >
+          entity_id: >
             {% if trigger.entity_id == 'person.glenn' %}
               input_select.glenn_status_dropdown
             {% elif trigger.entity_id == 'person.eryin' %}
@@ -96,7 +96,7 @@ automation:
     action:
       - service: input_select.select_option
         data_template:
-          entity_id: &service_input_select >
+          entity_id: >
             {% if trigger.entity_id == 'input_select.phil_status_dropdown' %}
               input_select.glenn_status_dropdown
             {% elif trigger.entity_id == 'input_select.eryin_status_dropdown' %}
@@ -117,7 +117,16 @@ automation:
     action:
       - service: input_select.select_option
         data_template:
-          entity_id: *service_person
+          entity_id: >
+            {% if trigger.entity_id == 'person.glenn' %}
+              input_select.glenn_status_dropdown
+            {% elif trigger.entity_id == 'person.eryin' %}
+              input_select.eryin_status_dropdown
+            {% elif trigger.entity_id == 'person.emmy' %}
+              input_select.emmy_status_dropdown
+            {% else %}
+              input_select.lola_status_dropdown
+            {% endif %}
           option: Just Left
 
   - alias: Mark person as away
@@ -130,7 +139,16 @@ automation:
     action:
       - service: input_select.select_option
         data_template:
-          entity_id: *service_person
+          entity_id: >
+            {% if trigger.entity_id == 'person.glenn' %}
+              input_select.glenn_status_dropdown
+            {% elif trigger.entity_id == 'person.eryin' %}
+              input_select.eryin_status_dropdown
+            {% elif trigger.entity_id == 'person.emmy' %}
+              input_select.emmy_status_dropdown
+            {% else %}
+              input_select.lola_status_dropdown
+            {% endif %}
           option: Away
 
   - alias: Mark person as extended away
@@ -143,5 +161,14 @@ automation:
     action:
       - service: input_select.select_option
         data_template:
-          entity_id: *service_input_select
+          entity_id: >
+            {% if trigger.entity_id == 'input_select.phil_status_dropdown' %}
+              input_select.glenn_status_dropdown
+            {% elif trigger.entity_id == 'input_select.eryin_status_dropdown' %}
+              input_select.eryin_status_dropdown
+            {% elif trigger.entity_id == 'input_select.emmy_status_dropdown' %}
+              input_select.emmy_status_dropdown
+            {% else %}
+              input_select.lola_status_dropdown
+            {% endif %}
           option: Extended Away
