@@ -1,0 +1,147 @@
+---
+# This is based heavily on, if not a complete ripoff of, Phil Hawthorne's article
+# "Making Home Assistant’s Presence Detection not so Binary" from his website:
+# https://philhawthorne.com/making-home-assistants-presence-detection-not-so-binary/
+
+# Thanks Phil!!
+
+# Input Seleects for each family member to be tracked giving all available options for presence
+
+input_select:
+  - glenn_status_dropdown:
+    name: Glenn
+    options: &options
+      - Home
+      - Just Arrived
+      - Just Left
+      - Away
+      - Extended Away
+    initial: Home
+
+  - eryin_status_dropdown:
+    name: Eryin
+    options: *options
+    initial: Home
+
+  - emmy_status_dropdown:
+    name: Emmy
+    options: *options
+    initial: Home
+
+  - lola_status_dropdown:
+    name: Lola
+    options: *options
+    initial: Home
+
+# Sensors that will actually represent the person
+
+sensor:
+  - platform: template
+    sensors:
+      glenn_status:
+        value_template: '{{ states.input_select.glenn_status_dropdown.state }}'
+        friendly_name: 'Glenn'
+      eryin_status:
+        value_template: '{{ states.input_select.eryin_status_dropdown.state }}'
+        friendly_name: 'Eryin'
+      emmy_status:
+        value_template: '{{ states.input_select.emmy_status_dropdown.state }}'
+        friendly_name: 'Emmy'
+      lola_status:
+        value_template: '{{ states.input_select.lola_status_dropdown.state }}'
+        friendly_name: 'Lola'
+
+automation:
+
+  - alias: Mark person as just arrived
+    trigger:
+      - platform: state
+        entity_id: &trigger_person
+          - person.glenn
+          - person.eryin
+          - person.emmy
+          - person.lola
+        from: 'not_home'
+        to: 'home'
+    action:
+      - service: input_select.select_option
+        data_template:
+          entity_id: > &service_person
+            {% if trigger.entity_id == 'person.glenn' %}
+              input_select.glenn_status_dropdown
+            {% elif trigger.entity_id == 'person.eryin' %}
+              input_select.eryin_status_dropdown
+            {% elif trigger.entity_id == 'person.emmy' %}
+              input_select.emmy_status_dropdown
+            {% else %}
+              input_select.lola_status_dropdown
+            {% endif %}
+          option: Just Arrived
+
+  - alias: Mark person as home
+    trigger:
+      - platform: state
+        entity_id: &trigger_input_select
+          - input_select.glenn_status_dropdown
+          - input_select.eryin_status_dropdown
+          - input_select.emmy_status_dropdown
+          - input_select.lola_status_dropdown
+        to: 'Just Arrived'
+        for:
+          minutes: 10
+      - platform: state
+        entity_id: *trigger_input_select
+        from: 'Just Left'
+        to: 'Just Arrived'
+    action:
+      - service: input_select.select_option
+        data_template:
+          entity_id: > &service_input_select
+            {% if trigger.entity_id == 'input_select.phil_status_dropdown' %}
+              input_select.glenn_status_dropdown
+            {% elif trigger.entity_id == 'input_select.eryin_status_dropdown' %}
+              input_select.eryin_status_dropdown
+            {% elif trigger.entity_id == 'input_select.emmy_status_dropdown' %}
+              input_select.emmy_status_dropdown
+            {% else %}
+              input_select.lola_status_dropdown
+            {% endif %}
+          option: Home
+
+  - alias: Mark person as just left
+    trigger:
+      - platform: state
+        entity_id: *trigger_person
+        from: 'home'
+        to: 'not_home'
+    action:
+      - service: input_select.select_option
+        data_template:
+          entity_id: > *service_person
+          option: Just Left
+
+  - alias: Mark person as away
+    trigger:
+      - platform: state
+        entity_id: *trigger_person
+        to: 'Just Left'
+        for:
+          minutes: 10
+    action:
+      - service: input_select.select_option
+        data_template:
+          entity_id: > *service_person
+          option: Away
+
+  - alias: Mark person as extended away
+    trigger:
+      - platform: state
+        entity_id: *trigger_input_select
+        to: 'Away'
+        for:
+          hours: 24
+    action:
+      - service: input_select.select_option
+        data_template:
+          entity_id: > *service_input_select
+          option: Extended Away

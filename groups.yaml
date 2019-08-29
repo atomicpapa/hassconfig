@@ -19,3 +19,12 @@ entry_points:
     - binary_sensor.girls_window_2
     - binary_sensor.boys_window_1
     - binary_sensor.boys_window_2
+
+# Used in presence.yaml package
+people_status:
+  name: People Status
+  entities:
+    - sensor.glenn_status
+    - sensor.eryin_status
+    - sensor.emmy_status
+    - sensor.lola_status

@@ -1,3 +1,5 @@
+---
+
 sensor.hacs:
   name: HACS
 person.glenn:
@@ -18,3 +20,11 @@ sensor.current_installed_verion:
 sensor.current_available_version:
   friendly_name: Available HASS Version
   icon: mdi:home-assistant
+
+# Used in presence.yaml package
+sensor.glenn_status:
+  entity_picture: https://www.life360.com/img/user_images/25f17541-9e9a-4aec-b39a-11c01b0f7ba9/b35e61bc-1805-4ee9-9fc4-82a438d896a0.jpg?fd=2
+sensor.emmy_status:
+  entity_picture: https://www.life360.com/img/user_images/0502d03e-cf67-4d79-8d50-2ddab2d225cd/393664de-f036-4f90-9c62-584babeb7870.jpg?fd=2
+sensor.lola_status:
+  entity_picture: https://life360-img.s3.amazonaws.com/img/user_images/8e268d48-4e28-43fe-ae17-0abb0448d77e/5d43cd79-854b-454a-82c8-c3021802d495.png?fd=2
