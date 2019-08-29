@@ -10,7 +10,7 @@
 input_select:
   - glenn_status_dropdown:
     name: Glenn
-    options: &options
+    options:
       - Home
       - Just Arrived
       - Just Left
@@ -20,17 +20,32 @@ input_select:
 
   - eryin_status_dropdown:
     name: Eryin
-    options: *options
+    options:
+      - Home
+      - Just Arrived
+      - Just Left
+      - Away
+      - Extended Away
     initial: Home
 
   - emmy_status_dropdown:
     name: Emmy
-    options: *options
+    options:
+      - Home
+      - Just Arrived
+      - Just Left
+      - Away
+      - Extended Away
     initial: Home
 
   - lola_status_dropdown:
     name: Lola
-    options: *options
+    options:
+      - Home
+      - Just Arrived
+      - Just Left
+      - Away
+      - Extended Away
     initial: Home
 
 # Sensors that will actually represent the person
