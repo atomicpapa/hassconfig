@@ -8,7 +8,7 @@
 # Input Seleects for each family member to be tracked giving all available options for presence
 
 input_select:
-  - glenn_status_dropdown:
+  glenn_status_dropdown:
     name: Glenn
     options:
       - Home
@@ -18,7 +18,7 @@ input_select:
       - Extended Away
     initial: Home
 
-  - eryin_status_dropdown:
+  eryin_status_dropdown:
     name: Eryin
     options:
       - Home
@@ -28,7 +28,7 @@ input_select:
       - Extended Away
     initial: Home
 
-  - emmy_status_dropdown:
+  emmy_status_dropdown:
     name: Emmy
     options:
       - Home
@@ -38,7 +38,7 @@ input_select:
       - Extended Away
     initial: Home
 
-  - lola_status_dropdown:
+  lola_status_dropdown:
     name: Lola
     options:
       - Home
