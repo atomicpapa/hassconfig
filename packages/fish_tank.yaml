@@ -5,3 +5,16 @@ light:
     devices:
       192.168.1.11:
         name: fish_tank
+
+automation:
+  - alias: Fish Tank Light - On
+    initial_state: 'on'
+    trigger:
+      - platform: time
+        at: '06:00:00'
+    action:
+      - service: light.turn_on
+        entity_id: light.fish_tank
+        data:
+          brightness: 255
+          rgb_color: [255, 255, 255]

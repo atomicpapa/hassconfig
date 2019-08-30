@@ -1,0 +1,15 @@
+---
+sensor:
+  - platform: template
+    fam_cal_fix:
+    friendly_name: 'TTS cal date'
+    value_template: >
+       {%- macro suffix(d) %}
+       {%- set sfx = {1:'st',2:'nd',3:'rd'} %}
+       {{- 'th' if 11 <= d <= 13 else sfx.get(d%10, 'th') }}
+       {%- endmacro %}
+       {% set day = as_timestamp(states.calendar.family.attributes.start_time) | timestamp_custom('%A') %}
+       {% set month = as_timestamp(states.calendar.family.attributes.start_time) | timestamp_custom('%B') %}
+       {% set date = as_timestamp(states.calendar.family.attributes.start_time) | timestamp_custom('%d') |int %}
+       {{ day }} {{ month}} {{ date }}{{ suffix(date) }}
+    icon_template: mdi:calendar-star
