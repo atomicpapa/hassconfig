@@ -112,7 +112,7 @@ automation:
               {% else %}
                 Just Arrived
               {% endif %}
-            {% if trigger.entity_id == 'person.emmy' %}
+            {% elif trigger.entity_id == 'person.emmy' %}
               {% if states.input_select.emmy_status_dropdown.state == 'Just Left' %}
                 Home
               {% else %}
