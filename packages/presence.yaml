@@ -336,53 +336,53 @@ automation:
   ##  Announce when people come or go.
   ## Announce over all Google Homes and Minis
   ######################################################################
-  - alias: 'Welcome Home'
-    initial_state: 'on'
-    trigger:
-      - platform: state
-        entity_id:
-          - sensor.glenn_status
-          - sensor.eryin_status
-          - sensor.emmy_status
-          - sensor.lola_status
-        to: 'Just Arrived'
-        for:
-          seconds: 30
-
-    action:
-      - wait_template: "{{ states.binary_sensor.front_door.state == 'on' }}"
-        timeout: 00:04:00
-        continue_on_timeout: 'true'
-      - service: script.speech_engine
-        data_template: >
-          {% if states.sensor.glenn_status.state == 'Just Arrived' and states.sensor.eryin_status.state == 'Just Arrived' and states.sensor.emmy_status.state != 'Just Arrived' and states.sensor.lola_status.state != 'Just Arrived' %}
-              call_glenn_eryin_welcome: 1
-              call_inside_weather: 1
-              call_family_calendar: 1
-          {% elif states.sensor.emmy_status.state =='Just Arrived' and states.sensor.lola_status.state == 'Just Arrived' and states.sensor.glenn_status.state != 'Just Arrived' and states.sensor.eryin_status.state != 'Just Arrived' %}
-              call_emmy_lola_welcome: 1
-              {% if binary_sensor.school_mode == 'on' and now().hour > 14 and now().hour < 18 %}
-                call_responsibilities: 1
-              {% endif %}
-          {% elif states.sensor.glenn_status.state == 'Just Arrived' and states.sensor.eryin_status.state != 'Just Arrived' and states.sensor.emmy_status.state != 'Just Arrived' and states.sensor.lola_status.state != 'Just Arrived' %}
-              call_glenn_welcome: 1
-              call_family_calendar: 1
-          {% elif states.sensor.glenn_status.state != 'Just Arrived' and states.sensor.eryin_status.state == 'Just Arrived' and states.sensor.emmy_status.state != 'Just Arrived' and states.sensor.lola_status.state != 'Just Arrived' %}
-              call_eryin_welcome: 1
-              call_family_calendar: 1
-          {% elif states.sensor.glenn_status.state != 'Just Arrived' and states.sensor.eryin_status.state != 'Just Arrived' and states.sensor.emmy_status.state == 'Just Arrived' and states.sensor.lola_status.state != 'Just Arrived' %}
-              call_emmy_welcome: 1
-              {% if binary_sensor.school_mode == 'on' and now().hour > 13 and now().hour < 18 %}
-                call_emmy_responsibilities: 1
-              {% endif %}
-          {% elif states.sensor.glenn_status.state != 'Just Arrived' and states.sensor.eryin_status.state != 'Just Arrived' and states.sensor.emmy_status.state != 'Just Arrived' and states.sensor.lola_status.state == 'Just Arrived' %}
-              call_lola_welcome: 1
-              {% if binary_sensor.school_mode == 'on' and now().hour > 13 and now().hour < 18 %}
-                call_lola_responsibilities: 1
-              {% endif %}
-          {% else %}
-              call_family_welcome: 1
-              {% if binary_sensor.school_mode == 'on' and now().hour > 13 and now().hour < 18 %}
-                call_chores: 1
-              {% endif %}
-          {% endif %}
+  # - alias: 'Welcome Home'
+  #   initial_state: 'on'
+  #   trigger:
+  #     - platform: state
+  #       entity_id:
+  #         - sensor.glenn_status
+  #         - sensor.eryin_status
+  #         - sensor.emmy_status
+  #         - sensor.lola_status
+  #       to: 'Just Arrived'
+  #       for:
+  #         seconds: 30
+  #
+  #   action:
+  #     - wait_template: "{{ states.binary_sensor.front_door.state == 'on' }}"
+  #       timeout: 00:04:00
+  #       continue_on_timeout: 'true'
+  #     - service: script.speech_engine
+  #       data_template: >
+  #         {% if states.sensor.glenn_status.state == 'Just Arrived' and states.sensor.eryin_status.state == 'Just Arrived' and states.sensor.emmy_status.state != 'Just Arrived' and states.sensor.lola_status.state != 'Just Arrived' %}
+  #             call_glenn_eryin_welcome: 1
+  #             call_inside_weather: 1
+  #             call_family_calendar: 1
+  #         {% elif states.sensor.emmy_status.state =='Just Arrived' and states.sensor.lola_status.state == 'Just Arrived' and states.sensor.glenn_status.state != 'Just Arrived' and states.sensor.eryin_status.state != 'Just Arrived' %}
+  #             call_emmy_lola_welcome: 1
+  #             {% if binary_sensor.school_mode == 'on' and now().hour > 14 and now().hour < 18 %}
+  #               call_responsibilities: 1
+  #             {% endif %}
+  #         {% elif states.sensor.glenn_status.state == 'Just Arrived' and states.sensor.eryin_status.state != 'Just Arrived' and states.sensor.emmy_status.state != 'Just Arrived' and states.sensor.lola_status.state != 'Just Arrived' %}
+  #             call_glenn_welcome: 1
+  #             call_family_calendar: 1
+  #         {% elif states.sensor.glenn_status.state != 'Just Arrived' and states.sensor.eryin_status.state == 'Just Arrived' and states.sensor.emmy_status.state != 'Just Arrived' and states.sensor.lola_status.state != 'Just Arrived' %}
+  #             call_eryin_welcome: 1
+  #             call_family_calendar: 1
+  #         {% elif states.sensor.glenn_status.state != 'Just Arrived' and states.sensor.eryin_status.state != 'Just Arrived' and states.sensor.emmy_status.state == 'Just Arrived' and states.sensor.lola_status.state != 'Just Arrived' %}
+  #             call_emmy_welcome: 1
+  #             {% if binary_sensor.school_mode == 'on' and now().hour > 13 and now().hour < 18 %}
+  #               call_emmy_responsibilities: 1
+  #             {% endif %}
+  #         {% elif states.sensor.glenn_status.state != 'Just Arrived' and states.sensor.eryin_status.state != 'Just Arrived' and states.sensor.emmy_status.state != 'Just Arrived' and states.sensor.lola_status.state == 'Just Arrived' %}
+  #             call_lola_welcome: 1
+  #             {% if binary_sensor.school_mode == 'on' and now().hour > 13 and now().hour < 18 %}
+  #               call_lola_responsibilities: 1
+  #             {% endif %}
+  #         {% else %}
+  #             call_family_welcome: 1
+  #             {% if binary_sensor.school_mode == 'on' and now().hour > 13 and now().hour < 18 %}
+  #               call_chores: 1
+  #             {% endif %}
+  #         {% endif %}
