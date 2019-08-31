@@ -362,7 +362,7 @@ automation:
           {% elif states.sensor.emmy_status.state =='Just Arrived' and states.sensor.lola_status.state == 'Just Arrived' and states.sensor.glenn_status.state != 'Just Arrived' and states.sensor.eryin_status.state != 'Just Arrived' %}
               call_emmy_lola_welcome: 1
               {% if binary_sensor.school_mode == 'on' and now().hour > 14 and now().hour < 18 %}
-                call_responsibilities: 1
+              call_responsibilities: 1
               {% endif %}
           {% elif states.sensor.glenn_status.state == 'Just Arrived' and states.sensor.eryin_status.state != 'Just Arrived' and states.sensor.emmy_status.state != 'Just Arrived' and states.sensor.lola_status.state != 'Just Arrived' %}
               call_glenn_welcome: 1
@@ -373,16 +373,16 @@ automation:
           {% elif states.sensor.glenn_status.state != 'Just Arrived' and states.sensor.eryin_status.state != 'Just Arrived' and states.sensor.emmy_status.state == 'Just Arrived' and states.sensor.lola_status.state != 'Just Arrived' %}
               call_emmy_welcome: 1
               {% if binary_sensor.school_mode == 'on' and now().hour > 13 and now().hour < 18 %}
-                call_emmy_responsibilities: 1
+              call_emmy_responsibilities: 1
               {% endif %}
           {% elif states.sensor.glenn_status.state != 'Just Arrived' and states.sensor.eryin_status.state != 'Just Arrived' and states.sensor.emmy_status.state != 'Just Arrived' and states.sensor.lola_status.state == 'Just Arrived' %}
               call_lola_welcome: 1
               {% if binary_sensor.school_mode == 'on' and now().hour > 13 and now().hour < 18 %}
-                call_lola_responsibilities: 1
+              call_lola_responsibilities: 1
               {% endif %}
           {% else %}
               call_family_welcome: 1
               {% if binary_sensor.school_mode == 'on' and now().hour > 13 and now().hour < 18 %}
-                call_chores: 1
+              call_responsibilities: 1
               {% endif %}
           {% endif %}
