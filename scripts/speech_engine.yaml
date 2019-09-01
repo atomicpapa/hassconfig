@@ -264,6 +264,10 @@ speech_engine:
             Next up on the family calendar is {{ states.calendar.family.attributes['message'] }}
           {% endmacro %}
 
+          {% macro washing_started() %}
+            a new load has begun in the washing machine
+          {% endmacro %}
+
           {# ********************************************* #}
           {#  ******** Start the Speech routines ********  #}
           {# ********************************************* #}
