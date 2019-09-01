@@ -1,3 +1,4 @@
+---
 # Controlling automated on/off of porch light at sunset/sunrise
 
 - alias: Porch Light On at Sunset

@@ -206,6 +206,7 @@ speech_engine:
           {%- endmacro -%}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
           {%- macro glenn_eryin_welcome() -%}
             {{ [
@@ -270,7 +271,6 @@ speech_engine:
             a new load has begun in the washing machine
           {% endmacro %}
 
->>>>>>> 57da583... Washing machine announcement
           {# ********************************************* #}
           {#  ******** Start the Speech routines ********  #}
           {# ********************************************* #}
