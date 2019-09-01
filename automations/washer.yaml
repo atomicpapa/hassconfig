@@ -1,7 +1,7 @@
 ---
 - alias: Washing Machine State - Start
   initial_state: on
-  trigger: 
+  trigger:
     platform: numeric_state
     entity_id: sensor.washing_machine_power
     above: 4
@@ -16,6 +16,9 @@
         topic: hass/state/washer
         payload: 'Washing'
         retain: 'true'
+    - service: script.speech_engine
+      data_template:
+        call_washing_started: 1
 
 - alias: 'Washing Machine State - Idle'
   initial_state: on
@@ -34,9 +37,9 @@
 
 - alias: Washing Machine Alert
   initial_state: on
-  trigger: 
+  trigger:
     platform: state
-    entity_id: 
+    entity_id:
       - sensor.washing_machine_state
     from: "Washing"
     to: "Idle"
