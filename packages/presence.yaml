@@ -1,11 +1,11 @@
----
+glenn---
 # This is based heavily on, if not a complete ripoff of, Phil Hawthorne's article
 # "Making Home Assistant’s Presence Detection not so Binary" from his website:
 # https://philhawthorne.com/making-home-assistants-presence-detection-not-so-binary/
 
 # Thanks Phil!!
 
-# Input Seleects for each family member to be tracked giving all available options for presence
+# Input Selects for each family member to be tracked giving all available options for presence
 
 input_select:
   glenn_status_dropdown:
@@ -168,7 +168,7 @@ automation:
       - service: input_select.select_option
         data_template:
           entity_id: >
-            {% if trigger.entity_id == 'input_select.phil_status_dropdown' %}
+            {% if trigger.entity_id == 'input_select.glenn_status_dropdown' %}
               input_select.glenn_status_dropdown
             {% elif trigger.entity_id == 'input_select.eryin_status_dropdown' %}
               input_select.eryin_status_dropdown
