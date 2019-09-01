@@ -5,7 +5,7 @@
 
 # Thanks Phil!!
 
-# Input Seleects for each family member to be tracked giving all available options for presence
+# Input Selects for each family member to be tracked giving all available options for presence
 
 input_select:
   glenn_status_dropdown:
@@ -99,7 +99,32 @@ automation:
             {% else %}
               input_select.lola_status_dropdown
             {% endif %}
-          option: Just Arrived
+          option: >
+            {% if trigger.entity_id == 'person.glenn' %}
+              {% if states.input_select.glenn_status_dropdown.state == 'Just Left' %}
+                Home
+              {% else %}
+                Just Arrived
+              {% endif %}
+            {% elif trigger.entity_id == 'person.eryin' %}
+              {% if states.input_select.eryin_status_dropdown.state == 'Just Left' %}
+                Home
+              {% else %}
+                Just Arrived
+              {% endif %}
+            {% elif trigger.entity_id == 'person.emmy' %}
+              {% if states.input_select.emmy_status_dropdown.state == 'Just Left' %}
+                Home
+              {% else %}
+                Just Arrived
+              {% endif %}
+            {% else %}
+              {% if states.input_select.lola_status_dropdown.state == 'Just Left' %}
+                Home
+              {% else %}
+                Just Arrived
+              {% endif %}
+            {% endif %}
 
   - alias: Mark person as home
     trigger:
@@ -143,7 +168,7 @@ automation:
       - service: input_select.select_option
         data_template:
           entity_id: >
-            {% if trigger.entity_id == 'input_select.phil_status_dropdown' %}
+            {% if trigger.entity_id == 'input_select.glenn_status_dropdown' %}
               input_select.glenn_status_dropdown
             {% elif trigger.entity_id == 'input_select.eryin_status_dropdown' %}
               input_select.eryin_status_dropdown
@@ -260,3 +285,72 @@ automation:
               input_select.lola_status_dropdown
             {% endif %}
           option: Extended Away
+
+  # - alias: 'Girls After School Greeting'
+  #
+  #   trigger:
+  #     - platform: state
+  #       entity_id:
+  #         - person.emmy
+  #         - person.lola
+  #       to: 'home'
+  #
+  #   condition:
+  #     condition: or
+  #     conditions:
+  #       - condition: and
+  #         conditions:
+  #           - condition: state
+  #             entity_id: input_boolean.school_mode
+  #             state: 'on'
+  #           - condition: time
+  #             after: '15:00:00'
+  #             before: '18:00:00'
+  #
+  #   action:
+  #     - service: notify.mobile_app_emmy_s_phone
+  #       data:
+  #         title: "Responsibilities"
+  #         message: "Cat Boxes, Dining Room, Bathroom"
+  #     - service: notify.mobile_app_lolas_phone
+  #       data:
+  #         title: "Responsibilities"
+  #         message: "Bathroom, Living Room, Cat Box"
+  #     - wait_template: "{{ states.binary_sensor.front_door.state == 'on' }}"
+  #       timeout: 00:05:00
+  #     - service: script.speech_engine
+  #       data_template:
+  #         personarriving: >
+  #           {% set person = trigger.entity_id.split('.')[1].split('_')[0] %}
+  #           {%- macro greeting_sentence(person) -%}
+  #           {{ [
+  #           "Welcome back home " ~ person + "I hope you had a great day at school!",
+  #           "Hi" ~ person + "welcome home!"
+  #           ] | random }}
+  #           {%- endmacro -%}
+  #           "{{greeting_sentence(person)}}"
+  #         call_responsibilities: 1
+
+
+  ######################################################################
+  ##  Announce when people come or go.
+  ## Announce over all Google Homes and Minis
+  ######################################################################
+  - alias: 'Welcome Home'
+    initial_state: 'on'
+    trigger:
+      - platform: state
+        entity_id:
+          - sensor.glenn_status
+          - sensor.eryin_status
+          - sensor.emmy_status
+          - sensor.lola_status
+        to: 'Just Arrived'
+        for:
+          seconds: 30
+
+    action:
+      - wait_template: "{{ states.binary_sensor.front_door.state == 'on' }}"
+        timeout: 00:04:00
+        continue_on_timeout: 'true'
+      - service: script.arrival_engine

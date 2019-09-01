@@ -62,7 +62,7 @@ speech_engine:
           {%- endmacro -%}
 
           {%- macro inside_weather() -%}
-            Inside the house, it is {{ states.climate.thermostat.attributes['current_temperature'] }} degrees.
+            Inside, it is {{ states.climate.thermostat.attributes['current_temperature'] }} degrees and the AC is set to {{ states.climate.thermostat.attributes['temperature'] }} degrees.
           {%- endmacro -%}
 
           {%- macro outside_weather() -%}
@@ -205,6 +205,10 @@ speech_engine:
             Attention.  Weather Alert follows. {{ states.sensor.dark_sky_alerts.attributes.description }}
           {%- endmacro -%}
 
+          {% macro family_calendar() %}
+            Next up on the family calendar is {{ states.calendar.family.attributes['message'] }}
+          {% endmacro %}
+          
           {%- macro washer_started() -%}
             A new load has been started in the washing machine
           {%- endmacro -%}
@@ -222,10 +226,7 @@ speech_engine:
               Good evening.
             {% endif %}
           {% endif %}
-
-          {# Called from Annoucenments #}
-          {{ personarriving }}
-
+          
           {% if call_school_day_alarm == 1 %}
             {{ school_day_alarm() }}
           {% endif %}
@@ -271,6 +272,10 @@ speech_engine:
           {% endif %}
 
           {{ NewDevice }}
+
+          {% if call_family_calendar == 1 %}
+            {{ family_calendar() }}
+          {% endif %}
 
           {% if call_med_reminder == 1 %}
             {{ med_reminder() }}

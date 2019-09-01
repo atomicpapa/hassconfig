@@ -1,24 +1,6 @@
 ---
 
-### SCRIPT STOLEN BRAZENLY FROM @CCOSTAN.  I'M NOT ASHAMED TO ADMIT IT!
-# Edited heavily to fit my needs
-
-######################################################################################################
-# Script to send notifications to the ChromeCast Audios during normal hours and only when we are home! Call like this:
-#   action:
-#     service: script.speech_engine
-#     data:
-#       call_no_announcement:
-#       call_dark_outside:
-#       call_window_check:
-#       call_garage_check:
-#       call_responsibilities
-#       call_light_check
-#       call_inside_weather
-#       call_outside_weather
-# # @CCOSTAN
-# Original Repo : https://github.com/CCOSTAN/Home-AssistantConfig
-######################################################################################################
+### Script to welcome family members home
 
 speech_engine:
   sequence:
@@ -35,71 +17,66 @@ speech_engine:
       data_template:
         speech_message: >-
 
-          {%- macro inside_weather() -%}
-            Inside the house, it is {{ states.climate.thermostat.attributes['current_temperature'] }} degrees.
-          {%- endmacro -%}
+          {%- macro glenn_eryin_welcome() -%}
+            {{ [
+              'Welcome home Erin and Glenn.  Its good to have you back. ',
+              'Welcome back E and G.  I am happy you are home. '
 
-          {%- macro outside_weather() -%}
-            Outside, it is currently {{ states.weather.dark_sky.attributes['temperature'] }} degrees and {{ states('sensor.dark_sky_summary') }}
-          {%- endmacro -%}
+            ]|random}}
+          (%- endmacro -%)
 
-          {%- macro weather_today() -%}
-            The weather today is supposed to be {{ states.sensor.dark_sky_summary_0d.state }}.  Please dress accordingly.
-          {%- endmacro -%}
-
-          {%- macro weather_tomorrow() -%}
-            Tomorrow the weather will be {{ states.sensor.dark_sky_summary_1d.state }}.  Please dress accordingly.
-          {%- endmacro -%}
-
-          {%- macro pollen_today() -%}
-            Allergy Index for today is {{states.sensor.allergy_index_today.state}} which is in the
-            {% if states.sensor.allergy_index_today.state <= 2.4 %}
-              low range
-            {% elif states.sensor.allergy_index_today.state > 2.4 and states.sensor.allergy_index_today.state <= 4.8 %}
-              low medium range
-            {% elif states.sensor.allergy_index_today.state > 4.8 and states.sensor.allergy_index_today.state <= 7.2 %}
-              medium range
-            {% elif states.sensor.allergy_index_today.state > 7.2 and states.sensor.allergy_index_today.state <= 9.6 %}
-              medium high range
-            {% else %}
-              high range
+          {%- macro emmy_lola_welcome() -%}
+            {{[
+              'Welcome home ladies! ',
+              'Hi girls!  Welcome home! ',
+              'Girls, I am so glad you are home.  The cats have not left me alone the entire time you were gone. '
+            ]|random}}
+            {% if binary_sensor.school_mode == 'on' and now().hour > 13 and now().hour < 18 %}
+              'I hope you had a great day at school. '
             {% endif %}
           {%- endmacro -%}
 
-          {%- macro pollen_tomorrow() -%}
-            Tomorrows allergy index will be {{states.sensor.allergy_index_tomorrow.state}}
+          {%- macro glenn_welcome() -%}
+            {{[
+              'Hi Glenn!  Welcome Home! ',
+              'Welcome home Glenn.  Its good to have you home ',
+            ]}}
           {%- endmacro -%}
 
-          {%- macro iss() -%}
-            {% if is_state('binary_sensor.iss', 'on') -%}
-              Here is something interesting. The international space station is above us now. There are {{ states.binary_sensor.iss.attributes['number_of_people_in_space'] }} people in space right now.
-            {% endif -%}
+          {%- macro eryin_welcome() -%}
+
           {%- endmacro -%}
 
-          {%- macro responsibilities() -%}
-            Todays responsibilities have been sent to your phones.  Please complete them in a timely manner.
-            {%- if states.input_boolean.trashday.state == 'on' -%}
-              And tomorrow is a trash day, so please take the cans to the curb.
-            {%- endif -%}
-          {%- endmacro -%}
-
-          {%- macro uv() -%}
-            {% if states.sensor.dark_sky_uv_index.state|int >= 6 and states.sensor.dark_sky_uv_index.state|int <= 7.9 %}
-              Today's UV index is {{ states.sensor.dark_sky_uv_index.state }}.  You should wear sunscreen if going outside.
-            {% elif states.sensor.dark_sky_uv_index.state|int >= 8 and states.sensor.dark_sky_uv_index.state|int <=10.9 %}
-              Today's UV index is {{ states.sensor.dark_sky_uv_index.state }}.  This is VERY HIGH. Be sure wear sunscreen and re-apply.
-            {% elif states.sensor.dark_sky_uv_index.state|int >= 11 %}
-              Today's UV index is {{ states.sensor.dark_sky_uv_index.state }}.  This is EXTREME. You should be very cautious going outside.
+          {%- macro emmy_welcome() -%}
+            {{[
+              'Hi Emmy!  Welcome home! ',
+            ]}}
+            {% if binary_sensor.school_mode == 'on' and now().hour > 13 and now().hour < 18 %}
+              'I hope you had a great day at school. '
             {% endif %}
           {%- endmacro -%}
 
-          {%- macro holiday() -%}
-            {% if states.sensor.holiday.state != '' %}
-              Today is {{ states.sensor.holiday.state }}.
+          {%- macro lola_welcome() -%}
+            {{[
+              'Hi Lola! Welcome home! ',
+            ]}}
+            {% if binary_sensor.school_mode == 'on' and now().hour > 13 and now().hour < 18 %}
+              'I hope you had a great day at school. '
             {% endif %}
           {%- endmacro -%}
 
-          {% macro garbage_collection() %}
+          {%- macro family_welcome() -%}
+            {{[
+              'At last my family has returned!  Would one of you please tell Dexter that my cords are not his play things? ',
+              'Hello family!  Its good to have you home. ',
+            ]}}
+          {%- endmacro -%}
+
+          {%- macro family_calendar() -%}
+            Next up on the family calendar is {{ states.calendar.family.attributes['message'] }}
+          {%- endmacro -%}
+
+          {%- macro garbage_collection() -%}
             {% if states.sensor.waste.state == 1 %}
               Tomorrow is our garbage day. Please take out the brown trash cans.
             {% elif states.sensor.waste.state == 0 %}
@@ -109,31 +86,72 @@ speech_engine:
             {% elif states.sensor.recycle.state == 0 %}
               Today is recycle and yard waste collection day.  Please ensure that there were taken out if needed.
             {% endif %}
-          {% endmacro %}
+          {% endmacro -%}
+
+          {%- macro holiday() -%}
+            {% if states.sensor.holiday.state != '' %}
+              Today is {{ states.sensor.holiday.state }}.
+            {% endif %}
+          {%- endmacro -%}
+
+          {%- macro moon() -%}
+            {%- if states.sensor.moon.state == 'Full moon' -%}
+              Check out the full moon tonight!
+            {%- endif -%}
+          {%- endmacro -%}
+
+          {%- macro responsibilities() -%}
+            Todays responsibilities have been sent to your phones.  Please complete them in a timely manner.
+            {%- if states.input_boolean.trashday.state == 'on' -%}
+              And tomorrow is a trash day, so please take the cans to the curb.
+            {%- endif -%}
+          {%- endmacro -%}
+
+          {%- macro iss() -%}
+            {% if is_state('binary_sensor.iss', 'on') -%}
+              Here is something interesting. The international space station is above us now. There are {{ states.binary_sensor.iss.attributes['number_of_people_in_space'] }} people in space right now.
+            {% endif -%}
+          {%- endmacro -%}
+
+          {%- macro inside_weather() -%}
+            Inside, it is {{ states.climate.thermostat.attributes['current_temperature'] }} degrees and the AC is set to {{ states.climate.thermostat.attributes['temperature'] }} degrees.
+          {%- endmacro -%}
 
           {# ********************************************* #}
           {#  ******** Start the Speech routines ********  #}
           {# ********************************************* #}
 
-          {% if call_no_announcement != 1 %}
-            {% if now().strftime('%H')|int < 12 and now().strftime('%H')|int >= 6 %}
-              Good morning.
-            {% elif now().strftime('%H')|int >= 12 and now().strftime('%H')|int < 17 %}
-              Good afternoon.
-            {% else %}
-              Good evening.
+          {% if states.sensor.glenn_status.state == 'Just Arrived' and states.sensor.eryin_status.state == 'Just Arrived' and states.sensor.emmy_status.state != 'Just Arrived' and states.sensor.lola_status.state != 'Just Arrived' %}
+            {{ glenn_eryin_welcome() }}
+            {{ inside_weather() }}
+            {{ family_calendar() }}
+          {% elif states.sensor.emmy_status.state =='Just Arrived' and states.sensor.lola_status.state == 'Just Arrived' and states.sensor.glenn_status.state != 'Just Arrived' and states.sensor.eryin_status.state != 'Just Arrived' %}
+            {{ emmy_lola_welcome() }}
+            {% if states.input_boolean.school_mode.state == 'on' and now().hour > 14 and now().hour < 18 %}
+              {{ responsibilities() }}
+            {% endif %}
+          {% elif states.sensor.glenn_status.state == 'Just Arrived' and states.sensor.eryin_status.state != 'Just Arrived' and states.sensor.emmy_status.state != 'Just Arrived' and states.sensor.lola_status.state != 'Just Arrived' %}
+            {{ glenn_welcome() }}
+            {{ family_calendar() }}
+          {% elif states.sensor.glenn_status.state != 'Just Arrived' and states.sensor.eryin_status.state == 'Just Arrived' and states.sensor.emmy_status.state != 'Just Arrived' and states.sensor.lola_status.state != 'Just Arrived' %}
+            {{ eryin_welcome() }}
+            {{ family_calendar() }}
+          {% elif states.sensor.glenn_status.state != 'Just Arrived' and states.sensor.eryin_status.state != 'Just Arrived' and states.sensor.emmy_status.state == 'Just Arrived' and states.sensor.lola_status.state != 'Just Arrived' %}
+            {{ emmy_welcome() }}
+            {% if states.input_boolean.school_mode.state == 'on' and now().hour > 13 and now().hour < 18 %}
+              {{ emmy_responsibilities() }}
+            {% endif %}
+          {% elif states.sensor.glenn_status.state != 'Just Arrived' and states.sensor.eryin_status.state != 'Just Arrived' and states.sensor.emmy_status.state != 'Just Arrived' and states.sensor.lola_status.state == 'Just Arrived' %}
+            {{ lola_welcome() }}
+            {% if states.input_boolean.school_mode.state == 'on' and now().hour > 13 and now().hour < 18 %}
+              {{ lola_responsibilities() }}
+            {% endif %}
+          {% else %}
+            {{ family_welcome() }}
+            {% if states.input_boolean.school_mode.state == 'on' and now().hour > 13 and now().hour < 18 %}
+              {{ responsibilities() }}
             {% endif %}
           {% endif %}
-
-          {# Called from Annoucenments #}
-          {{ personarriving }}
-
-          {% if call_school_day_alarm == 1 %}
-            {{ school_day_alarm() }}
-          {% endif %}
-
-          {# call a Random fact about the house or inspiration quote #}
-          {{ ([iss, iss, moon, uv, moon, uv, moon, uv, holiday, holiday, outside_weather, outside_weather]|random)() }}
 
     - service: input_boolean.turn_off
       data:
