@@ -208,7 +208,7 @@ speech_engine:
           {% macro family_calendar() %}
             Next up on the family calendar is {{ states.calendar.family.attributes['message'] }}
           {% endmacro %}
-          
+
           {%- macro washer_started() -%}
             A new load has been started in the washing machine
           {%- endmacro -%}
@@ -226,7 +226,7 @@ speech_engine:
               Good evening.
             {% endif %}
           {% endif %}
-          
+
           {% if call_school_day_alarm == 1 %}
             {{ school_day_alarm() }}
           {% endif %}
