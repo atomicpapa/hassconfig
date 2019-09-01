@@ -1,7 +1,7 @@
 ---
 - alias: Washing Machine State - Start
   initial_state: on
-  trigger: 
+  trigger:
     platform: numeric_state
     entity_id: sensor.washing_machine_power
     above: 4
@@ -34,9 +34,9 @@
 
 - alias: Washing Machine Alert
   initial_state: on
-  trigger: 
+  trigger:
     platform: state
-    entity_id: 
+    entity_id:
       - sensor.washing_machine_state
     from: "Washing"
     to: "Idle"
