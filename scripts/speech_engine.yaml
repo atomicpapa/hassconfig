@@ -205,6 +205,10 @@ speech_engine:
             Attention.  Weather Alert follows. {{ states.sensor.dark_sky_alerts.attributes.description }}
           {%- endmacro -%}
 
+          {% macro washer_started() %}
+            A new load has been started in the washing machine
+          {% endmacro %}
+
           {# ********************************************* #}
           {#  ******** Start the Speech routines ********  #}
           {# ********************************************* #}
