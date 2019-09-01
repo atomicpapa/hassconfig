@@ -189,7 +189,7 @@ speech_engine:
           {%- endmacro -%}
 
           {%- macro girls_allergy_meds() -%}
-            It's time to take allergy meds!
+            It is time to take allergy meds!
           {%- endmacro -%}
 
           {%- macro ring_ding() -%}
@@ -205,9 +205,9 @@ speech_engine:
             Attention.  Weather Alert follows. {{ states.sensor.dark_sky_alerts.attributes.description }}
           {%- endmacro -%}
 
-          {% macro washer_started() %}
+          {%- macro washer_started() -%}
             A new load has been started in the washing machine
-          {% endmacro %}
+          {%- endmacro -%}
 
           {# ********************************************* #}
           {#  ******** Start the Speech routines ********  #}
@@ -294,6 +294,10 @@ speech_engine:
 
           {% if call_weather_alert == 1 %}
             {{ weather_alert }}
+          {% endif %}
+
+          {% if call_washer_started == 1 %}
+            {{ washer_started() }}
           {% endif %}
 
           {# call a Random fact about the house or inspiration quote #}
