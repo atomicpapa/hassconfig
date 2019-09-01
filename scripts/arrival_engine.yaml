@@ -1,9 +1,8 @@
 ---
 
-
 ### Script to welcome family members home
 
-arrival_engine:
+speech_engine:
   sequence:
     - condition: or
       conditions:
@@ -73,34 +72,11 @@ arrival_engine:
             ]}}
           {%- endmacro -%}
 
-          {% macro family_calendar() %}
+          {%- macro family_calendar() -%}
             Next up on the family calendar is {{ states.calendar.family.attributes['message'] }}
-          {% endmacro %}
-
-          {%- macro inside_weather() -%}
-            Inside the house, it is {{ states.climate.thermostat.attributes['current_temperature'] }} degrees.
           {%- endmacro -%}
 
-          {%- macro iss() -%}
-            {% if is_state('binary_sensor.iss', 'on') -%}
-              Here is something interesting. The international space station is above us now. There are {{ states.binary_sensor.iss.attributes['number_of_people_in_space'] }} people in space right now.
-            {% endif -%}
-          {%- endmacro -%}
-
-          {%- macro responsibilities() -%}
-            Todays responsibilities have been sent to your phones.  Please complete them in a timely manner.
-            {%- if states.input_boolean.trashday.state == 'on' -%}
-              And tomorrow is a trash day, so please take the cans to the curb.
-            {%- endif -%}
-          {%- endmacro -%}
-
-          {%- macro holiday() -%}
-            {% if states.sensor.holiday.state != '' %}
-              Today is {{ states.sensor.holiday.state }}.
-            {% endif %}
-          {%- endmacro -%}
-
-          {% macro garbage_collection() %}
+          {%- macro garbage_collection() -%}
             {% if states.sensor.waste.state == 1 %}
               Tomorrow is our garbage day. Please take out the brown trash cans.
             {% elif states.sensor.waste.state == 0 %}
@@ -110,7 +86,36 @@ arrival_engine:
             {% elif states.sensor.recycle.state == 0 %}
               Today is recycle and yard waste collection day.  Please ensure that there were taken out if needed.
             {% endif %}
-          {% endmacro %}
+          {% endmacro -%}
+
+          {%- macro holiday() -%}
+            {% if states.sensor.holiday.state != '' %}
+              Today is {{ states.sensor.holiday.state }}.
+            {% endif %}
+          {%- endmacro -%}
+
+          {%- macro moon() -%}
+            {%- if states.sensor.moon.state == 'Full moon' -%}
+              Check out the full moon tonight!
+            {%- endif -%}
+          {%- endmacro -%}
+
+          {%- macro responsibilities() -%}
+            Todays responsibilities have been sent to your phones.  Please complete them in a timely manner.
+            {%- if states.input_boolean.trashday.state == 'on' -%}
+              And tomorrow is a trash day, so please take the cans to the curb.
+            {%- endif -%}
+          {%- endmacro -%}
+
+          {%- macro iss() -%}
+            {% if is_state('binary_sensor.iss', 'on') -%}
+              Here is something interesting. The international space station is above us now. There are {{ states.binary_sensor.iss.attributes['number_of_people_in_space'] }} people in space right now.
+            {% endif -%}
+          {%- endmacro -%}
+
+          {%- macro inside_weather() -%}
+            Inside, it is {{ states.climate.thermostat.attributes['current_temperature'] }} degrees and the AC is set to {{ states.climate.thermostat.attributes['temperature'] }} degrees.
+          {%- endmacro -%}
 
           {# ********************************************* #}
           {#  ******** Start the Speech routines ********  #}
@@ -147,7 +152,6 @@ arrival_engine:
               {{ responsibilities() }}
             {% endif %}
           {% endif %}
-
 
     - service: input_boolean.turn_off
       data:
