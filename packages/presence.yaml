@@ -354,7 +354,8 @@ automation:
         timeout: 00:04:00
         continue_on_timeout: 'true'
       - service: script.speech_engine
-        data_template: >-
+        data_template: >
+          call_no_announcement: 0
           {% if states.sensor.glenn_status.state == 'Just Arrived' and states.sensor.eryin_status.state == 'Just Arrived' and states.sensor.emmy_status.state != 'Just Arrived' and states.sensor.lola_status.state != 'Just Arrived' %}
             call_glenn_eryin_welcome: 1
             call_inside_weather: 1
