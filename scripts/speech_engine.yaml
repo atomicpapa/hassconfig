@@ -189,7 +189,7 @@ speech_engine:
           {%- endmacro -%}
 
           {%- macro girls_allergy_meds() -%}
-            It's time to take allergy meds!
+            It is time to take allergy meds!
           {%- endmacro -%}
 
           {%- macro ring_ding() -%}
@@ -205,68 +205,13 @@ speech_engine:
             Attention.  Weather Alert follows. {{ states.sensor.dark_sky_alerts.attributes.description }}
           {%- endmacro -%}
 
-          {%- macro glenn_eryin_welcome() -%}
-            {{ [
-              'Welcome home Erin and Glenn.  Its good to have you back. ',
-              'Welcome back E and G.  I am happy you are home. '
-
-            ]|random}}
-          {%- endmacro -%}
-
-          {%- macro emmy_lola_welcome() -%}
-            {{[
-              'Welcome home ladies! ',
-              'Hi girls!  Welcome home! ',
-              'Girls, I am so glad you are home.  The cats have not left me alone the entire time you were gone. '
-            ]|random}}
-            {% if binary_sensor.school_mode == 'on' and now().hour > 13 and now().hour < 18 %}
-              'I hope you had a great day at school. '
-            {% endif %}
-          {%- endmacro -%}
-
-          {%- macro glenn_welcome() -%}
-            {{[
-              'Hi Glenn!  Welcome Home! ',
-              'Welcome home Glenn.  Its good to have you home ',
-            ]}}
-          {%- endmacro -%}
-
-          {%- macro eryin_welcome() -%}
-
-          {%- endmacro -%}
-
-          {%- macro emmy_welcome() -%}
-            {{[
-              'Hi Emmy!  Welcome home! ',
-            ]}}
-            {% if binary_sensor.school_mode == 'on' and now().hour > 13 and now().hour < 18 %}
-              'I hope you had a great day at school. '
-            {% endif %}
-          {%- endmacro -%}
-
-          {%- macro lola_welcome() -%}
-            {{[
-              'Hi Lola! Welcome home! ',
-            ]}}
-            {% if binary_sensor.school_mode == 'on' and now().hour > 13 and now().hour < 18 %}
-              'I hope you had a great day at school. '
-            {% endif %}
-          {%- endmacro -%}
-
-          {%- macro family_welcome() -%}
-            {{[
-              'At last my family has returned!  Would one of you please tell Dexter that my cords are not his play things? ',
-              'Hello family!  Its good to have you home. ',
-            ]}}
-          {%- endmacro -%}
-
           {% macro family_calendar() %}
             Next up on the family calendar is {{ states.calendar.family.attributes['message'] }}
           {% endmacro %}
-
-          {% macro washing_started() %}
-            a new load has begun in the washing machine
-          {% endmacro %}
+          
+          {%- macro washer_started() -%}
+            A new load has been started in the washing machine
+          {%- endmacro -%}
 
           {# ********************************************* #}
           {#  ******** Start the Speech routines ********  #}
@@ -281,35 +226,7 @@ speech_engine:
               Good evening.
             {% endif %}
           {% endif %}
-
-          {% if call_glenn_eryin_welcome == 1 %}
-            {{ glenn_eryin_welcome() }}
-          {% endif %}
-
-          {% if call_emmy_lola_welcome == 1 %}
-            {{ emmy_lola_welcome() }}
-          {% endif %}
-
-          {% if call_eryin_welcome == 1 %}
-            {{ glenn_welcome() }}
-          {% endif %}
-
-          {% if call_eryin_welcome == 1 %}
-            {{ eryin_welcome() }}
-          {% endif %}
-
-          {% if call_emmy_welcome == 1 %}
-            {{emmy_welcome() }}
-          {% endif %}
-
-          {% if call_lola_welcome == 1 %}
-            {{ lola_welcome() }}
-          {% endif %}
-
-          {% if call_family_welcome == 1 %}
-            {{family_welcome() }}
-          {% endif %}
-
+          
           {% if call_school_day_alarm == 1 %}
             {{ school_day_alarm() }}
           {% endif %}
@@ -382,6 +299,10 @@ speech_engine:
 
           {% if call_weather_alert == 1 %}
             {{ weather_alert }}
+          {% endif %}
+
+          {% if call_washer_started == 1 %}
+            {{ washer_started() }}
           {% endif %}
 
           {# call a Random fact about the house or inspiration quote #}
