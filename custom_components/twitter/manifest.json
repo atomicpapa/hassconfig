@@ -1,0 +1,8 @@
+{
+  "domain": "twitter_sensor",
+  "name": "Twitter Sensor",
+  "documentation": "",
+  "requirements": [""],
+  "dependencies": [],
+  "codeowners": [""]
+}
