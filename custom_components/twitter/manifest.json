@@ -1,5 +1,5 @@
 {
-  "domain": "twitter_sensor",
+  "domain": "twitter",
   "name": "Twitter Sensor",
   "documentation": "",
   "requirements": [""],
