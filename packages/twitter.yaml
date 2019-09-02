@@ -20,6 +20,7 @@ sensor:
     consumer_secret: !secret twitter_consumer_secret
     access_token: !secret twitter_access_token
     access_token_secret: !secret twitter_access_secret
+    screen_names: Atomic_ha
 
 automation:
 
