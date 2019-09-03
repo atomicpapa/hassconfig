@@ -85,8 +85,8 @@ binary_sensor:
   - platform: mqtt
     name: "Girls' Window 2"
     state_topic: "tele/rfbridge/RESULT"
-    payload_on: "0x31100A"
-    payload_off: "0x31100E"
+    payload_on: "0x775A0A"
+    payload_off: "0x775A0E"
     device_class: window
     value_template: "{{ value_json.RfReceived.Data }}"
 
