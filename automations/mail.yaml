@@ -1,0 +1,22 @@
+---
+
+### You have mail announcment
+
+automation:
+  - alias: You Have Mail
+    trigger:
+      platform: mqtt
+      topic: tele/rfbridge/RESULT
+      payload: '0x30FB0A'
+
+    action:
+      - service: script.speech_engine
+        data:
+          call_you_have_mail: 1
+          call_no_facts: 1
+
+      - service: mqtt.publish
+        data_template:
+          topic: 'mail/lastdelivered'
+          payload: "{{ now().strftime('%A') }} @ {{ now().strftime('%-I') }}:{{ now().strftime('%M') }} {{ now().strftime('%p') }}"
+          retain: true

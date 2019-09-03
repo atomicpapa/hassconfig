@@ -213,6 +213,13 @@ speech_engine:
             A new load has been started in the washing machine
           {%- endmacro -%}
 
+          {%- macro you_have_mail() -%}
+            {{ [
+              'You have mail',
+              'Hurray! The mail has arrived!',
+              'Time to get the mail'
+            ]|random }}
+
           {# ********************************************* #}
           {#  ******** Start the Speech routines ********  #}
           {# ********************************************* #}
@@ -305,8 +312,14 @@ speech_engine:
             {{ washer_started() }}
           {% endif %}
 
+          {% if call_you_have_mail == 1 %}
+            {{ you_have_mail() }}
+          {% endif %}
+
           {# call a Random fact about the house or inspiration quote #}
-          {{ ([iss, iss, moon, uv, moon, uv, moon, uv, holiday, holiday, outside_weather, outside_weather]|random)() }}
+          {% if call_no_facts != 1 %}
+            {{ [iss, iss, moon, uv, moon, uv, moon, uv, holiday, holiday, outside_weather, outside_weather]|random)() }}
+          {% endif %}
 
     - service: input_boolean.turn_off
       data:
