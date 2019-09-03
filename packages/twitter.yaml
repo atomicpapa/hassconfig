@@ -1,6 +1,6 @@
 ---
 
-# Config for Twitter notify component. Some Automations 
+# Config for Twitter notify component. Some Automations
 # will post an update to Twitter when triggered.
 
 # See also: /Automations folder
@@ -13,13 +13,19 @@ notify:
     access_token: !secret twitter_access_token
     access_token_secret: !secret twitter_access_secret
 
-# Sensors picked up from MQTT stream
-# sensor:
-#   - platform: template
+sensor:
+  - name: twitter
+    platform: twitter
+    consumer_key: !secret twitter_consumer_key
+    consumer_secret: !secret twitter_consumer_secret
+    access_token: !secret twitter_access_token
+    access_token_secret: !secret twitter_access_secret
+    screen_names:
+      - Atomic_HA
 
 automation:
 
-# Send data from IFTTT to MQTT stream so it can be picked up as sensors
+  # Send data from IFTTT to MQTT stream so it can be picked up as sensors
   - alias: Twitter Followers
     initial_state: 'on'
     trigger:
@@ -35,7 +41,7 @@ automation:
           payload_template: '{{ trigger.event.data }}'
           retain: true
 
-# Play a chirp over GH's when we get a new follower
+  # Play a chirp over GH's when we get a new follower
   - alias: Twitter Followers Chirp
     initial_state: 'on'
     trigger:
@@ -45,7 +51,7 @@ automation:
           action: new_follower
 
     condition:
-      - condition: time 
+      - condition: time
         after: "09:00:00"
         before: "22:00:00"
 
