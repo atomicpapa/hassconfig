@@ -219,6 +219,8 @@ speech_engine:
               'Hurray! The mail has arrived!',
               'Time to get the mail'
             ]|random }}
+          {%- endmacro -%}
+
 
           {# ********************************************* #}
           {#  ******** Start the Speech routines ********  #}
