@@ -100,10 +100,10 @@ speech_engine:
             {% if states.group.entry_points.state != 'off' -%}
               {% set comma = joiner(', ') %}
               The
-              {% for state in states.binary_sensor if state.state == 'on' and state.attributes.device_class == 'opening' -%}
+              {% for state in states.binary_sensor if state.state == 'on' and state.attributes.device_class == 'window' -%}
               {%- endfor %}
               {% for group in states.binary_sensor|groupby('state') -%}
-                {%- for entity in group.list  if entity.state == 'on' and entity.attributes.device_class == 'opening'  -%}
+                {%- for entity in group.list  if entity.state == 'on' and entity.attributes.device_class == 'window'  -%}
                   {{ ' and' if loop.last and not loop.first else comma() }}
                   {{ entity.attributes.friendly_name }}
                 {%- endfor -%}

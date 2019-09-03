@@ -111,7 +111,7 @@ binary_sensor:
     state_topic: "tele/rfbridge/RESULT"
     payload_on: "0x30FB0A"
     payload_off: "0x30FB0E"
-    device_class: window
+    device_class: door
     value_template: "{{ value_json.RfReceived.Data }}"
 
     #### Motion Sensors ####
