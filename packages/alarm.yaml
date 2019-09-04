@@ -12,3 +12,8 @@ alarm_control_panel:
     command_topic: home/alarm/set
     name: Alarm
     code: !secret alarm_code
+
+### @todo Door and Window opening events
+### @body add automations for what needs to happen when a door or wondow opens
+### when the alarm is armed and disarmed,  Also add automations to let us know
+### when a door has been left open.
