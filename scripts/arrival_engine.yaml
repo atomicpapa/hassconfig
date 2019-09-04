@@ -16,7 +16,8 @@ speech_engine:
     - service: script.speech_processing
       data_template:
         speech_message: >-
-
+          ## @todo arrival_engine
+          ## add more welcome messages for everyone
           {%- macro glenn_eryin_welcome() -%}
             {{ [
               'Welcome home Erin and Glenn.  Its good to have you back. ',
