@@ -13,11 +13,11 @@ sensor:
     sensors:
       alarm_panel_battery:
         friendly_name: "Alarm Panel Battery"
-        evice_class: battery
+        device_class: battery
         value_template: "{{ state_attr('display.alarm_panel', 'battery_level') }}"
       alarm_clock_battery:
         friendly_name: "Alarm Clock Battery"
-        evice_class: battery
+        device_class: battery
         value_template: "{{ state_attr('display.alarm_clock', 'battery_level') }}"
 
 
