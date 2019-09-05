@@ -72,19 +72,19 @@ automation:
     trigger:
       - platform: state
         entity_id: person.glenn
-        from: 'not_home'
+        # from: 'not_home'
         to: 'home'
       - platform: state
         entity_id: person.eryin
-        from: 'not_home'
+        # from: 'not_home'
         to: 'home'
       - platform: state
         entity_id: person.emmy
-        from: 'not_home'
+        # from: 'not_home'
         to: 'home'
       - platform: state
         entity_id: person.lola
-        from: 'not_home'
+        # from: 'not_home'
         to: 'home'
     action:
       - service: input_select.select_option
@@ -96,7 +96,7 @@ automation:
               input_select.eryin_status_dropdown
             {% elif trigger.entity_id == 'person.emmy' %}
               input_select.emmy_status_dropdown
-            {% else %}
+            {% elif trigger.entity_id == 'person.lola' %}
               input_select.lola_status_dropdown
             {% endif %}
           option: >
@@ -174,7 +174,7 @@ automation:
               input_select.eryin_status_dropdown
             {% elif trigger.entity_id == 'input_select.emmy_status_dropdown' %}
               input_select.emmy_status_dropdown
-            {% else %}
+            {% elif trigger.entity_id == 'input_select.lola_status_dropdown' %}
               input_select.lola_status_dropdown
             {% endif %}
           option: Home
@@ -183,20 +183,20 @@ automation:
     trigger:
       - platform: state
         entity_id: person.glenn
-        from: 'not_home'
-        to: 'home'
+        from: 'home'
+        to: 'not_home'
       - platform: state
         entity_id: person.eryin
-        from: 'not_home'
-        to: 'home'
+        from: 'home'
+        to: 'not_home'
       - platform: state
         entity_id: person.emmy
-        from: 'not_home'
-        to: 'home'
+        from: 'home'
+        to: 'not_home'
       - platform: state
         entity_id: person.lola
-        from: 'not_home'
-        to: 'home'
+        from: 'home'
+        to: 'not_home'
     action:
       - service: input_select.select_option
         data_template:
@@ -215,22 +215,22 @@ automation:
   - alias: Mark person as away
     trigger:
       - platform: state
-        entity_id: person.glenn
+        entity_id: sensor.glenn_status
         to: 'Just Left'
         for:
           minutes: 10
       - platform: state
-        entity_id: person.eryin
+        entity_id: sensor.eryin_status
         to: 'Just Left'
         for:
           minutes: 10
       - platform: state
-        entity_id: person.emmy
+        entity_id: sensor.emmy_status
         to: 'Just Left'
         for:
           minutes: 10
       - platform: state
-        entity_id: person.lola
+        entity_id: sensor.lola_status
         to: 'Just Left'
         for:
           minutes: 10

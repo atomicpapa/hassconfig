@@ -1,0 +1,12 @@
+---
+
+### Room Presence based on the mqtt_room integration.
+
+binary_sensor:
+  - platform: mqtt
+    name: Living Room BT
+    state_topic: "presence_nodes/mqtt-room-living-room"
+    json_attributes_topic: "presence_nodes/mqtt-room-living-room/tele"
+    payload_on: "CONNECTED"
+    payload_off: "DISCONNECTED"
+    device_class: connectivity
