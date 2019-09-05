@@ -1,12 +1,12 @@
 ---
 
-display:
-  - platform: fully_kiosk
-    name: Alarm Panel
-    host: 192.168.1.53
-    password: !secret alarm_panel_fk_password
-
-  - platform: fully_kiosk
-    name: Alarm Clock
-    host: 192.168.1.45
-    password: !secret alarm_clock_fk_password
+# display:
+#   - platform: fully_kiosk
+#     name: Alarm Panel
+#     host: 192.168.1.53
+#     password: !secret alarm_panel_fk_password
+#
+#   - platform: fully_kiosk
+#     name: Alarm Clock
+#     host: 192.168.1.45
+#     password: !secret alarm_clock_fk_password
