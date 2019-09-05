@@ -27,8 +27,8 @@ Above are the various configuration files for my Home Assistant (HASS) setup. Cu
 - Motioneye
 - MagicMirror2
 
-  and 18+ additional containers including Minecraft, Plex Media Server and others.<br>
-  <br>
+and 18+ additional containers including Minecraft, Plex Media Server and others.<br>
+<br>
 
 ## Hardware:
 
