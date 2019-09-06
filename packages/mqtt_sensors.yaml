@@ -142,8 +142,14 @@ binary_sensor:
     value_template: "{{value_json.event}}"
     json_attributes_topic: "/fully/deviceInfo/3b3eda67-36d67dd5"
 
-    #### Fully Kiosk Browser ####
-
+  - platform: mqtt
+    name: "Alarm Clock Motion"
+    state_topic: "/fully/event/onMotion/63a59e69-36e6756d"
+    payload_on: "onMotion"
+    off_delay: 10
+    device_class: motion
+    value_template: "{{value_json.event}}"
+    json_attributes_topic: "/fully/deviceInfo/63a59e69-36e6756d"
 
     ####  Mini Remotes ####
 
@@ -181,3 +187,13 @@ binary_sensor:
     payload_on: "0x413503"
     payload_off: "0x41350C"
     value_template: "{{ value_json.RfReceived.Data }}"
+
+    #### Fully Kiosk Browser ####
+
+sensor:
+  - platform: mqtt
+    name: "Alarm Panel Battery"
+    state_topic: "/fully/event/onBatteryLevelChanged/3b3eda67-36d67dd5"
+    device_class: battery
+    force_update: true
+    value_template: "{{ value_json.level}}"

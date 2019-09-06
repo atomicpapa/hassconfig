@@ -11,6 +11,11 @@ display:
     host: 192.168.1.45
     password: !secret alarm_clock_fk_password
 
+variable:
+  alarm_clock:
+    value: 'Alarm Clock'
+    restore: true
+
 ### @todo integrate mdeia player and sensors from floorplan
 ### @bogy research whether the floorplan CCs will work without full
 ### floorplan integration
