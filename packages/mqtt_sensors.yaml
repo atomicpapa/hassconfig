@@ -132,3 +132,14 @@ binary_sensor:
     device_class: motion
     value_template: "{{ value_json.metadata.properties.state }}"
     json_attributes_topic: "gosense/777A5038"
+
+  - platform: mqtt
+    name: "Alarm Panel Motion"
+    state_topic: "/fully/event/onMotion/3b3eda67-36d67dd5"
+    payload_on: "onMotion"
+    off_delay: 10
+    device_class: motion
+    value_template: "{{value_json.event}"
+    json_attributes_topic: "/fully/deviceInfo/3b3eda67-36d67dd5"
+
+    #### Fully Kiosk Browser ####
