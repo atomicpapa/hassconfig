@@ -43,10 +43,10 @@ input_boolean:
     initial: 'off'
     icon: mdi:weather-night
 
-input_label:
-  alarm_current_time:
-    name: Current Alarm Time
-    icon: mdi:timer
+# input_label:
+#   alarm_current_time:
+#     name: Current Alarm Time
+#     icon: mdi:timer
 
 ###############################################################################
 #                _                        _   _
