@@ -139,7 +139,7 @@ binary_sensor:
     payload_on: "onMotion"
     off_delay: 10
     device_class: motion
-    value_template: "{{value_json.event}"
+    value_template: "{{value_json.event}}"
     json_attributes_topic: "/fully/deviceInfo/3b3eda67-36d67dd5"
 
     #### Fully Kiosk Browser ####
