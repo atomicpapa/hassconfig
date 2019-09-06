@@ -143,3 +143,46 @@ binary_sensor:
     json_attributes_topic: "/fully/deviceInfo/3b3eda67-36d67dd5"
 
     #### Fully Kiosk Browser ####
+
+
+    ####  Mini Remotes ####
+
+  - platform: mqtt
+    name: "Remote Button 1"
+    state_topic: "tele/rfbridge/RESULT"
+    payload_on: "0x411533"
+    payload_off: "0x41153C"
+    device_class: none
+    value_template: "{{ value_json.RfReceived.Data }}"
+
+  - platform: mqtt
+    name: "Remote Button 2"
+    state_topic: "tele/rfbridge/RESULT"
+    payload_on: "0x4115C3"
+    payload_off: "0x4115CC"
+    device_class: none
+    value_template: "{{ value_json.RfReceived.Data }}"
+
+  - platform: mqtt
+    name: "Remote Button 3"
+    state_topic: "tele/rfbridge/RESULT"
+    payload_on: "0x411703"
+    payload_off: "0x41170C"
+    device_class: none
+    value_template: "{{ value_json.RfReceived.Data }}"
+
+  - platform: mqtt
+    name: "Remote Button 4"
+    state_topic: "tele/rfbridge/RESULT"
+    payload_on: "0x411D03"
+    payload_off: "0x411D0C"
+    device_class: none
+    value_template: "{{ value_json.RfReceived.Data }}"
+
+  - platform: mqtt
+    name: "Remote Button 5"
+    state_topic: "tele/rfbridge/RESULT"
+    payload_on: "0x413503"
+    payload_off: "0x41350C"
+    device_class: none
+    value_template: "{{ value_json.RfReceived.Data }}"
