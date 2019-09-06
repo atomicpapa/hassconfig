@@ -1,0 +1,8 @@
+{
+  "domain": "floorplan_speaker",
+  "name": "Floorplan Speaker",
+  "documentation": "https://github.com/pkozul/ha-floorplan-kiosk",
+  "dependencies": [],
+  "codeowners": ["@pkozul"],
+  "requirements": []
+}
