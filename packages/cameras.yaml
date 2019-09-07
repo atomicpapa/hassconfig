@@ -16,3 +16,7 @@ camera:
   - platform: mjpeg
     mjpeg_url: http://192.168.1.16:8082
     name: "Front Yard"
+
+  - name: "Entry Hall Cam"
+    platform: generic
+    still_image_url: !secret entry_cam_url
