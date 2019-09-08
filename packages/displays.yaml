@@ -22,12 +22,20 @@
 light:
   - platform: template
     lights:
-      dashboard_screen:
+      alarm_panel_screen:
+        turn_on:
+        turn_off:
+        set_level:
+      alarm_clock_screen:
         turn_on:
         turn_off:
         set_level:
 
 binary_sensor:
   - platform: mqtt
-    name: dashboard_motion
+    name: alarm_panel_motion
     state_topic: any/value
+
+  - platform: mqtt
+    name: alarm_clock_motion
+    state_topic: anyother/topic
