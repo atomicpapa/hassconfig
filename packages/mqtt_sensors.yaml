@@ -193,16 +193,16 @@ binary_sensor:
   - platform: mqtt
     name: "Alarm Panel Plugged In"
     state_topic: "/fully/deviceInfo/3b3eda67-36d67dd5"
-    payload_on: "true"
-    payload_off: "false"
+    payload_on: true
+    payload_off: false
     device_class: plug
     value_template: "{{ value_json.isPlugged }}"
 
   - platform: mqtt
     name: "Alarm Clock Plugged In"
     state_topic: "/fully/deviceInfo/63a59e69-36e6756d"
-    payload_on: "true"
-    payload_off: "false"
+    payload_on: true
+    payload_off: false
     device_class: plug
     value_template: "{{ value_json.isPlugged }}"
 
