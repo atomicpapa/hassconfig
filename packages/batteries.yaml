@@ -9,16 +9,16 @@ sensor:
     device_class: battery
     value_template: "{{ value_json.properties.battery }}"
 
-  - platform: template
-    sensors:
-      alarm_panel_battery:
-        friendly_name: "Alarm Panel Battery"
-        device_class: battery
-        value_template: "{{ state_attr('display.alarm_panel', 'battery_level') }}"
-      alarm_clock_battery:
-        friendly_name: "Alarm Clock Battery"
-        device_class: battery
-        value_template: "{{ state_attr('display.alarm_clock', 'battery_level') }}"
+  # - platform: template
+  #   sensors:
+  #     alarm_panel_battery:
+  #       friendly_name: "Alarm Panel Battery"
+  #       device_class: battery
+  #       value_template: "{{ state_attr('display.alarm_panel', 'battery_level') }}"
+  #     alarm_clock_battery:
+  #       friendly_name: "Alarm Clock Battery"
+  #       device_class: battery
+  #       value_template: "{{ state_attr('display.alarm_clock', 'battery_level') }}"
 
 
 automation:

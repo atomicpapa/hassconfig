@@ -190,10 +190,31 @@ binary_sensor:
 
     #### Fully Kiosk Browser ####
 
+  - platform: mqtt
+    name: "Alarm Panel Plugged In"
+    state_topic: "/fully/deviceInfo/3b3eda67-36d67dd5"
+    payload_on: "true"
+    payload_off: "false"
+    device_class: plug
+    value_template: "{{ value_json.isPlugged }}"
+
+  - platform: mqtt
+    name: "Alarm Clock Plugged In"
+    state_topic: "/fully/deviceInfo/63a59e69-36e6756d"
+    payload_on: "true"
+    payload_off: "false"
+    device_class: plug
+    value_template: "{{ value_json.isPlugged }}"
+
 sensor:
   - platform: mqtt
     name: "Alarm Panel Battery"
-    state_topic: "/fully/event/onBatteryLevelChanged/3b3eda67-36d67dd5"
+    state_topic: "/fully/deviceInfo/3b3eda67-36d67dd5"
     device_class: battery
-    force_update: true
-    value_template: "{{ value_json.level}}"
+    value_template: "{{ value_json.batteryLevel }}"
+
+  - platform: mqtt
+    name: "Alarm Clock Battery"
+    state_topic: "/fully/deviceInfo/63a59e69-36e6756d"
+    device_class: battery
+    value_template: "{{ value_json.batteryLevel }}"
