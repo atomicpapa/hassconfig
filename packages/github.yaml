@@ -1,0 +1,7 @@
+---
+
+sensor:
+  - platform: github
+    access_token: !secret github_pat
+    repositories:
+      - path: 'atomicpapa/hassconfig'
