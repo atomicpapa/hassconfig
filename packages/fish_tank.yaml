@@ -10,11 +10,16 @@ automation:
   - alias: Fish Tank Light - On
     initial_state: 'on'
     trigger:
-      - platform: time
-        at: '06:00:00'
+      - platform: sun
+        event: sunrise
     action:
       - service: light.turn_on
         entity_id: light.fish_tank
         data:
-          brightness: 255
+          brightness: 1
           rgb_color: [255, 255, 255]
+      - service: light.turn_on
+        entity_id: light.fish_tank
+        data:
+          transition: 30
+          brightness: 255
