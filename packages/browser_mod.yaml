@@ -12,3 +12,7 @@ browser_mod:
   devices:
     8a45f742-bbf89c3d:
       name: Poseidon
+    3b3eda67-36d67dd5:
+      name: 'Alarm Panel'
+    63a59e69-36e6756d:
+      name: 'Alarm Clock'
