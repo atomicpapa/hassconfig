@@ -8,7 +8,7 @@ automation:
     from: 'off'
   action:
     service: browser_mod.command
-    service_data:
+    data:
       command: more-info
       entity_id: camera.front_door
       deviceID:
