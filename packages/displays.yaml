@@ -1,41 +1,16 @@
 ---
 
-# display:
-#   - platform: fully_kiosk
-#     name: Alarm Panel
-#     host: 192.168.1.53
-#     password: !secret alarm_panel_fk_password
-#
-#   - platform: fully_kiosk
-#     name: Alarm Clock
-#     host: 192.168.1.45
-#     password: !secret alarm_clock_fk_password
-#
-# variable:
-#   alarm_clock:
-#     value: 'Alarm Clock'
-#     restore: true
-
-### @todo integrate mdeia player and sensors from floorplan
-### @bogy research whether the floorplan CCs will work without full
-### floorplan integration
-# light:
-#   - platform: template
-#     lights:
-#       alarm_panel_screen:
-#         turn_on:
-#         turn_off:
-#         set_level:
-#       alarm_clock_screen:
-#         turn_on:
-#         turn_off:
-#         set_level:
-#
-# binary_sensor:
-#   - platform: mqtt
-#     name: alarm_panel_motion
-#     state_topic: any/value
-#
-#   - platform: mqtt
-#     name: alarm_clock_motion
-#     state_topic: anyother/topic
+automation:
+  trigger:
+    platform: state
+    entity_id: binary_sensor.ring_front_door_motion
+    to: 'on'
+    from: 'off'
+  action:
+    service: browser_mod.command
+    service_data:
+      command: more-info
+      entity_id: camera.front_door
+      deviceID:
+        - 63a59e69-36e6756d
+        - 3b3eda67-36d67dd5
