@@ -60,30 +60,30 @@ automation:
       - service: input_boolean.turn_off
         entity_id: input_boolean.school_mode
 
-  - alias: School Day Alarm
-    initial_state: 'on'
-    trigger:
-      platform: time
-      at: '06:00:00'
-
-    condition:
-      condition: state
-      entity_id: input_boolean.school_mode
-      state: 'on'
-
-    action:
-      - service: script.speech_engine
-        data:
-          call_school_day_alarm: 1
-          call_outside_weather: 1
-          call_weather_today: 1
+  # - alias: School Day Alarm
+  #   initial_state: 'on'
+  #   trigger:
+  #     platform: time
+  #     at: '06:00:00'
+  #
+  #   condition:
+  #     condition: state
+  #     entity_id: input_boolean.school_mode
+  #     state: 'on'
+  #
+  #   action:
+  #     - service: script.speech_engine
+  #       data:
+  #         call_school_day_alarm: 1
+  #         call_outside_weather: 1
+  #         call_weather_today: 1
 
 
   - alias: 'School Day Morning Startup'
     initial_state: 'on'
     trigger:
       - platform: time
-        at: '06:00:00'
+        at: '06:10:00'
 
     condition:
       - condition: state
