@@ -143,11 +143,11 @@ automation:
           call_no_announcement: 1
           call_med_reminder: 1
 
-      - service: script.notify_engine
-        data_template:
-          who: 'glenn'
-          message: "Someone hasn't had their meds yet!"
-          title: "Med Check!!"
+      # - service: script.notify_engine
+      #   data_template:
+      #     who: 'glenn'
+      #     value1: "Someone hasn't had their meds yet!"
+      #     title: "Med Check!!"
 
   - alias: 'School Day Morning Wind Down'
     initial_state: 'on'
