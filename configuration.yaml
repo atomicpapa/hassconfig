@@ -86,3 +86,5 @@ breaking_changes:
 
 mqtt:
   broker: 192.168.1.16
+  discovery: true
+  discovery_prefix: homeassistant
