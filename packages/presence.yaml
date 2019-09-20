@@ -238,11 +238,11 @@ automation:
       - service: input_select.select_option
         data_template:
           entity_id: >
-            {% if trigger.entity_id == 'person.glenn' %}
+            {% if trigger.entity_id == 'sensor.glenn_status' %}
               input_select.glenn_status_dropdown
-            {% elif trigger.entity_id == 'person.eryin' %}
+            {% elif trigger.entity_id == 'sensor.eryin_status' %}
               input_select.eryin_status_dropdown
-            {% elif trigger.entity_id == 'person.emmy' %}
+            {% elif trigger.entity_id == 'sensor.emmy_status' %}
               input_select.emmy_status_dropdown
             {% else %}
               input_select.lola_status_dropdown
