@@ -2,7 +2,7 @@
 
 # Custom Component Config for Plex Recently Added
 
-# https://github.com/custom-components/sensor.plex_recently_added 
+# https://github.com/custom-components/sensor.plex_recently_added
 
 sensor:
   - platform: plex_recently_added
@@ -27,4 +27,4 @@ sensor:
     download_images: true
     max: 5
     section_types:
-    - shows
+      - shows
