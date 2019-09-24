@@ -124,15 +124,15 @@ binary_sensor:
     device_class: motion
     value_template: "{{ value_json.RfReceived.Data }}"
 
-  - platform: mqtt
-    name: "Wyze Motion"
-    state_topic: "gosense/777A5038"
-    payload_on: 1
-    payload_off: 0
-    device_class: motion
-    value_template: "{{ value_json.metadata.properties.state }}"
-    json_attributes_topic: "gosense/777A5038"
-    json_attributes_template: "{{ value_json.properties | tojson }}"
+  # - platform: mqtt
+  #   name: "Wyze Motion"
+  #   state_topic: "gosense/777A5038"
+  #   payload_on: 1
+  #   payload_off: 0
+  #   device_class: motion
+  #   value_template: "{{ value_json.metadata.properties.state }}"
+  #   json_attributes_topic: "gosense/777A5038"
+  #   json_attributes_template: "{{ value_json.properties | tojson }}"
 
   - platform: mqtt
     name: "Wyze Motion 2"
@@ -143,6 +143,39 @@ binary_sensor:
     state_topic: "gosense/779303F3"
     value_template: "{{ value_json.properties.state }}"
     json_attributes_topic: "gosense/779303F3"
+    json_attributes_template: "{{ value_json.properties | tojson }}"
+
+  - platform: mqtt
+    name: "Wyze Motion 3"
+    unique_id: 7793F55D
+    payload_on: 1
+    payload_off: 0
+    device_class: motion
+    state_topic: "gosense/7793F55D"
+    value_template: "{{ value_json.properties.state }}"
+    json_attributes_topic: "gosense/7793F55D"
+    json_attributes_template: "{{ value_json.properties | tojson }}"
+
+  - platform: mqtt
+    name: "Wyze Motion 4"
+    unique_id: 77931C95
+    payload_on: 1
+    payload_off: 0
+    device_class: motion
+    state_topic: "gosense/77931C95"
+    value_template: "{{ value_json.properties.state }}"
+    json_attributes_topic: "gosense/77931C95"
+    json_attributes_template: "{{ value_json.properties | tojson }}"
+
+  - platform: mqtt
+    name: "Wyze Motion 5"
+    unique_id: 7793FBD3
+    payload_on: 1
+    payload_off: 0
+    device_class: motion
+    state_topic: "gosense/7793FBD3"
+    value_template: "{{ value_json.properties.state }}"
+    json_attributes_topic: "gosense/7793FBD3"
     json_attributes_template: "{{ value_json.properties | tojson }}"
 
   - platform: mqtt
