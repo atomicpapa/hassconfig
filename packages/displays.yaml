@@ -7,10 +7,14 @@ automation:
     to: 'on'
     from: 'off'
   action:
-    service: browser_mod.command
-    data:
-      command: more-info
-      entity_id: camera.front_door
-      deviceID:
-        - 63a59e69-36e6756d
-        - 3b3eda67-36d67dd5
+    - service: browser_mod.command
+      data:
+        command: popup
+        large: true
+        auto_close: true
+        card:
+          type: custom:more-info-card
+            entity: camera.front_door
+        deviceID:
+          - 63a59e69-36e6756d
+          - 3b3eda67-36d67dd5
