@@ -14,7 +14,7 @@ automation:
         auto_close: true
         card:
           type: custom:more-info-card
-            entity: camera.front_door
+          entity: camera.front_door
         deviceID:
           - 63a59e69-36e6756d
           - 3b3eda67-36d67dd5
