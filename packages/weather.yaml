@@ -15,7 +15,12 @@ weather:
   - platform: darksky
     api_key: !secret darksky_api
     mode: daily
-    
+
+  - platform: nws
+    api_key: 123456789456qewdvwvd
+    station: KSAT
+    mode: hourly
+
 sensor:
   - platform: openweathermap
     api_key: !secret owm_key
@@ -45,7 +50,7 @@ sensor:
     sensors:
       heat_index:
         friendly_name: 'Heat Incex'
-        #formula taken from http://www.srh.noaa.gov/ama/?n=heatindex
+        # formula taken from http://www.srh.noaa.gov/ama/?n=heatindex
         value_template: '{{ (((-42.379 + (2.04901523*((states.weather.dark_sky.attributes.temperature|float))) + (10.14333127*(states.weather.dark_sky.attributes.humidity|float)) - (0.22475541*((states.weather.dark_sky.attributes.temperature|float))*(states.weather.dark_sky.attributes.humidity|float)) - (6.83783 * (10**(-3))*(((states.weather.dark_sky.attributes.temperature|float))**2)) - (5.481717 * (10**(-2))*((states.weather.dark_sky.attributes.humidity|float)**2)) + (1.22874 * (10**(-3))*(((states.weather.dark_sky.attributes.temperature|float))**2*(states.weather.dark_sky.attributes.humidity|float))) + (8.5282 * (10**(-4))*(((states.weather.dark_sky.attributes.temperature|float))*(states.weather.dark_sky.attributes.humidity|float)**2)) - (1.99 * (10**(-6))*(((states.weather.dark_sky.attributes.temperature|float))**2)*(states.weather.dark_sky.attributes.humidity|float)**2))))|round(1) }}'
         unit_of_measurement: '°F'
 
@@ -54,7 +59,7 @@ sensor:
 # https://www.home-assistant.io/components/iqvia/
 # see also: /automations/weather.yaml
 iqvia:
-  zip_code: "78209" #!secret zip_code
+  zip_code: "78209"  # !secret zip_code
   monitored_conditions:
     - allergy_average_forecasted
     - allergy_index_today
@@ -77,7 +82,7 @@ camera:
 
 automation:
 
-# NOAA Alerts
+  # NOAA Alerts
   - alias: Noaa Alert - Text
     initial_state: 'on'
     trigger:
@@ -92,17 +97,16 @@ automation:
       - service: notify.pushbullet
         data_template:
           message: '{{ states.sensor.noaa_alerts_txz205.attributes.headline }}'
-        
+
   - alias: Noaa Alert - TTS
     initial_state: 'on'
     trigger:
       entity_id: sensor.dark_sky_alerts
       from: ‘0’
       platform: state
-  
+
     action:
       - service: script.speech_engine
         data:
           call_no_announcement: 1
           call_weather_alert: 1
-# Allergy Notifications
