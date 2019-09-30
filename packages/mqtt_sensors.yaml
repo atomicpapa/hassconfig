@@ -263,3 +263,17 @@ sensor:
     state_topic: "/fully/deviceInfo/63a59e69-36e6756d"
     device_class: battery
     value_template: "{{ value_json.batteryLevel }}"
+
+switch:
+  - platform: mqtt
+    name: "SP20-3 Energy Monitor"
+    state_topic: "stat/sp20_3/POWER"
+    command_topic: "cmnd/sp20_3/POWER"
+    availability_topic: "tele/sp20_3/LWT"
+    payload_on: "ON"
+    payload_off: "OFF"
+    state_on: "ON"
+    state_off: "OFF"
+    optimistic: true
+    qos: 0
+    retain: true
