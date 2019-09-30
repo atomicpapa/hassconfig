@@ -264,20 +264,20 @@ sensor:
     device_class: battery
     value_template: "{{ value_json.batteryLevel }}"
 
-switch:
-  - platform: mqtt
-    name: "SP20-3"
-    state_topic: "stat/sp20_3/POWER"
-    command_topic: "cmnd/sp20_3/POWER"
-    availability_topic: "tele/sp20_3/LWT"
-    payload_on: "ON"
-    payload_off: "OFF"
-    state_on: "ON"
-    state_off: "OFF"
-    payload_available: "Online"
-    payload_not_available: "Offline"
-    json_attributes_topic: "tele/sp20_3/SENSOR"
-    json_attributes_template: "{{ value_json.ENERGY | tojson}}"
-    optimistic: true
-    qos: 0
-    retain: true
+# switch:
+#   - platform: mqtt
+#     name: "SP20-3"
+#     state_topic: "stat/sp20_3/POWER"
+#     command_topic: "cmnd/sp20_3/POWER"
+#     availability_topic: "tele/sp20_3/LWT"
+#     payload_on: "ON"
+#     payload_off: "OFF"
+#     state_on: "ON"
+#     state_off: "OFF"
+#     payload_available: "Online"
+#     payload_not_available: "Offline"
+#     json_attributes_topic: "tele/sp20_3/SENSOR"
+#     json_attributes_template: "{{ value_json.ENERGY | tojson}}"
+#     optimistic: true
+#     qos: 0
+#     retain: true
