@@ -274,6 +274,10 @@ switch:
     payload_off: "OFF"
     state_on: "ON"
     state_off: "OFF"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    json_attributes_topic: "tele/sp20_3/SENSOR"
+    json_attributes_template: "{{ value_json.ENERGY | tojson}}"
     optimistic: true
     qos: 0
     retain: true
