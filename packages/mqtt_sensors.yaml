@@ -266,7 +266,7 @@ sensor:
 
 switch:
   - platform: mqtt
-    name: "SP20-3 Energy Monitor"
+    name: "SP20-3"
     state_topic: "stat/sp20_3/POWER"
     command_topic: "cmnd/sp20_3/POWER"
     availability_topic: "tele/sp20_3/LWT"
