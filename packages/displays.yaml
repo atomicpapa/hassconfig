@@ -19,8 +19,7 @@ automation:
           - 63a59e69-36e6756d
           - 3b3eda67-36d67dd5
 
-    - delay:
-      minutes: 1
+    - delay: 0:60
 
     - service: browser_mod.command
       data:
