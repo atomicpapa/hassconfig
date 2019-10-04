@@ -17,3 +17,72 @@ alarm_control_panel:
 ### @body add automations for what needs to happen when a door or wondow opens
 ### when the alarm is armed and disarmed,  Also add automations to let us know
 ### when a door has been left open.
+
+automation:
+
+  - alias: Door opened
+    initial_state: "on"
+    trigger:
+      - platform: state
+        entity_id:
+          - binary_sensor.front_door
+          - binary_sensor.back_door
+          - binary_sensor.garage_door
+        from: "off"
+        to: "on"
+
+    action:
+      - service: media_player.volume_set
+        data:
+          entity_id: media_player.whole_house
+          volume_level: 0.8
+      - service: tts.google_translate_say
+        data_template:
+          entity_id: media_player.whole_house
+          message: {{trigger.entity_id}} open
+
+  - alias: Door left open
+    initial_state: "on"
+    trigger:
+      - platform: state
+        entity_id:
+          - binary_sensor.front_door
+          - binary_sensor.back_door
+          - binary_sensor.garage_door
+          - binary_sensor.fridge
+          - binary_sensor.freezer
+        to: "on"
+        for:
+          minutes: 5
+    action:
+      - service: media_player.volume_set
+        data:
+          entity_id: media_player.whole_house
+          volume_level: 0.8
+      - service: tts.google_translate_say
+        data_template:
+          entity_id: media_player.whole_house
+          message: {{trigger.entity_id}} was left open
+
+  - alias: Door left open
+    initial_state: "on"
+    trigger:
+      - platform: state
+        entity_id:
+          - binary_sensor.front_door
+          - binary_sensor.back_door
+          - binary_sensor.garage_door
+          - binary_sensor.fridge
+          - binary_sensor.freezer
+        to: "on"
+        for:
+          minutes: 10
+    action:
+      - service: media_player.volume_set
+        data:
+          entity_id: media_player.whole_house
+          volume_level: 0.8
+      - service: tts.google_translate_say
+        data_template:
+          entity_id: media_player.whole_house
+          message: {{trigger.entity_id}} is still open after ten minutes
