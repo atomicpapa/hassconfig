@@ -39,7 +39,7 @@ automation:
       - service: tts.google_translate_say
         data_template:
           entity_id: media_player.whole_house
-          message: {{trigger.entity_id}} open
+          message: the {{trigger.entity_id}} opened
 
   - alias: Door left open
     initial_state: "on"
@@ -62,7 +62,7 @@ automation:
       - service: tts.google_translate_say
         data_template:
           entity_id: media_player.whole_house
-          message: {{trigger.entity_id}} was left open
+          message: the {{trigger.entity_id}} was left open
 
   - alias: Door left open
     initial_state: "on"
@@ -85,4 +85,4 @@ automation:
       - service: tts.google_translate_say
         data_template:
           entity_id: media_player.whole_house
-          message: {{trigger.entity_id}} is still open after ten minutes
+          message: the {{trigger.entity_id}} is still open after ten minutes
