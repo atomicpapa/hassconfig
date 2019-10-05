@@ -16,13 +16,17 @@ sleep:
           - light.entry_hall
           - light.girls
           - light.livingroom_dimmer
+    - service: switch.turn_off
+      data:
+        entity_id:
+          - switch.hanging_lamp
 
     # this sends a notification to my phone.  That notification is picked
     # up by Tasker which starts Sleep Tracking in the Sleep As Android app
-    - service: notify.mobile_app_pixel_xl_ariela
-      data:
-        message: Good Night
-        title: Sleep
+    # - service: notify.mobile_app_pixel_xl_ariela
+    #   data:
+    #     message: Good Night
+    #     title: Sleep
 
     # this turns on an input boolean that will be turned off by Tasker when
     # I stop SLeep Tracking on my phone and used to trigger an automation
