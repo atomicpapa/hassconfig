@@ -10,3 +10,5 @@ hacs:
   appdaemon: true
   python_script: true
   theme: true
+  options:
+    experimental: true
