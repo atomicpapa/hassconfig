@@ -210,7 +210,7 @@ speech_engine:
           {% endmacro %}
 
           {%- macro washer_started() -%}
-            A new load has been started in the washing machine
+            The washing machine has been started with a new load
           {%- endmacro -%}
 
           {%- macro you_have_mail() -%}

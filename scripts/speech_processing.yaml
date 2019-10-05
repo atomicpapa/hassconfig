@@ -45,11 +45,11 @@ speech_processing:
         volume_level: >-
           {% if states.input_boolean.alert_mode.state == 'on' %}
             0.8
-          {% elif states.input_boolean.school_mode.state == 'on' and now().strftime('%H')|int >= 6 and now().strftime('%H')|int < 20 %}
+          {% elif states.input_boolean.school_mode.state == 'on' and now().strftime('%H')|int >= 6 and now().strftime('%H')|int < 21 %}
             0.8
-          {% elif states.input_boolean.school_mode.state != 'on' and now().strftime('%H')|int < 10 and now().strftime('%H')|int >= 6 %}
+          {% elif states.input_boolean.school_mode.state != 'off' and now().strftime('%H')|int >= 6 and now().strftime('%H')|int < 10 %}
             0.5
-          {% elif states.input_boolean.school_mode.state != 'on' and now().strftime('%H')|int > 10 and now().strftime('%H')|int < 20 %}
+          {% elif states.input_boolean.school_mode.state != 'off' and now().strftime('%H')|int >= 10 and now().strftime('%H')|int < 22 %}
             0.8
           {% else %}
             0.4
