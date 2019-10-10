@@ -1,0 +1,10 @@
+# Example configuration.yaml entry
+sensor:
+  - platform: systemmonitor
+    resources:
+      - type: disk_use_percent
+        arg: /home
+      - type: disk_use_percent
+        arg: /media/external
+      - type: memory_free
+      - type: processor_use
