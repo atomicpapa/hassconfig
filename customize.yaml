@@ -30,5 +30,5 @@ sensor.lola_status:
   entity_picture: https://life360-img.s3.amazonaws.com/img/user_images/8e268d48-4e28-43fe-ae17-0abb0448d77e/5d43cd79-854b-454a-82c8-c3021802d495.png?fd=2
 sensor.disk_use_percent_home:
   friendly_name: SDA1 Disk Used
-sensor.disk_use_percent_media:
+sensor.disk_use_percent_media_external:
   friendly_name: SDB1 Disk Used
